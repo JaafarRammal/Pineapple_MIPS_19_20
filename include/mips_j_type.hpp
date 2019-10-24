@@ -1,7 +1,7 @@
 #ifndef MIPS_J_TYPE
 #define MIPS_J_TYPE
 
-#include 
+#include "mips_init.hpp"
 
 // Define all the J-type instructions
 // These take in input by default a MIPS structure by reference that is modifiable to access common register and memory

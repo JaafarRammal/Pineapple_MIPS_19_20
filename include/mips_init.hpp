@@ -1,7 +1,7 @@
 #ifndef MIPS_INIT
 #define MIPS_INIT
 
-#include "vector"
+#include <vector>
 
 // we will run this file at the beginning to initialize the MIPS
 // the different MIPS elements are defined below to "construct" te MIPS
@@ -64,7 +64,7 @@ they will be able to use and modify (for example, read a register, write to memo
 struct MIPS{
 
   std::vector<int32_t> memory;
-	std::vector<int32_t> register;
+	std::vector<int32_t> registers;
   
   uint32_t pc;
 	uint32_t npc;
