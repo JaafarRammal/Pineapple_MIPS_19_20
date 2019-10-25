@@ -69,8 +69,8 @@ struct MIPS{
   uint32_t pc;
 	uint32_t npc;
 	
-  int32_t Hi;
-	int32_t Lo;
+  int32_t hi;
+	int32_t lo;
 
 };
 
