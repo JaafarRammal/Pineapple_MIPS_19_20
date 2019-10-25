@@ -8,8 +8,33 @@ void r_type(MIPS& mips, bool& executed);
 
 // r-type executions
 
-void add(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
-void addu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
+void add(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+  // use signed integers
+  int32_t a = mips.registers[rs];
+  int32_t b = mips.registers[rt];
+  int32_t r = a + b;
+
+  /*
+   Check if result overflows. This occurs if:
+   - A<0 and B<0 and R>0
+   - A>0 and B>0 and R<0
+  */
+
+  if( (a<0) && (b<0) && (r>0) | (a>0) && (b>0) && (r<0)){
+    // overflow
+    // [ARITHMATIC EXCEPTION]
+  }else{
+    // no overflow
+    mips.registers[rd] = r;
+    mips.npc += 1;
+  }
+
+}
+
+void addu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+	mips.registers[rd] = (mips.registers[rs] + mips.registers[rt]) ;
+	mips.npc += 1;
+}
 
 void And(MIPS& mips,uint32_t rs,uint32_t rt, uint32_t rd){
   mips.registers[rd] = (mips.registers[rs] & mips.registers[rt]);
