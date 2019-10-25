@@ -95,8 +95,30 @@ void mtlo(MIPS& mips, uint32_t rt){
   mips.npc += 1;
 }
 
-void mult(MIPS& mips, uint32_t rs,uint32_t rt);
-void multu(MIPS& mips, uint32_t rs, uint32_t rt);
+void mult(MIPS& mips, uint32_t rs,uint32_t rt){
+  // load signed operands
+  // use 64 bits
+  int64_t rs_signed = mips.registers[rs];
+	int64_t rt_signed = mips.registers[rt];
+
+  // hi <- (63:32)p & lo <- (31:0)p
+	int64_t product  = rs_signed * rt_signed;
+	mips.hi = (product >> 32);
+	mips.lo = (product << 32) >> 32;
+	mips.npc += 1;
+}
+void multu(MIPS& mips, uint32_t rs, uint32_t rt){
+  // load unsigned operands
+  // use 64 bits
+  uint64_t rs_unsigned = mips.registers[rs];
+	uint64_t rt_unsigned = mips.registers[rt];
+
+  // hi <- (63:32)p & lo <- (31:0)p
+	uint64_t product  = rs_unsigned * rt_unsigned;
+	mips.hi = (product >> 32);
+	mips.lo = (product << 32) >> 32;
+	mips.npc += 1;
+}
 
 void Or(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   mips.registers[rd] = (mips.registers[rs] | mips.registers[rt]);
