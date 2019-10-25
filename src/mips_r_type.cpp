@@ -20,7 +20,7 @@ void add(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
    - A>0 and B>0 and R<0
   */
 
-  if( (rs_signed<0) && (rt_signed<0) && (sum>0) || (rs_signed>0) && (rt_signed>0) && (sum<0)){
+  if( (rs_signed<0) && (rt_signed<0) && (sum>=0) || (rs_signed>0) && (rt_signed>0) && (sum<=0)){
     // overflow
     // [ARITHMATIC EXCEPTION]
   }else{
@@ -160,8 +160,37 @@ void srlv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   mips.npc += 1;
 }
 
-void sub(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
-void subu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
+void sub(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+  // load signed operands
+  int32_t rs_unsigned = mips.registers[rs];
+  int32_t rt_unsigned = mips.registers[rt];
+  int32_t difference = rs_unsigned - rt_unsigned;
+  mips.registers[rd] = difference;
+  mips.npc += 1;
+}
+
+void subu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+  // load unsigned operands
+  uint32_t rs_signed = mips.registers[rs];
+  uint32_t rt_signed = mips.registers[rt];
+  uint32_t difference = rs_signed - rt_signed;
+  mips.registers[rd] = difference;
+  mips.npc += 1;
+  /*
+   Check if result overflows. This occurs if:
+   - A<0 and B<0 and R>0
+   - A>0 and B>0 and R<0
+  */
+
+  if( (rs_signed<0) && (rt_signed>0) && (difference>=0) || (rs_signed>0) && (rt_signed<0) && (difference<=0)){
+    // overflow
+    // [ARITHMATIC EXCEPTION]
+  }else{
+    // no overflow
+    mips.registers[rd] = difference;
+    mips.npc += 1;
+  }
+}
 
 void Xor(MIPS& mips,  uint32_t rs, uint32_t rt, uint32_t rd){
   mips.registers[rd] = (mips.registers[rs] ^ mips.registers[rt]);
