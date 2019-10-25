@@ -121,8 +121,17 @@ void sltu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   mips.registers[rd] = (0 || rs_unsigned) < (0 || rt_unsigned) ? ((0|rs_unsigned) < (0|rt_unsigned)) | 1 : 0;
   mips.npc += 1;
 }
-void sll(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa);
-void sllv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
+
+void sll(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa){
+  mips.registers[rd] = (mips.registers[rt] << sa);
+	mips.npc += 1;
+}
+
+void sllv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+  mips.registers[rd] = (mips.registers[rt] << mips.registers[rs]);   // or sll(mips, rt, rd, mips.registers[rs]) :o
+	mips.npc += 1;
+}
+
 void srl(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa);
 void sra(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa);
 void srav(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
