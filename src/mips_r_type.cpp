@@ -10,7 +10,11 @@ void r_type(MIPS& mips, bool& executed);
 
 void add(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
 void addu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
-void And(MIPS& mips,uint32_t rs,uint32_t rt, uint32_t rd);
+
+void And(MIPS& mips,uint32_t rs,uint32_t rt, uint32_t rd){
+  mips.registers[rd] = (mips.registers[rs] & mips.registers[rt]);
+  mips.npc += 1;
+}
 
 void div(MIPS& mips, uint32_t rs, uint32_t rt);
 void divu(MIPS& mips, uint32_t rs, uint32_t rt);
@@ -25,7 +29,10 @@ void mtlo(MIPS& mips, uint32_t rt);
 void mult(MIPS& mips, uint32_t rs,uint32_t rt);
 void multu(MIPS& mips, uint32_t rs, uint32_t rt);
 
-void Or(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
+void Or(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+  mips.registers[rd] = (mips.registers[rs] | mips.registers[rt]);
+  mips.npc += 1;
+}
 
 void slt(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
 void sltu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
@@ -38,4 +45,7 @@ void srlv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
 void sub(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
 void subu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
 
-void Xor(MIPS& mips,  uint32_t rs, uint32_t rt, uint32_t rd);
+void Xor(MIPS& mips,  uint32_t rs, uint32_t rt, uint32_t rd){
+  mips.registers[rd] = (mips.registers[rs] ^ mips.registers[rt]);
+  mips.npc += 1;
+}
