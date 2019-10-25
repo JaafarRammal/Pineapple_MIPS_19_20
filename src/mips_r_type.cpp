@@ -20,7 +20,7 @@ void add(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
    - A>0 and B>0 and R<0
   */
 
-  if( (rs_signed<0) && (rt_signed<0) && (sum>0) | (rs_signed>0) && (rt_signed>0) && (sum<0)){
+  if( (rs_signed<0) && (rt_signed<0) && (sum>0) || (rs_signed>0) && (rt_signed>0) && (sum<0)){
     // overflow
     // [ARITHMATIC EXCEPTION]
   }else{
@@ -103,8 +103,24 @@ void Or(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   mips.npc += 1;
 }
 
-void slt(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
-void sltu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
+void slt(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+  // load signed operands
+  int32_t rs_signed = mips.registers[rs];
+  int32_t rt_signed = mips.registers[rt];
+
+  // rd <- (rs < rt)
+  mips.registers[rd] = rs_signed < rt_signed ? 1 : 0;
+  mips.npc += 1;
+}
+
+void sltu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+  // load unsigned operands
+  uint32_t rs_unsigned = mips.registers[rs];
+  uint32_t rt_unsigned = mips.registers[rt];
+  // rd <- (0||rs < 0||rt)
+  mips.registers[rd] = (0 || rs_unsigned) < (0 || rt_unsigned) ? ((0|rs_unsigned) < (0|rt_unsigned)) | 1 : 0;
+  mips.npc += 1;
+}
 void sll(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa);
 void sllv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
 void srl(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa);
