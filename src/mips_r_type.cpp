@@ -75,10 +75,26 @@ void divu(MIPS& mips, uint32_t rs, uint32_t rt){
 void jalr(MIPS& mips, uint32_t rs, uint32_t rd);
 void jr(MIPS& mips, uint32_t rt);
 
-void mfhi(MIPS& mips, uint32_t rd);
-void mflo(MIPS& mips, uint32_t rd);
-void mthi(MIPS& mips, uint32_t rt);
-void mtlo(MIPS& mips, uint32_t rt);
+void mfhi(MIPS& mips, uint32_t rd){
+  mips.registers[rd] = mips.hi;
+  mips.npc += 1;
+}
+
+void mflo(MIPS& mips, uint32_t rd){
+  mips.registers[rd] = mips.lo;
+  mips.npc += 1;
+}
+
+void mthi(MIPS& mips, uint32_t rt){
+  mips.hi = mips.registers[rt];
+  mips.npc += 1;
+}
+
+void mtlo(MIPS& mips, uint32_t rt){
+  mips.lo = mips.registers[rt];
+  mips.npc += 1;
+}
+
 void mult(MIPS& mips, uint32_t rs,uint32_t rt);
 void multu(MIPS& mips, uint32_t rs, uint32_t rt);
 
