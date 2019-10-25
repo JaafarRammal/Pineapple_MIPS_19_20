@@ -132,10 +132,34 @@ void sllv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
 	mips.npc += 1;
 }
 
-void srl(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa);
-void sra(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa);
-void srav(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
-void srlv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
+void srl(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa){
+  // load unsigned operand
+  uint32_t rt_unsigned = mips.registers[rt];
+  mips.registers[rd] = (rt_unsigned >> sa);
+	mips.npc += 1;
+}
+
+void sra(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa){
+  // load signed operand
+  int32_t rt_signed = mips.registers[rt];
+	mips.registers[rd] = (rt_signed >> sa);
+  mips.npc += 1;
+}
+
+void srav(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+  // load signed operand
+  int32_t rt_signed = mips.registers[rt];
+  mips.registers[rd] = (rt_signed >> mips.registers[rs]);
+  mips.npc += 1;
+}
+
+void srlv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+  // load unsigned operand
+  uint32_t rt_unsigned = mips.registers[rt];
+  mips.registers[rd]  = (rt_unsigned >> mips.registers[rs]);
+  mips.npc += 1;
+}
+
 void sub(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
 void subu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd);
 
