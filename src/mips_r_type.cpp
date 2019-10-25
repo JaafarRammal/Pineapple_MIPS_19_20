@@ -9,10 +9,10 @@ void r_type(MIPS& mips, bool& executed);
 // r-type executions
 
 void add(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
-  // use signed integers
-  int32_t a = mips.registers[rs];
-  int32_t b = mips.registers[rt];
-  int32_t r = a + b;
+  // load signed operands
+  int32_t rs_signed = mips.registers[rs];
+  int32_t rt_signed = mips.registers[rt];
+  int32_t sum = rs_signed + rt_signed;
 
   /*
    Check if result overflows. This occurs if:
@@ -20,12 +20,12 @@ void add(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
    - A>0 and B>0 and R<0
   */
 
-  if( (a<0) && (b<0) && (r>0) | (a>0) && (b>0) && (r<0)){
+  if( (rs_signed<0) && (rt_signed<0) && (sum>0) | (rs_signed>0) && (rt_signed>0) && (sum<0)){
     // overflow
     // [ARITHMATIC EXCEPTION]
   }else{
     // no overflow
-    mips.registers[rd] = r;
+    mips.registers[rd] = sum;
     mips.npc += 1;
   }
 }
