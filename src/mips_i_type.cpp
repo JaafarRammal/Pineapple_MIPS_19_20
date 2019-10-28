@@ -129,6 +129,7 @@ void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
   if( (immediate<0) && (rs_signed<0) && (rs_signed + immediate>=0) || (immediate>0) && (rs_signed>0) && (rs_signed + immediate<=0)){
     // overflow
     // [ARITHMETIC EXCEPTION]
+		throw (static_cast<int>(Exception::ARITHMETIC));
   }
   else{
     // no overflow
@@ -179,6 +180,7 @@ void bgtz(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
 	if(rt != 0x00000000){
 		// rt must be 0
 		// [Instruction Exception]
+		throw (static_cast<int>(Exception::INSTRUCTION));
 	}
 	else{
 		if(mips.registers[rs] > 0){
@@ -193,6 +195,7 @@ void blez(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
 	if(rt != 0){
 		// rt must be 0
 		// [Instruction Exception]
+		throw (static_cast<int>(Exception::INSTRUCTION));
 	}
 
 	else{
