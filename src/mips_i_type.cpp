@@ -7,109 +7,112 @@ using namespace std;
 // main executor call
 
 void i_type(MIPS& mips, bool& executed){
-	//26 right shift to get instruction type
-	uint32_t instruction = mips.memory[mips.pc];
-	uint32_t opcode = instruction >> 26;
-	uint32_t rs = (instruction & 0x03E00000) >> 21;
-	uint32_t rt= (instruction & 0x001F0000) >> 16;
-	int32_t immediate = instruction & 0x0000FFFF;
 
-	// we need a sign extended immediate in some functions
+	if(!executed){
+	
+		uint32_t instruction = mips.memory[mips.pc];
+		uint32_t opcode = instruction >> 26;
+		uint32_t rs = (instruction & 0x03E00000) >> 21;
+		uint32_t rt= (instruction & 0x001F0000) >> 16;
+		int32_t immediate = instruction & 0x0000FFFF;
 
-	int32_t s_immediate;
+		// we need a sign extended immediate in some functions
 
-	// check MSB
-	if(immediate >> 15){
-		s_immediate = immediate | 0xFFFF0000;
-	}
-	else{
-		s_immediate = immediate;
-	}
+		int32_t s_immediate;
 
-	switch(opcode){
-		case 0b001000:
-			addi(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b001001:
-			addiu(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b001100 : 
-			andi(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b000100 : 
-			beq(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b000001 : 
-			if (rt == 0b00001){
-				bgez(mips, rs, immediate);
-			}
-			else if (rt == 0b10001){
-				bgezal(mips, rs, immediate);
-			}
-			else if (rt == 0b00000){
-				bltz(mips, rs, immediate);
-			}
-			else if (rt == 0b10000){
-				bltzal(mips, rs, immediate);
-			}
-			executed = true; return;
-		case 0b000111 : 
-			bgtz(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b000110 : 
-			blez(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b000101 : 
-			bne(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b100100 : 
-			lbu(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b100000 : 
-			lb(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b100101 : 
-			lhu(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b100001 : 
-			lh(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b001111 : 
-			lui(mips, rt, immediate);
-			executed = true; return;
-		case 0b100011 : 
-			lw(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b100010 : 
-			lwl(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b100110 : 
-			lwr(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b001101 : 
-			ori(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b001010 : 
-			slti(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b001011 : 
-			sltiu(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b101000 : 
-			sb(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b101001 : 
-			sh(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b101011 : 
-			sw(mips, rs, rt, immediate);
-			executed = true; return;
-		case 0b001110 : 
-			xori(mips, rs, rt, immediate);
-			executed = true; return;
-		default : 
-			// executed = false; // make sure
-			return;
+		// check MSB
+		if(immediate >> 15){
+			s_immediate = immediate | 0xFFFF0000;
+		}
+		else{
+			s_immediate = immediate;
+		}
+
+		switch(opcode){
+			case 0b001000:
+				addi(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001001:
+				addiu(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001100 : 
+				andi(mips, rs, rt, immediate);
+				executed = true; return;
+			case 0b000100 : 
+				beq(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b000001 : 
+				if (rt == 0b00001){
+					bgez(mips, rs, s_immediate);
+				}
+				else if (rt == 0b10001){
+					bgezal(mips, rs, s_immediate);
+				}
+				else if (rt == 0b00000){
+					bltz(mips, rs, s_immediate);
+				}
+				else if (rt == 0b10000){
+					bltzal(mips, rs, s_immediate);
+				}
+				executed = true; return;
+			case 0b000111 : 
+				bgtz(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b000110 : 
+				blez(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b000101 : 
+				bne(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100100 : 
+				lbu(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100000 : 
+				lb(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100101 : 
+				lhu(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100001 : 
+				lh(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001111 : 
+				lui(mips, rt, immediate);
+				executed = true; return;
+			case 0b100011 : 
+				lw(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100010 : 
+				lwl(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100110 : 
+				lwr(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001101 : 
+				ori(mips, rs, rt, immediate);
+				executed = true; return;
+			case 0b001010 : 
+				slti(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001011 : 
+				sltiu(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b101000 : 
+				sb(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b101001 : 
+				sh(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b101011 : 
+				sw(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001110 : 
+				xori(mips, rs, rt, immediate);
+				executed = true; return;
+			default : 
+				executed = false; // make sure
+				return;
+		}
 	}
 }
 
@@ -119,8 +122,9 @@ void i_type(MIPS& mips, bool& executed){
 
 
 void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-//rt <- rs + immediate
- // load signed operands
+	
+	//rt <- rs + immediate
+ 	// load signed operands
   int32_t rs_signed = mips.registers[rs];
   int32_t sum = rs_signed + immediate;
  
