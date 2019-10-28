@@ -113,7 +113,7 @@ void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
   int32_t rs_signed = mips.registers[rs];
   int32_t sum = rs_signed + immediate;
  
-  if( (immediate<0) && (rt_signed<0) && (sum>=0) || (immediate>0) && (rt_signed>0) && (sum<=0)){
+  if( (immediate<0) && (rs_signed<0) && (sum>=0) || (immediate>0) && (rs_signed>0) && (sum<=0)){
     // overflow
     // [ARITHMETIC EXCEPTION]
   }
@@ -125,7 +125,7 @@ void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 }
 
 void addiu(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-	mips.registers[rt] = (immediate + mips.registers[rs]) ;
+	mips.registers[rt] = static_cast<uint32_t>((immediate + static_cast<uint32_t>(mips.registers[rs])));
 	mips.npc += 1;
 }
 void andi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
@@ -135,11 +135,11 @@ void andi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 
 void beq(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
 	if (mips.registers[rs] == mips.registers[rt]){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+		// no need to shift offset since we are using 32 bits not 8 bits
+		// mips.npc = mips.npc + (offset << 2)
+		mips.npc = mips.npc + offset;
+	}else{
+		mips.npc += 1;
 	}
 }
 
@@ -202,17 +202,16 @@ void bltzal(MIPS& mips, uint32_t rs, int32_t offset){
 	}
 }
 void bne(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
-	if (mips.registers[rs] != 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+	if (mips.registers[rs] != mips.registers[rs]){
+		// same remark
+		mips.npc += offset;
+	}else{
+		mips.npc += 1;
 	}
 }
 
 void ori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
- mips.registers[rt] = (mips.registers[rs] | immediate);
+	mips.registers[rt] = (mips.registers[rs] | immediate);
   mips.npc += 1;
 }
 
@@ -236,7 +235,8 @@ void xori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
   	mips.npc += 1;
 }
 
-// will create memory object & initialisation for them 
+// will create memory object & initialisation for them
+// some problems here, will need to change a bit the code
 void lbu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	 mips.registers[rt] = (uint8_t)LOAD_MEMORY(mips.memory[base + offset]);
 	 mips.npc += 1;
