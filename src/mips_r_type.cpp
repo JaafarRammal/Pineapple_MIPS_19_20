@@ -4,7 +4,21 @@ using namespace std;
 
 // main executor call
 
-void r_type(MIPS& mips, bool& executed);
+void r_type(MIPS& mips, bool& executed){
+  //26 right shift to get instruction type
+  uint32_t opcode = mips.memory[ADDR_INSTR_OFFSET] && 0x0000003F; // 6 LSB
+  uint32_t rs = mips.memory[ADDR_INSTR_OFFSET] >> 21;
+  rs = rs - (opcode << 5);
+  uint32_t rt = mips.memory[ADDR_INSTR_OFFSET] >> 16;
+  rt = rt - (opcode << 11) - (rs << 5);
+  uint32_t immediate = mips.memory[ADDR_INSTR_OFFSET];
+  immediate = immediate - (opcode << 26) - (rs << 21) - (rt << 16);
+
+  switch(opcode){
+    case "001000":
+      addi(mips, rs, rt, immediate);
+      executed = true;
+}
 
 // r-type executions
 

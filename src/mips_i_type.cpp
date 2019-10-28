@@ -17,84 +17,84 @@ void i_type(MIPS& mips, bool& executed){
 	immediate = immediate - (opcode << 26) - (rs << 21) - (rt << 16);
 
 	switch(opcode){
-		case "001000":
+		case "0x001000":
 			addi(mips, rs, rt, immediate);
 			executed = true;
-		case "001001":
+		case "0x001001":
 			addiu(mips, rs, rt, immediate);
 			executed = true;
-		case "001100" : 
+		case "0x001100" : 
 			andi(mips, rs, rt, immediate);
 			executed = true;
-		case "000100" : 
+		case "0x000100" : 
 			beq(mips, rs, immediate);
 			executed = true;
-		case "000001" : 
-			if (rt == "00001"){
+		case "0x000001" : 
+			if (rt == "0x00001"){
 				bgez(mips, rs, immediate);
 			}
-			else if (rt == "10001"){
+			else if (rt == "0x10001"){
 				bgezal(mips, rs, rt, immediate);
 			}
-			else if (rt == "00000"){
+			else if (rt == "0x00000"){
 				bltz(mips, rs, immediate);
 			}
-			else if (rt == "10000"){
+			else if (rt == "0x10000"){
 				bltzal(mips, rs, rt, immediate);
 			}
 			executed = true;
-		case "000111" : 
+		case "0x000111" : 
 			bgtz(mips, rs, rt, immediate);
 			executed = true;
-		case "000110" : 
+		case "0x000110" : 
 			blez(mips, rs, rt, immediate);
 			executed = true;
-		case "000101" : 
+		case "0x000101" : 
 			bne(mips, rs, immediate);
 			executed = true;
-		case "100100" : 
+		case "0x100100" : 
 			lbu(mips, rs, rt, immediate);
 			executed = true;
-		case "100000" : 
+		case "0x100000" : 
 			lb(mips, rs, rt, immediate);
 			executed = true;
-		case "100101" : 
+		case "0x100101" : 
 			lhu(mips, rs, rt, immediate);
 			executed = true;
-		case "100001" : 
+		case "0x100001" : 
 			lh(mips, rs, rt, immediate);
 			executed = true;
-		case "001111" : 
+		case "0x001111" : 
 			lui(mips, rt, immediate);
 			executed = true;
-		case "100011" : 
+		case "0x100011" : 
 			lw(mips, rs, rt, immediate);
 			executed = true;
-		case "100010" : 
+		case "0x100010" : 
 			lwl(mips, rs, rt, immediate);
 			executed = true;
-		case "100110" : 
+		case "0x100110" : 
 			lwr(mips, rs, rt, immediate);
 			executed = true;
-		case "001101" : 
+		case "0x001101" : 
 			ori(mips, rs, rt, immediate);
 			executed = true;
-		case "" : 
+		case "0x001010" : 
 			slti(mips, rs, rt, immediate);
 			executed = true;
-		case "001010" : 
+		case "0x001011" : 
 			sltiu(mips, rs, rt, immediate);
 			executed = true;
-		case "101000" : 
+		case "0x101000" : 
 			sb(mips, rs, rt, immediate);
 			executed = true;
-		case "101001" : 
+		case "0x101001" : 
 			sh(mips, rs, rt, immediate);
 			executed = true;
-		case "101011" : 
+		case "0x101011" : 
 			sw(mips, rs, rt, immediate);
 			executed = true;
-		case "001110" : 
+		case "0x001110" : 
 			xori(mips, rs, rt, immediate);
 			executed = true;
 		default : 
