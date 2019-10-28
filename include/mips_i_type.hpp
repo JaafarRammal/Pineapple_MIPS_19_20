@@ -15,7 +15,7 @@ void i_type(MIPS& mips, bool& executed);
 
 // r-type executions
 // variables named based on the attached js helper for instructions
-
+void get_16msb(int& input);
 void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate);
 void addiu(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate);
 void andi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate);
