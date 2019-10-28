@@ -7,7 +7,99 @@ using namespace std;
 // main executor call
 
 void i_type(MIPS& mips, bool& executed){
-	// switch statements from mips.opcode
+	//26 right shift to get instruction type
+	uint32_t opcode = mips.memory[ADDR_INSTR_OFFSET] >> 26;
+	uint32_t rs = mips.memory[ADDR_INSTR_OFFSET] >> 21;
+	rs = rs - (opcode << 5);
+	uint32_t rt = mips.memory[ADDR_INSTR_OFFSET] >> 16;
+	rt = rt - (opcode << 11) - (rs << 5);
+	uint32_t immediate = mips.memory[ADDR_INSTR_OFFSET];
+	immediate = immediate - (opcode << 26) - (rs << 21) - (rt << 16);
+
+	switch(opcode){
+		case "001000":
+			addi(mips, rs, rt, immediate);
+			executed = true;
+		case "001001":
+			addiu(mips, rs, rt, immediate);
+			executed = true;
+		case "001100" : 
+			andi(mips, rs, rt, immediate);
+			executed = true;
+		case "000100" : 
+			beq(mips, rs, immediate);
+			executed = true;
+		case "000001" : 
+			if (rt == "00001"){
+				bgez(mips, rs, immediate);
+			}
+			else if (rt == "10001"){
+				bgezal(mips, rs, rt, immediate);
+			}
+			else if (rt == "00000"){
+				bltz(mips, rs, immediate);
+			}
+			else if (rt == "10000"){
+				bltzal(mips, rs, rt, immediate);
+			}
+			executed = true;
+		case "000111" : 
+			bgtz(mips, rs, rt, immediate);
+			executed = true;
+		case "000110" : 
+			blez(mips, rs, rt, immediate);
+			executed = true;
+		case "000101" : 
+			bne(mips, rs, immediate);
+			executed = true;
+		case "100100" : 
+			lbu(mips, rs, rt, immediate);
+			executed = true;
+		case "100000" : 
+			lb(mips, rs, rt, immediate);
+			executed = true;
+		case "100101" : 
+			lhu(mips, rs, rt, immediate);
+			executed = true;
+		case "100001" : 
+			lh(mips, rs, rt, immediate);
+			executed = true;
+		case "001111" : 
+			lui(mips, rt, immediate);
+			executed = true;
+		case "100011" : 
+			lw(mips, rs, rt, immediate);
+			executed = true;
+		case "100010" : 
+			lwl(mips, rs, rt, immediate);
+			executed = true;
+		case "100110" : 
+			lwr(mips, rs, rt, immediate);
+			executed = true;
+		case "001101" : 
+			ori(mips, rs, rt, immediate);
+			executed = true;
+		case "" : 
+			slti(mips, rs, rt, immediate);
+			executed = true;
+		case "001010" : 
+			sltiu(mips, rs, rt, immediate);
+			executed = true;
+		case "101000" : 
+			sb(mips, rs, rt, immediate);
+			executed = true;
+		case "101001" : 
+			sh(mips, rs, rt, immediate);
+			executed = true;
+		case "101011" : 
+			sw(mips, rs, rt, immediate);
+			executed = true;
+		case "001110" : 
+			xori(mips, rs, rt, immediate);
+			executed = true;
+		default : 
+			executed = false; // make sure
+	}
 }
 
 
