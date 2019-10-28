@@ -125,18 +125,17 @@ void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 	
 	//rt <- rs + immediate
  	// load signed operands
-  int32_t rs_signed = mips.registers[rs];
-  int32_t sum = rs_signed + immediate;
- 
-  if( (immediate<0) && (rs_signed<0) && (sum>=0) || (immediate>0) && (rs_signed>0) && (sum<=0)){
+  int32_t rs_signed = mips.registers[rs]; 
+  if( (immediate<0) && (rs_signed<0) && (rs_signed + immediate>=0) || (immediate>0) && (rs_signed>0) && (rs_signed + immediate<=0)){
     // overflow
     // [ARITHMETIC EXCEPTION]
   }
   else{
     // no overflow
-    mips.registers[rt] = sum;
-    mips.npc += 1;
+    mips.registers[rt] = rs_signed + immediate;
   }
+	mips.npc += 1;
+
 }
 
 void addiu(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
@@ -159,61 +158,68 @@ void beq(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
 }
 
 void bgez(MIPS& mips, uint32_t rs, int32_t offset){
-	if (mips.registers[rs] >= 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+	if(mips.registers[rs] >= 0){
+		mips.npc += offset;
+	}
+	else{
+		++mips.npc;
 	}
 }
 void bgezal(MIPS& mips, uint32_t rs, int32_t offset){
-	if (mips.registers[rs] >= 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
-		// how to put this in mips object ? 
-		mips.registers[31] = mips.npc + 4;
+	// set return address
+	mips.registers[31] = (mips.pc * 4) + 8;
+	if(mips.registers[rs] >= 0){
+		mips.npc += offset;
+	}
+	else{
+		mips.pc += 1;
 	}
 }
 void bgtz(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
-	if (mips.registers[rs] > 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+	if(rt != 0x00000000){
+		// rt must be 0
+		// [Instruction Exception]
+	}
+	else{
+		if(mips.registers[rs] > 0){
+			mips.npc += offset;
+		}
+		else{
+			mips.npc += 1;
+		}
 	}
 }
 void blez(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
-	if (mips.registers[rs] <= 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+	if(rt != 0){
+		// rt must be 0
+		// [Instruction Exception]
+	}
+
+	else{
+		if(mips.registers[rs] <= 0x00000000){
+			mips.npc += offset;
+		}
+		else{
+			mips.npc += 1;
+		}
 	}
 }
 void bltz(MIPS& mips, uint32_t rs, int32_t offset)	{
-	if (mips.registers[rs] < 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+	if(mips.registers[rs] < 0){
+		mips.npc += offset;
+	}
+	else{
+		mips.npc += 1;
 	}
 }
 void bltzal(MIPS& mips, uint32_t rs, int32_t offset){
-		if (mips.registers[rs] < 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
-		// how to put this in mips object ? 
-		mips.registers[32] = mips.npc + 4;
+	// set address
+	mips.registers[31] = (mips.pc * 4) + 8;
+	if(mips.registers[rs] < 0){
+		mips.npc += offset;
+	}
+	else{
+		mips.npc += 1;
 	}
 }
 void bne(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
@@ -231,23 +237,19 @@ void ori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 }
 
 void slti(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-	int32_t rs_signed = mips.registers[rs];
-
 	// rt <- (rs < immediate)
-	mips.registers[rt] = rs_signed < immediate ? 1 : 0;
+	mips.registers[rt] = mips.registers[rs] < immediate ? 1 : 0;
 	mips.npc += 1;
 }
 void sltiu(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-  uint32_t rs_unsigned = mips.registers[rs];
-
-  // rt <- (0||rs < 0||immediate)
-  mips.registers[rt] = (0 || rs_unsigned) < (0 || immediate) ? ((0|rs_unsigned) < (0|immediate)) | 1 : 0;
+  uint32_t immediate_unsigned = static_cast<uint32_t>(immediate);
+  mips.registers[rt] = (uint32_t(mips.registers[rs]) < immediate_unsigned) ? 1 : 0;
   mips.npc += 1;
 }
 
 void xori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-	 mips.registers[rt] = (mips.registers[rs] ^ immediate);
-  	mips.npc += 1;
+	mips.registers[rt] = (mips.registers[rs] ^ immediate);
+  mips.npc += 1;
 }
 
 // will create memory object & initialisation for them
