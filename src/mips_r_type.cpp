@@ -5,21 +5,125 @@ using namespace std;
 // main executor call
 
 void r_type(MIPS& mips, bool& executed){
-  //26 right shift to get instruction type
-  uint32_t opcode = mips.memory[ADDR_INSTR_OFFSET] && 0x0000003F; // 6 LSB
-  uint32_t rs = mips.memory[ADDR_INSTR_OFFSET] >> 21;
-  rs = rs - (opcode << 5);
-  uint32_t rt = mips.memory[ADDR_INSTR_OFFSET] >> 16;
-  rt = rt - (opcode << 11) - (rs << 5);
-  uint32_t immediate = mips.memory[ADDR_INSTR_OFFSET];
-  immediate = immediate - (opcode << 26) - (rs << 21) - (rt << 16);
+  
+  if(!executed){
+    uint32_t instruction = mips.memory[mips.pc];
+    uint32_t opcode = (mips.memory[mips.pc] >> 26) & 0x3F;
+    uint32_t function = instruction & 0x3F;
+    uint32_t sa = (instruction & 0x7C0) >> 6;
+    uint32_t rd = (instruction & 0xF800) >> 11;
+    uint32_t rt = (instruction & 0x1F0000) >> 16; 
+    uint32_t rs = (instruction & 0x3E00000) >> 21; 
+    
 
-  switch(opcode){
-    // case "001000":
-    //   addi(mips, rs, rt, immediate);
-    //   executed = true; return;\nreturn;
-    default:
-      0;
+    if(opcode == 0){
+      switch(function){
+
+        case 0x20:
+          add(mips, rs, rt, rd);
+          executed = true;
+          return;			
+        case 0x21:
+          addu(mips, rs, rt, rd);
+          executed = true;
+          return;
+        case 0x24:
+          And(mips, rs, rt, rd);
+          executed = true;
+          return;
+        case 0x1A:
+          div(mips, rt, rs);
+          executed = true;
+          return;
+        case 0x1B:
+          divu(mips, rt, rs);
+          executed = true;
+          return;
+        case 0x9:
+          jalr(mips, rs, rd);
+          executed = true;
+          return;	
+        case 0x8:
+          jr(mips, rs);
+          executed = true;
+          return;		
+        case 0x10:
+          mfhi(mips, rd);
+          executed = true;
+          return;
+        case 0x12:
+          mflo(mips, rd);
+          executed = true;
+          return;
+        case 0x18:
+          mult(mips, rt, rs);
+          executed = true;
+          return;
+        case 0x19:
+          multu(mips, rt, rs);
+          executed = true;
+          return;
+        case 0x11:
+          mthi(mips,rs);
+          executed = true;
+          return;
+        case 0x13:
+          mtlo(mips,rs);
+          executed = true;
+          return;
+        case 0x25:
+          Or(mips, rs, rt, rd);
+          executed = true;
+          return;
+        case 0x2A:
+          slt(mips, rs, rt, rd);
+          executed = true;
+          return;
+        case 0x2B:
+          sltu(mips, rs, rt, rd);
+          executed = true;
+          return;
+        case 0x0:
+          sll(mips, rt, sa, rd);
+          executed = true;
+          return;
+        case 0x4:
+          sllv(mips,rt,rs,rd);
+          executed = true;
+          return;
+        case 0x2:
+          srl(mips, rt, sa, rd);
+          executed = true;
+          return;
+        case 0x3:
+          sra(mips, rt, sa, rd);
+          executed = true;
+          return;
+        case 0x7:
+          srav(mips,rt,rs,rd);
+          executed = true;
+          return;
+        case 0x6:
+          srlv(mips,rt,rs,rd);
+          executed = true;
+          return;
+        case 0x22:
+          sub(mips, rs, rt, rd);
+          executed = true;
+          return;
+        case 0x23:
+          subu(mips, rs, rt, rd);
+          executed = true;
+          return;
+        case 0x26:
+          Xor(mips,rt,rs,rd);
+          executed = true;
+          return;
+        default:
+          executed = false;
+          return;
+      }
+    }
   }
 }
 
