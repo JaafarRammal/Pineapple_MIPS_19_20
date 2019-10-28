@@ -17,88 +17,89 @@ void i_type(MIPS& mips, bool& executed){
 	immediate = immediate - (opcode << 26) - (rs << 21) - (rt << 16);
 
 	switch(opcode){
-		case "0x001000":
+		case 0x001000:
 			addi(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001001":
+			executed = true; return;
+		case 0x001001:
 			addiu(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001100" : 
+			executed = true; return;
+		case 0x001100 : 
 			andi(mips, rs, rt, immediate);
-			executed = true;
-		case "0x000100" : 
-			beq(mips, rs, immediate);
-			executed = true;
-		case "0x000001" : 
-			if (rt == "0x00001"){
+			executed = true; return;
+		case 0x000100 : 
+			beq(mips, rs, rt, immediate);
+			executed = true; return;
+		case 0x000001 : 
+			if (rt == 0x00001){
 				bgez(mips, rs, immediate);
 			}
-			else if (rt == "0x10001"){
-				bgezal(mips, rs, rt, immediate);
+			else if (rt == 0x10001){
+				bgezal(mips, rs, immediate);
 			}
-			else if (rt == "0x00000"){
+			else if (rt == 0x00000){
 				bltz(mips, rs, immediate);
 			}
-			else if (rt == "0x10000"){
-				bltzal(mips, rs, rt, immediate);
+			else if (rt == 0x10000){
+				bltzal(mips, rs, immediate);
 			}
-			executed = true;
-		case "0x000111" : 
+			executed = true; return;
+		case 0x000111 : 
 			bgtz(mips, rs, rt, immediate);
-			executed = true;
-		case "0x000110" : 
+			executed = true; return;
+		case 0x000110 : 
 			blez(mips, rs, rt, immediate);
-			executed = true;
-		case "0x000101" : 
-			bne(mips, rs, immediate);
-			executed = true;
-		case "0x100100" : 
+			executed = true; return;
+		case 0x000101 : 
+			bne(mips, rs, rt, immediate);
+			executed = true; return;
+		case 0x100100 : 
 			lbu(mips, rs, rt, immediate);
-			executed = true;
-		case "0x100000" : 
+			executed = true; return;
+		case 0x100000 : 
 			lb(mips, rs, rt, immediate);
-			executed = true;
-		case "0x100101" : 
+			executed = true; return;
+		case 0x100101 : 
 			lhu(mips, rs, rt, immediate);
-			executed = true;
-		case "0x100001" : 
+			executed = true; return;
+		case 0x100001 : 
 			lh(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001111" : 
+			executed = true; return;
+		case 0x001111 : 
 			lui(mips, rt, immediate);
-			executed = true;
-		case "0x100011" : 
+			executed = true; return;
+		case 0x100011 : 
 			lw(mips, rs, rt, immediate);
-			executed = true;
-		case "0x100010" : 
+			executed = true; return;
+		case 0x100010 : 
 			lwl(mips, rs, rt, immediate);
-			executed = true;
-		case "0x100110" : 
+			executed = true; return;
+		case 0x100110 : 
 			lwr(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001101" : 
+			executed = true; return;
+		case 0x001101 : 
 			ori(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001010" : 
+			executed = true; return;
+		case 0x001010 : 
 			slti(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001011" : 
+			executed = true; return;
+		case 0x001011 : 
 			sltiu(mips, rs, rt, immediate);
-			executed = true;
-		case "0x101000" : 
+			executed = true; return;
+		case 0x101000 : 
 			sb(mips, rs, rt, immediate);
-			executed = true;
-		case "0x101001" : 
+			executed = true; return;
+		case 0x101001 : 
 			sh(mips, rs, rt, immediate);
-			executed = true;
-		case "0x101011" : 
+			executed = true; return;
+		case 0x101011 : 
 			sw(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001110" : 
+			executed = true; return;
+		case 0x001110 : 
 			xori(mips, rs, rt, immediate);
-			executed = true;
+			executed = true; return;
 		default : 
-			executed = false; // make sure
+			// executed = false; // make sure
+			return;
 	}
 }
 
@@ -160,7 +161,7 @@ void bgezal(MIPS& mips, uint32_t rs, int32_t offset){
 		// add to pc 
 		mips.npc = mips.npc + tgt_offset;
 		// how to put this in mips object ? 
-		mips.gpr31 = mips.npc + 4;
+		mips.registers[31] = mips.npc + 4;
 	}
 }
 void bgtz(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
@@ -198,11 +199,11 @@ void bltzal(MIPS& mips, uint32_t rs, int32_t offset){
 		// add to pc 
 		mips.npc = mips.npc + tgt_offset;
 		// how to put this in mips object ? 
-		mips.gpr31 = mips.npc + 4;
+		mips.registers[32] = mips.npc + 4;
 	}
 }
 void bne(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
-	if (mips.registers[rs] != mips.registers[rs]){
+	if (mips.registers[rs] != mips.registers[rt]){
 		// same remark
 		mips.npc += offset;
 	}else{
@@ -218,15 +219,15 @@ void ori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 void slti(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 	int32_t rs_signed = mips.registers[rs];
 
-	// rd <- (rs < immediate)
-	mips.registers[rd] = rs_signed < immediate ? 1 : 0;
+	// rt <- (rs < immediate)
+	mips.registers[rt] = rs_signed < immediate ? 1 : 0;
 	mips.npc += 1;
 }
 void sltiu(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
   uint32_t rs_unsigned = mips.registers[rs];
 
-  // rd <- (0||rs < 0||immediate)
-  mips.registers[rd] = (0 || rs_unsigned) < (0 || immediate) ? ((0|rs_unsigned) < (0|immediate)) | 1 : 0;
+  // rt <- (0||rs < 0||immediate)
+  mips.registers[rt] = (0 || rs_unsigned) < (0 || immediate) ? ((0|rs_unsigned) < (0|immediate)) | 1 : 0;
   mips.npc += 1;
 }
 

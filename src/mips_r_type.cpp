@@ -17,7 +17,7 @@ void r_type(MIPS& mips, bool& executed){
   switch(opcode){
     // case "001000":
     //   addi(mips, rs, rt, immediate);
-    //   executed = true;
+    //   executed = true; return;\nreturn;
     default:
       0;
   }
