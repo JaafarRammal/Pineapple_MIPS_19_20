@@ -169,9 +169,46 @@ void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	mips.npc += 1;
 
 }
-void lwl(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset);
-void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset);
-void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset);
-void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset);
-void sw(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate);
+
+void get_16msb(int& input){
+	if (input < 0){
+		input = input+(input%65536);
+	}
+	else {
+		input = input-(input%65536);
+	}
+}
+void lwl(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
+	// load rt 
+	int32_t rt_signed = mips.registers[rt];
+	// load word from memory
+	 int32_t loaded_word = LOAD_MEMORY(mips.memory[base + offset]);
+	// get 16 msb from memory and shift left by 16 bits
+	get_16msb(loaded_word);	
+	// merge 
+	mips.registers[rt] = loaded_word*pow(2,-16) + 	get_16msb(rt_signed);
+	mips.npc += 1;
+}
+
+void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
+	// load rt 
+	int32_t rt_signed = mips.registers[rt];
+	// load word from memory
+	int32_t loaded_word = LOAD_MEMORY(mips.memory[base + offset]);
+	// get 16 lsb from memory and shift left by 16 bits & merge 
+	mips.registers[rt] = loaded_word%65536 + get_16msb(rt_signed);
+	mips.npc += 1;
+}
+void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
+	 mips.registers[rt] = (int8_t)STORE_MEMORY(mips.memory[base + offset]);
+	 mips.npc += 1;
+}
+void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
+	mips.registers[rt] = (int16_t)STORE_MEMORY(mips.memory[base + offset]);
+	mips.npc += 1;
+}
+void sw(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
+	mips.registers[rt] = (int32_t)STORE_MEMORY(mips.memory[base + offset]);
+	mips.npc += 1;
+}
 
