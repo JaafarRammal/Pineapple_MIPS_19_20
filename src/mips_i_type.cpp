@@ -6,7 +6,9 @@ using namespace std;
 
 // main executor call
 
-void i_type(MIPS& mips, bool& executed);
+void i_type(MIPS& mips, bool& executed){
+	// switch statements from mips.opcode
+}
 
 
 // i-type executions
