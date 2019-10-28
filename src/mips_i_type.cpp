@@ -8,93 +8,103 @@ using namespace std;
 
 void i_type(MIPS& mips, bool& executed){
 	//26 right shift to get instruction type
-	uint32_t opcode = mips.memory[ADDR_INSTR_OFFSET] >> 26;
-	uint32_t rs = mips.memory[ADDR_INSTR_OFFSET] >> 21;
-	rs = rs - (opcode << 5);
-	uint32_t rt = mips.memory[ADDR_INSTR_OFFSET] >> 16;
-	rt = rt - (opcode << 11) - (rs << 5);
-	uint32_t immediate = mips.memory[ADDR_INSTR_OFFSET];
-	immediate = immediate - (opcode << 26) - (rs << 21) - (rt << 16);
+	uint32_t instruction = mips.memory[mips.pc];
+	uint32_t opcode = instruction >> 26;
+	uint32_t rs = (instruction & 0x03E00000) >> 21;
+	uint32_t rt= (instruction & 0x001F0000) >> 16;
+	int32_t immediate = instruction & 0x0000FFFF;
+
+	// we need a sign extended immediate in some functions
+
+	int32_t s_immediate;
+
+	// check MSB
+	if(immediate >> 15){
+		s_immediate = immediate | 0xFFFF0000;
+	}
+	else{
+		s_immediate = immediate;
+	}
 
 	switch(opcode){
-		case 0x001000:
+		case 0b001000:
 			addi(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x001001:
+		case 0b001001:
 			addiu(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x001100 : 
+		case 0b001100 : 
 			andi(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x000100 : 
+		case 0b000100 : 
 			beq(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x000001 : 
-			if (rt == 0x00001){
+		case 0b000001 : 
+			if (rt == 0b00001){
 				bgez(mips, rs, immediate);
 			}
-			else if (rt == 0x10001){
+			else if (rt == 0b10001){
 				bgezal(mips, rs, immediate);
 			}
-			else if (rt == 0x00000){
+			else if (rt == 0b00000){
 				bltz(mips, rs, immediate);
 			}
-			else if (rt == 0x10000){
+			else if (rt == 0b10000){
 				bltzal(mips, rs, immediate);
 			}
 			executed = true; return;
-		case 0x000111 : 
+		case 0b000111 : 
 			bgtz(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x000110 : 
+		case 0b000110 : 
 			blez(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x000101 : 
+		case 0b000101 : 
 			bne(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x100100 : 
+		case 0b100100 : 
 			lbu(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x100000 : 
+		case 0b100000 : 
 			lb(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x100101 : 
+		case 0b100101 : 
 			lhu(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x100001 : 
+		case 0b100001 : 
 			lh(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x001111 : 
+		case 0b001111 : 
 			lui(mips, rt, immediate);
 			executed = true; return;
-		case 0x100011 : 
+		case 0b100011 : 
 			lw(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x100010 : 
+		case 0b100010 : 
 			lwl(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x100110 : 
+		case 0b100110 : 
 			lwr(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x001101 : 
+		case 0b001101 : 
 			ori(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x001010 : 
+		case 0b001010 : 
 			slti(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x001011 : 
+		case 0b001011 : 
 			sltiu(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x101000 : 
+		case 0b101000 : 
 			sb(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x101001 : 
+		case 0b101001 : 
 			sh(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x101011 : 
+		case 0b101011 : 
 			sw(mips, rs, rt, immediate);
 			executed = true; return;
-		case 0x001110 : 
+		case 0b001110 : 
 			xori(mips, rs, rt, immediate);
 			executed = true; return;
 		default : 
