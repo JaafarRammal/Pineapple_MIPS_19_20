@@ -144,26 +144,31 @@ void xori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 
 // will create memory object & initialisation for them 
 void lbu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	 mips.registers[rt] = (uint32_t)mips.memory[base + offset];
+	 mips.registers[rt] = (uint8_t)LOAD_MEMORY(mips.memory[base + offset]);
 	 mips.npc += 1;
 }
 void lb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	 mips.registers[rt] = (int32_t)mips.memory[base + offset];
+	 mips.registers[rt] = (int8_t)LOAD_MEMORY(mips.memory[base + offset]);
 	 mips.npc += 1;
 }
 void lhu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	 mips.registers[rt] = (uint16_t)mips.memory[base + offset];
+	 mips.registers[rt] = (uint16_t)LOAD_MEMORY(mips.memory[base + offset]);
 	 mips.npc += 1;
 }
 void lh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	 mips.registers[rt] = (int16_t)mips.memory[base + offset];
+	 mips.registers[rt] = (int16_t)LOAD_MEMORY(mips.memory[base + offset]);
 	 mips.npc += 1;
 }
 void lui(MIPS& mips, uint32_t rt, int32_t immediate){
-	immediate = immediate*pow(2,16);
+	mips.registers[rt] = immediate*pow(2,16);
+	mips.npc += 1;
 
 }
-void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset);
+void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
+	 mips.registers[rt] = (int32_t)LOAD_MEMORY(mips.memory[base + offset]);
+	mips.npc += 1;
+
+}
 void lwl(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset);
 void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset);
 void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset);
