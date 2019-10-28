@@ -15,9 +15,12 @@ void r_type(MIPS& mips, bool& executed){
   immediate = immediate - (opcode << 26) - (rs << 21) - (rt << 16);
 
   switch(opcode){
-    case "001000":
-      addi(mips, rs, rt, immediate);
-      executed = true;
+    // case "001000":
+    //   addi(mips, rs, rt, immediate);
+    //   executed = true;
+    default:
+      0;
+  }
 }
 
 // r-type executions
@@ -45,7 +48,7 @@ void add(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
 }
 
 void addu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
-	mips.registers[rd] = (mips.registers[rs] + mips.registers[rt]) ;
+	mips.registers[rd] = static_cast<uint32_t>((static_cast<uint32_t>(mips.registers[rs]) + static_cast<uint32_t>(mips.registers[rt])));
 	mips.npc += 1;
 }
 
@@ -54,27 +57,27 @@ void And(MIPS& mips,uint32_t rs,uint32_t rt, uint32_t rd){
   mips.npc += 1;
 }
 
-void div(MIPS& mips, uint32_t rs, uint32_t rt){
-  // check if dividing by zero
-  if(mips.registers[rt] == 0){
-    // arithmetic error dividng by zero
-    // [ARITHMATIC EXCEPTION]
-  }else{
-    // load unsigned operands
-    uint32_t rs_unsigned = mips.registers[rs];
-    uint32_t rt_unsigned = mips.registers[rt];
-    // insert quotient in Lo and reminder in Hi
-    mips.hi = rs_unsigned % rt_unsigned;
-    mips.lo = rs_unsigned / rt_unsigned;
-    mips.npc += 1;
-  }
-}
-
 void divu(MIPS& mips, uint32_t rs, uint32_t rt){
   // check if dividing by zero
   if(mips.registers[rt] == 0){
     // arithmetic error dividng by zero
-    // [ARITHMATIC EXCEPTION]
+    // [UNDEFINED BEHAVIOR]
+  }else{
+    // load unsigned operands
+    uint32_t rs_unsigned = static_cast<uint32_t>(mips.registers[rs]);
+    uint32_t rt_unsigned = static_cast<uint32_t>(mips.registers[rt]);
+    // insert quotient in Lo and reminder in Hi
+    mips.hi = static_cast<uint32_t>(rs_unsigned % rt_unsigned);
+    mips.lo = static_cast<uint32_t>(rs_unsigned / rt_unsigned);
+    mips.npc += 1;
+  }
+}
+
+void div(MIPS& mips, uint32_t rs, uint32_t rt){
+  // check if dividing by zero
+  if(mips.registers[rt] == 0){
+    // arithmetic error dividng by zero
+    // [UNDEFINED BEHAVIOR]
   }else{
     // load signed operands
     int32_t rs_signed = mips.registers[rs];
@@ -151,8 +154,8 @@ void slt(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
 
 void sltu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   // load unsigned operands
-  uint32_t rs_unsigned = mips.registers[rs];
-  uint32_t rt_unsigned = mips.registers[rt];
+  uint32_t rs_unsigned = static_cast<uint32_t>(mips.registers[rs]);
+  uint32_t rt_unsigned = static_cast<uint32_t>(mips.registers[rt]);
   // rd <- (0||rs < 0||rt)
   mips.registers[rd] = (0 || rs_unsigned) < (0 || rt_unsigned) ? ((0|rs_unsigned) < (0|rt_unsigned)) | 1 : 0;
   mips.npc += 1;
@@ -170,8 +173,8 @@ void sllv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
 
 void srl(MIPS& mips, uint32_t rt, uint32_t rd, uint32_t sa){
   // load unsigned operand
-  uint32_t rt_unsigned = mips.registers[rt];
-  mips.registers[rd] = (rt_unsigned >> sa);
+  uint32_t rt_unsigned = static_cast<uint32_t>(mips.registers[rt]);
+  mips.registers[rd] = static_cast<uint32_t>((rt_unsigned >> sa));
 	mips.npc += 1;
 }
 
@@ -191,7 +194,7 @@ void srav(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
 
 void srlv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   // load unsigned operand
-  uint32_t rt_unsigned = mips.registers[rt];
+  uint32_t rt_unsigned = static_cast<uint32_t>(mips.registers[rt]);
   mips.registers[rd]  = (rt_unsigned >> mips.registers[rs]);
   mips.npc += 1;
 }
@@ -207,9 +210,9 @@ void sub(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
 
 void subu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   // load unsigned operands
-  uint32_t rs_signed = mips.registers[rs];
-  uint32_t rt_signed = mips.registers[rt];
-  uint32_t difference = rs_signed - rt_signed;
+  uint32_t rs_signed = static_cast<uint32_t>(mips.registers[rs]);
+  uint32_t rt_signed = static_cast<uint32_t>(mips.registers[rt]);
+  uint32_t difference = static_cast<uint32_t>(rs_signed - rt_signed);
   mips.registers[rd] = difference;
   mips.npc += 1;
   /*
