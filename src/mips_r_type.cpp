@@ -90,7 +90,15 @@ void div(MIPS& mips, uint32_t rs, uint32_t rt){
 }
 
 void jalr(MIPS& mips, uint32_t rs, uint32_t rd);
-void jr(MIPS& mips, uint32_t rt);
+void jr(MIPS& mips, uint32_t rt){
+  if(mips.registers[rt] % 4 != 0){
+		// unvalid address
+    // [MEMORY EXCEPTION]
+	}
+	else{
+		mips.npc = mips.registers[rt] / 4;
+	}
+}
 
 void mfhi(MIPS& mips, uint32_t rd){
   mips.registers[rd] = mips.hi;
