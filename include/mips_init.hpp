@@ -82,4 +82,19 @@ correct size
 
 void init_mips(MIPS& mips);
 
+/*
+Create error and exception types
+*/
+
+enum Exception{
+	ARITHMETIC = -10,
+	MEMORY = -11,
+	INSTRUCTION = -12,	
+};
+
+enum Error{
+	INTERNAL = -20,
+	IO = -21
+};
+
 #endif
