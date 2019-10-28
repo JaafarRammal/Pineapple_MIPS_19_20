@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <cmaths>
+#include <cmath>
 #include <string>
 #include <mips_init.hpp>
 
@@ -17,7 +17,7 @@ int main(int argc, char* argv[]){
     // (most of this is taken from last lecture)
     int inputword;
     std::fstream inputfile;
-    file.open(argv[1], std::ios::in | std::ios::binary);
+    inputfile.open(argv[1], std::ios::in | std::ios::binary);
     int nb_instr = 0;
 
     while(true){

@@ -7,98 +7,112 @@ using namespace std;
 // main executor call
 
 void i_type(MIPS& mips, bool& executed){
-	//26 right shift to get instruction type
-	uint32_t opcode = mips.memory[ADDR_INSTR_OFFSET] >> 26;
-	uint32_t rs = mips.memory[ADDR_INSTR_OFFSET] >> 21;
-	rs = rs - (opcode << 5);
-	uint32_t rt = mips.memory[ADDR_INSTR_OFFSET] >> 16;
-	rt = rt - (opcode << 11) - (rs << 5);
-	uint32_t immediate = mips.memory[ADDR_INSTR_OFFSET];
-	immediate = immediate - (opcode << 26) - (rs << 21) - (rt << 16);
 
-	switch(opcode){
-		case "0x001000":
-			addi(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001001":
-			addiu(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001100" : 
-			andi(mips, rs, rt, immediate);
-			executed = true;
-		case "0x000100" : 
-			beq(mips, rs, immediate);
-			executed = true;
-		case "0x000001" : 
-			if (rt == "0x00001"){
-				bgez(mips, rs, immediate);
-			}
-			else if (rt == "0x10001"){
-				bgezal(mips, rs, rt, immediate);
-			}
-			else if (rt == "0x00000"){
-				bltz(mips, rs, immediate);
-			}
-			else if (rt == "0x10000"){
-				bltzal(mips, rs, rt, immediate);
-			}
-			executed = true;
-		case "0x000111" : 
-			bgtz(mips, rs, rt, immediate);
-			executed = true;
-		case "0x000110" : 
-			blez(mips, rs, rt, immediate);
-			executed = true;
-		case "0x000101" : 
-			bne(mips, rs, immediate);
-			executed = true;
-		case "0x100100" : 
-			lbu(mips, rs, rt, immediate);
-			executed = true;
-		case "0x100000" : 
-			lb(mips, rs, rt, immediate);
-			executed = true;
-		case "0x100101" : 
-			lhu(mips, rs, rt, immediate);
-			executed = true;
-		case "0x100001" : 
-			lh(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001111" : 
-			lui(mips, rt, immediate);
-			executed = true;
-		case "0x100011" : 
-			lw(mips, rs, rt, immediate);
-			executed = true;
-		case "0x100010" : 
-			lwl(mips, rs, rt, immediate);
-			executed = true;
-		case "0x100110" : 
-			lwr(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001101" : 
-			ori(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001010" : 
-			slti(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001011" : 
-			sltiu(mips, rs, rt, immediate);
-			executed = true;
-		case "0x101000" : 
-			sb(mips, rs, rt, immediate);
-			executed = true;
-		case "0x101001" : 
-			sh(mips, rs, rt, immediate);
-			executed = true;
-		case "0x101011" : 
-			sw(mips, rs, rt, immediate);
-			executed = true;
-		case "0x001110" : 
-			xori(mips, rs, rt, immediate);
-			executed = true;
-		default : 
-			executed = false; // make sure
+	if(!executed){
+	
+		uint32_t instruction = mips.memory[mips.pc];
+		uint32_t opcode = instruction >> 26;
+		uint32_t rs = (instruction & 0x03E00000) >> 21;
+		uint32_t rt= (instruction & 0x001F0000) >> 16;
+		int32_t immediate = instruction & 0x0000FFFF;
+
+		// we need a sign extended immediate in some functions
+
+		int32_t s_immediate;
+
+		// check MSB
+		if(immediate >> 15){
+			s_immediate = immediate | 0xFFFF0000;
+		}
+		else{
+			s_immediate = immediate;
+		}
+
+		switch(opcode){
+			case 0b001000:
+				addi(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001001:
+				addiu(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001100 : 
+				andi(mips, rs, rt, immediate);
+				executed = true; return;
+			case 0b000100 : 
+				beq(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b000001 : 
+				if (rt == 0b00001){
+					bgez(mips, rs, s_immediate);
+				}
+				else if (rt == 0b10001){
+					bgezal(mips, rs, s_immediate);
+				}
+				else if (rt == 0b00000){
+					bltz(mips, rs, s_immediate);
+				}
+				else if (rt == 0b10000){
+					bltzal(mips, rs, s_immediate);
+				}
+				executed = true; return;
+			case 0b000111 : 
+				bgtz(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b000110 : 
+				blez(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b000101 : 
+				bne(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100100 : 
+				lbu(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100000 : 
+				lb(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100101 : 
+				lhu(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100001 : 
+				lh(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001111 : 
+				lui(mips, rt, immediate);
+				executed = true; return;
+			case 0b100011 : 
+				lw(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100010 : 
+				lwl(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b100110 : 
+				lwr(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001101 : 
+				ori(mips, rs, rt, immediate);
+				executed = true; return;
+			case 0b001010 : 
+				slti(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001011 : 
+				sltiu(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b101000 : 
+				sb(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b101001 : 
+				sh(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b101011 : 
+				sw(mips, rs, rt, s_immediate);
+				executed = true; return;
+			case 0b001110 : 
+				xori(mips, rs, rt, immediate);
+				executed = true; return;
+			default : 
+				executed = false; // make sure
+				return;
+		}
 	}
 }
 
@@ -108,24 +122,24 @@ void i_type(MIPS& mips, bool& executed){
 
 
 void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-//rt <- rs + immediate
- // load signed operands
-  int32_t rs_signed = mips.registers[rs];
-  int32_t sum = rs_signed + immediate;
- 
-  if( (immediate<0) && (rt_signed<0) && (sum>=0) || (immediate>0) && (rt_signed>0) && (sum<=0)){
+	
+	//rt <- rs + immediate
+ 	// load signed operands
+  int32_t rs_signed = mips.registers[rs]; 
+  if( (immediate<0) && (rs_signed<0) && (rs_signed + immediate>=0) || (immediate>0) && (rs_signed>0) && (rs_signed + immediate<=0)){
     // overflow
     // [ARITHMETIC EXCEPTION]
   }
   else{
     // no overflow
-    mips.registers[rt] = sum;
-    mips.npc += 1;
+    mips.registers[rt] = rs_signed + immediate;
   }
+	mips.npc += 1;
+
 }
 
 void addiu(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-	mips.registers[rt] = (immediate + mips.registers[rs]) ;
+	mips.registers[rt] = static_cast<uint32_t>((immediate + static_cast<uint32_t>(mips.registers[rs])));
 	mips.npc += 1;
 }
 void andi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
@@ -135,108 +149,111 @@ void andi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 
 void beq(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
 	if (mips.registers[rs] == mips.registers[rt]){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+		// no need to shift offset since we are using 32 bits not 8 bits
+		// mips.npc = mips.npc + (offset << 2)
+		mips.npc = mips.npc + offset;
+	}else{
+		mips.npc += 1;
 	}
 }
 
 void bgez(MIPS& mips, uint32_t rs, int32_t offset){
-	if (mips.registers[rs] >= 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+	if(mips.registers[rs] >= 0){
+		mips.npc += offset;
+	}
+	else{
+		++mips.npc;
 	}
 }
 void bgezal(MIPS& mips, uint32_t rs, int32_t offset){
-	if (mips.registers[rs] >= 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
-		// how to put this in mips object ? 
-		mips.gpr31 = mips.npc + 4;
+	// set return address
+	mips.registers[31] = (mips.pc * 4) + 8;
+	if(mips.registers[rs] >= 0){
+		mips.npc += offset;
+	}
+	else{
+		mips.pc += 1;
 	}
 }
 void bgtz(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
-	if (mips.registers[rs] > 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+	if(rt != 0x00000000){
+		// rt must be 0
+		// [Instruction Exception]
+	}
+	else{
+		if(mips.registers[rs] > 0){
+			mips.npc += offset;
+		}
+		else{
+			mips.npc += 1;
+		}
 	}
 }
 void blez(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
-	if (mips.registers[rs] <= 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+	if(rt != 0){
+		// rt must be 0
+		// [Instruction Exception]
+	}
+
+	else{
+		if(mips.registers[rs] <= 0x00000000){
+			mips.npc += offset;
+		}
+		else{
+			mips.npc += 1;
+		}
 	}
 }
 void bltz(MIPS& mips, uint32_t rs, int32_t offset)	{
-	if (mips.registers[rs] < 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+	if(mips.registers[rs] < 0){
+		mips.npc += offset;
+	}
+	else{
+		mips.npc += 1;
 	}
 }
 void bltzal(MIPS& mips, uint32_t rs, int32_t offset){
-		if (mips.registers[rs] < 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
-		// how to put this in mips object ? 
-		mips.gpr31 = mips.npc + 4;
+	// set address
+	mips.registers[31] = (mips.pc * 4) + 8;
+	if(mips.registers[rs] < 0){
+		mips.npc += offset;
+	}
+	else{
+		mips.npc += 1;
 	}
 }
 void bne(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
-	if (mips.registers[rs] != 0){
-		int32_t tgt_offset = mips.registers[offset]; 
-		// lsl #2 
-		tgt_offset = tgt_offset*pow(2, 4);
-		// add to pc 
-		mips.npc = mips.npc + tgt_offset;
+	if (mips.registers[rs] != mips.registers[rt]){
+		// same remark
+		mips.npc += offset;
+	}else{
+		mips.npc += 1;
 	}
 }
 
 void ori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
- mips.registers[rt] = (mips.registers[rs] | immediate);
+	mips.registers[rt] = (mips.registers[rs] | immediate);
   mips.npc += 1;
 }
 
 void slti(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-	int32_t rs_signed = mips.registers[rs];
-
-	// rd <- (rs < immediate)
-	mips.registers[rd] = rs_signed < immediate ? 1 : 0;
+	// rt <- (rs < immediate)
+	mips.registers[rt] = mips.registers[rs] < immediate ? 1 : 0;
 	mips.npc += 1;
 }
 void sltiu(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-  uint32_t rs_unsigned = mips.registers[rs];
-
-  // rd <- (0||rs < 0||immediate)
-  mips.registers[rd] = (0 || rs_unsigned) < (0 || immediate) ? ((0|rs_unsigned) < (0|immediate)) | 1 : 0;
+  uint32_t immediate_unsigned = static_cast<uint32_t>(immediate);
+  mips.registers[rt] = (uint32_t(mips.registers[rs]) < immediate_unsigned) ? 1 : 0;
   mips.npc += 1;
 }
 
 void xori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-	 mips.registers[rt] = (mips.registers[rs] ^ immediate);
-  	mips.npc += 1;
+	mips.registers[rt] = (mips.registers[rs] ^ immediate);
+  mips.npc += 1;
 }
 
-// will create memory object & initialisation for them 
+// will create memory object & initialisation for them
+// some problems here, will need to change a bit the code
 void lbu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	 mips.registers[rt] = (uint8_t)LOAD_MEMORY(mips.memory[base + offset]);
 	 mips.npc += 1;
