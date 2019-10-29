@@ -48,6 +48,12 @@ void sw(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate);
 
 void xori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate);
 
+// functions to check if the address is valid to read or write
+void canRead(uint32_t address);
+void canWrite(uint32_t address);
 
+// functions to read and write a character
+char getInput();
+void printOutput(char c_out);
 
 #endif

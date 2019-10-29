@@ -96,5 +96,9 @@ enum Error{
 	INTERNAL = -20,
 	IO = -21
 };
+// check if current PC address is okay or should return
+void checkAddress(MIPS&);
+
+
 
 #endif
