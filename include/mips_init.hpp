@@ -55,6 +55,8 @@ Offset     |  Length     | Name       | R | W | X |
 #define ADDR_GETC_SIZE 0x00000001
 #define ADDR_PUTC_SIZE 0x00000001
 
+#define MEMORY_SIZE 0x0C000002
+
 /*
 Structure MIPS will contain the different cpu universal elements that are modifiable(registers, memory, PC, nPC)
 Instruction executors will take in input the decoded instruction as well as a MIPS structure by reference which
