@@ -13,4 +13,14 @@ void init_mips(MIPS& mips){
 
 }
 
-void checkAddress(MIPS&);
+void checkAddress(MIPS& mips){
+  if(((mips.pc < ADDR_INSTR_OFFSET) || (mips.pc > (ADDR_INSTR_OFFSET + ADDR_INSTR_SIZE - 1))) && (mips.pc != ADDR_NULL_OFFSET)){
+		// pc outside instruction memory range. Memory exception
+    throw (static_cast<int>(Exception::MEMORY));
+	}
+	if(mips.pc == ADDR_NULL_OFFSET){
+    // reached end of program at address zero
+		uint32_t output = mips.registers[2] & 0x000000FF;
+		std::exit(output);
+	}
+}
