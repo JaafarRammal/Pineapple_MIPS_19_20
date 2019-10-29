@@ -2,6 +2,9 @@
 #define MIPS_INIT
 
 #include <vector>
+#include <iostream>
+#include <fstream>
+#include <bitset>
 
 // we will run this file at the beginning to initialize the MIPS
 // the different MIPS elements are defined below to "construct" te MIPS
@@ -98,9 +101,12 @@ enum Error{
 	INTERNAL = -20,
 	IO = -21
 };
-// check if current PC address is okay or should return
-void checkAddress(MIPS&);
 
+// check if current PC address is okay or should return
+void checkAddress(MIPS& mips);
+
+// import bit file into instructions memory of mips
+void importBitFile(MIPS& mips, std::string filename);
 
 
 #endif

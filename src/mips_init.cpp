@@ -1,5 +1,6 @@
 #include "mips_init.hpp"
 
+
 void init_mips(MIPS& mips){
 
   mips.hi = 0;
@@ -23,4 +24,18 @@ void checkAddress(MIPS& mips){
 		uint32_t output = mips.registers[2] & 0x000000FF;
 		std::exit(output);
 	}
+}
+
+void importBitFile(MIPS& mips, std::string filename){
+
+  std::ifstream inputFile(filename, std::ios::binary | std::ios::ate);
+
+	if(!inputFile.is_open()){
+		std::cout << "E: Could not open file" << std::endl;
+		std::exit(2);
+	}
+
+  
+
+
 }
