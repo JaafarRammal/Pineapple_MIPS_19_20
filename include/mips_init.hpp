@@ -82,4 +82,9 @@ correct size
 
 void init_mips(MIPS& mips);
 
+// check if current PC address is okay or should return
+void checkAddress(MIPS&);
+
+
+
 #endif
