@@ -32,7 +32,7 @@ void importBitFile(MIPS& mips, std::string filename){
 
 	if(!inputFile.is_open()){
 		std::cout << "E: Could not open file" << std::endl;
-		std::exit(2);
+		throw(static_cast<int>(Error::IO));
 	}
 
   int size = inputFile.tellg();
