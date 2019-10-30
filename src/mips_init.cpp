@@ -36,6 +36,17 @@ void importBitFile(MIPS& mips, std::string filename){
 	}
 
   int size = inputFile.tellg();
+
+  // instruction file incoherent
+  if(size%4 != 0){
+    throw (static_cast<int>(Exception::MEMORY));
+  }
+
+  // instruction file too large
+  if(size/4 > ADDR_INSTR_SIZE){
+    throw (static_cast<int>(Exception::MEMORY));
+  }
+
   char* buffer = new char[size];
   inputFile.seekg (0, std::ios::beg);
   inputFile.read (buffer, size);
@@ -58,8 +69,5 @@ void importBitFile(MIPS& mips, std::string filename){
   }
 
   delete[] buffer;
-
-  
-
 
 }
