@@ -14,6 +14,8 @@ void r_type(MIPS& mips, bool& executed){
     uint32_t rd = (instruction & 0xF800) >> 11;
     uint32_t rt = (instruction & 0x1F0000) >> 16; 
     uint32_t rs = (instruction & 0x3E00000) >> 21; 
+    std::cerr<<"Opcode is "<<std::bitset<6>(opcode)<<std::endl;
+    std::cerr<<"Function is "<<std::bitset<6>(function)<<std::endl;
     
 
     if(opcode == 0){
