@@ -35,7 +35,39 @@ void importBitFile(MIPS& mips, std::string filename){
 		std::exit(2);
 	}
 
-  
+  int size = inputFile.tellg();
 
+  // instruction file incoherent
+  if(size%4 != 0){
+    throw (static_cast<int>(Exception::MEMORY));
+  }
+
+  // instruction file too large
+  if(size/4 > ADDR_INSTR_SIZE){
+    throw (static_cast<int>(Exception::MEMORY));
+  }
+
+  char* buffer = new char[size];
+  inputFile.seekg (0, std::ios::beg);
+  inputFile.read (buffer, size);
+  inputFile.close();
+
+  // for(int i=0; i<size; i+=4){
+	// 	std::cout<<std::bitset<8>(buffer[i])<<std::bitset<8>(buffer[i+1])<<std::bitset<8>(buffer[i+2])<<std::bitset<8>(buffer[i+3])<<std::endl;
+	// }
+
+  for (int i = 0; i < size; i+=4){
+		uint32_t instruction = buffer[i];
+		instruction<<=8;
+		instruction += uint8_t(buffer[i+1]);
+		instruction<<=8;
+		instruction += uint8_t(buffer[i+2]);
+		instruction<<=8;
+		instruction += uint8_t(buffer[i+3]);
+    mips.memory[ADDR_INSTR_OFFSET + i/4] = instruction;
+		// std::cout<<std::bitset<32>(t)<<std::endl;
+  }
+
+  delete[] buffer;
 
 }
