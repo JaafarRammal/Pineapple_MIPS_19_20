@@ -2,6 +2,9 @@
 #define MIPS_INIT
 
 #include <vector>
+#include <iostream>
+#include <fstream>
+#include <bitset>
 
 // we will run this file at the beginning to initialize the MIPS
 // the different MIPS elements are defined below to "construct" te MIPS
@@ -55,6 +58,8 @@ Offset     |  Length     | Name       | R | W | X |
 #define ADDR_GETC_SIZE 0x00000001
 #define ADDR_PUTC_SIZE 0x00000001
 
+#define MEMORY_SIZE 0x0C000002
+
 /*
 Structure MIPS will contain the different cpu universal elements that are modifiable(registers, memory, PC, nPC)
 Instruction executors will take in input the decoded instruction as well as a MIPS structure by reference which
@@ -96,9 +101,12 @@ enum Error{
 	INTERNAL = -20,
 	IO = -21
 };
-// check if current PC address is okay or should return
-void checkAddress(MIPS&);
 
+// check if current PC address is okay or should return
+void checkAddress(MIPS& mips);
+
+// import bit file into instructions memory of mips
+void importBitFile(MIPS& mips, std::string filename);
 
 
 #endif
