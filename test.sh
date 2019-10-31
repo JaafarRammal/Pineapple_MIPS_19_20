@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm test_bench/results.txt
+
 for InputTxt in test_bench/bin/*.txt
 do 
     file=$(echo "$InputTxt" | cut -f 1 -d '.')
