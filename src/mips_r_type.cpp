@@ -94,19 +94,19 @@ void r_type(MIPS& mips, bool& executed){
           executed = true;
           return;
         case 0x2:
-          srl(mips, rt, sa, rd);
+          srl(mips, rt, rd, sa);
           executed = true;
           return;
         case 0x3:
-          sra(mips, rt, sa, rd);
+          sra(mips, rt, rd, sa);
           executed = true;
           return;
         case 0x7:
-          srav(mips,rt,rs,rd);
+          srav(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x6:
-          srlv(mips,rt,rs,rd);
+          srlv(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x22:
