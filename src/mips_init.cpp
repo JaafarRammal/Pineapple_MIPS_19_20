@@ -10,7 +10,7 @@ void init_mips(MIPS& mips){
   mips.memory.resize(MEMORY_SIZE, 0);
 
   mips.pc = ADDR_INSTR_OFFSET;
-  mips.npc = mips.pc;
+  mips.npc = mips.pc + 1;
 
 }
 
