@@ -40,7 +40,7 @@ void add(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   if( (rs_signed<0) && (rt_signed<0) && (sum>=0) || (rs_signed>0) && (rt_signed>0) && (sum<=0)){
     // overflow
     // [ARITHMATIC EXCEPTION]
-    throw (static_cast<int>(Exception::ARITHMETIC));
+    std::exit(Exception::ARITHMETIC);
   }else{
     // no overflow
     mips.registers[rd] = sum;
@@ -63,7 +63,7 @@ void divu(MIPS& mips, uint32_t rs, uint32_t rt){
   if(mips.registers[rt] == 0){
     // arithmetic error dividng by zero
     // [UNDEFINED BEHAVIOR]
-    throw (static_cast<int>(Exception::ARITHMETIC));
+    std::exit(Exception::ARITHMETIC);
   }else{
     // load unsigned operands
     uint32_t rs_unsigned = static_cast<uint32_t>(mips.registers[rs]);
@@ -80,7 +80,7 @@ void div(MIPS& mips, uint32_t rs, uint32_t rt){
   if(mips.registers[rt] == 0){
     // arithmetic error dividng by zero
     // [UNDEFINED BEHAVIOR]
-    throw (static_cast<int>(Exception::ARITHMETIC));
+    std::exit(Exception::ARITHMETIC);
   }else{
     // load signed operands
     int32_t rs_signed = mips.registers[rs];
@@ -98,7 +98,7 @@ void jalr(MIPS& mips, uint32_t rs, uint32_t rd){
 	if(mips.registers[rs] % 4 != 0){
 		// unvalid address
     // [MEMORY EXCEPTION]
-    throw (static_cast<int>(Exception::MEMORY));
+    std::exit(Exception::MEMORY);
 	}else{
     mips.npc = mips.registers[rs] / 4;
   }
@@ -110,7 +110,7 @@ void jr(MIPS& mips, uint32_t rt){
   if(mips.registers[rt] % 4 != 0){
 		// unvalid address
     // [MEMORY EXCEPTION]
-    throw (static_cast<int>(Exception::MEMORY));
+    std::exit(Exception::MEMORY);
 	}
 	else{
 		mips.npc = mips.registers[rt] / 4;
@@ -249,7 +249,7 @@ void subu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   if( (rs_signed<0) && (rt_signed>0) && (difference>=0) || (rs_signed>0) && (rt_signed<0) && (difference<=0)){
     // overflow
     // [ARITHMATIC EXCEPTION]
-    throw (static_cast<int>(Exception::ARITHMETIC));
+    std::exit(Exception::ARITHMETIC);
   }else{
     // no overflow
     mips.registers[rd] = difference;
