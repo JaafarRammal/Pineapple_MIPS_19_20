@@ -23,19 +23,21 @@ int main(int argc, char* argv[]){
 		bool executed = false;
 		checkAddress(mips);
 		std::cerr<<std::bitset<32>(mips.memory[mips.pc])<<std::endl;
-		std::cerr<<mips.pc<<std::endl;
+		std::cerr<<"PC: "<<mips.pc<<std::endl;
+		std::cerr<<"Next PC: "<<mips.npc<<std::endl;
+		int next_pc = mips.npc;
 		r_type(mips, executed);
 		i_type(mips, executed);
 		j_type(mips, executed);
 		if(!executed){
 			throw (static_cast<int>(Exception::INSTRUCTION));
 		}	
-		std::cerr<<"Registers are: ";
+		std::cerr<<"Registers after execution: ";
 		for(int i=0; i<mips.registers.size(); i++){
 			std::cerr<<mips.registers[i]<<" ";
 		}
 		std::cerr<<std::endl;
-		mips.pc = mips.npc;
+		mips.pc = next_pc;
 		std::cerr<<std::endl;
 		std::cerr<<std::endl;
 	}
