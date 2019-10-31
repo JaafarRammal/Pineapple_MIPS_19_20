@@ -81,8 +81,10 @@ void i_type(MIPS& mips, bool& executed){
 				lh(mips, rs, rt, s_immediate);
 				executed = true; return;
 			case 0b001111 : 
-				lui(mips, rt, immediate);
-				executed = true; return;
+				if(rs == 0){
+					lui(mips, rt, immediate);
+					executed = true; return;
+				}
 			case 0b100011 : 
 				lw(mips, rs, rt, s_immediate);
 				executed = true; return;
@@ -278,9 +280,8 @@ void lh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.npc += 1;
 }
 void lui(MIPS& mips, uint32_t rt, int32_t immediate){
-	// mips.registers[rt] = immediate*pow(2,16);
-	// mips.npc += 1;
-
+	mips.registers[rt] = immediate << 16;
+	mips.npc += 1;
 }
 void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (int32_t)LOAD_MEMORY(mips.memory[base + offset]);
