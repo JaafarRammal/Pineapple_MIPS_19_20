@@ -15,6 +15,10 @@ void i_type(MIPS& mips, bool& executed){
 		uint32_t rs = (instruction & 0x03E00000) >> 21;
 		uint32_t rt= (instruction & 0x001F0000) >> 16;
 		int32_t immediate = instruction & 0x0000FFFF;
+		std::cerr<<"Opcode is "<<std::bitset<6>(opcode)<<std::endl;
+		std::cerr<<"RS is "<<rs<<std::endl;
+		std::cerr<<"RT is "<<rt<<std::endl;
+		std::cerr<<"Immediate is "<<immediate<<std::endl;
 
 		// we need a sign extended immediate in some functions
 
@@ -258,29 +262,29 @@ void xori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 // will create memory object & initialisation for them
 // some problems here, will need to change a bit the code
 void lbu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	 mips.registers[rt] = (uint8_t)LOAD_MEMORY(mips.memory[base + offset]);
-	 mips.npc += 1;
+	//  mips.registers[rt] = (uint8_t)LOAD_MEMORY(mips.memory[base + offset]);
+	//  mips.npc += 1;
 }
 void lb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	 mips.registers[rt] = (int8_t)LOAD_MEMORY(mips.memory[base + offset]);
-	 mips.npc += 1;
+	//  mips.registers[rt] = (int8_t)LOAD_MEMORY(mips.memory[base + offset]);
+	//  mips.npc += 1;
 }
 void lhu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	 mips.registers[rt] = (uint16_t)LOAD_MEMORY(mips.memory[base + offset]);
-	 mips.npc += 1;
+	//  mips.registers[rt] = (uint16_t)LOAD_MEMORY(mips.memory[base + offset]);
+	//  mips.npc += 1;
 }
 void lh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	 mips.registers[rt] = (int16_t)LOAD_MEMORY(mips.memory[base + offset]);
-	 mips.npc += 1;
+	//  mips.registers[rt] = (int16_t)LOAD_MEMORY(mips.memory[base + offset]);
+	//  mips.npc += 1;
 }
 void lui(MIPS& mips, uint32_t rt, int32_t immediate){
-	mips.registers[rt] = immediate*pow(2,16);
-	mips.npc += 1;
+	// mips.registers[rt] = immediate*pow(2,16);
+	// mips.npc += 1;
 
 }
 void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	 mips.registers[rt] = (int32_t)LOAD_MEMORY(mips.memory[base + offset]);
-	mips.npc += 1;
+	//  mips.registers[rt] = (int32_t)LOAD_MEMORY(mips.memory[base + offset]);
+	// mips.npc += 1;
 
 }
 
@@ -294,35 +298,35 @@ void get_16msb(int& input){
 }
 void lwl(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	// load rt 
-	int32_t rt_signed = mips.registers[rt];
-	// load word from memory
-	 int32_t loaded_word = LOAD_MEMORY(mips.memory[base + offset]);
-	// get 16 msb from memory and shift left by 16 bits
-	get_16msb(loaded_word);	
-	// merge 
-	mips.registers[rt] = loaded_word*pow(2,-16) + 	get_16msb(rt_signed);
-	mips.npc += 1;
+	// int32_t rt_signed = mips.registers[rt];
+	// // load word from memory
+	//  int32_t loaded_word = LOAD_MEMORY(mips.memory[base + offset]);
+	// // get 16 msb from memory and shift left by 16 bits
+	// get_16msb(loaded_word);	
+	// // merge 
+	// mips.registers[rt] = loaded_word*pow(2,-16) + 	get_16msb(rt_signed);
+	// mips.npc += 1;
 }
 
 void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	// load rt 
-	int32_t rt_signed = mips.registers[rt];
-	// load word from memory
-	int32_t loaded_word = LOAD_MEMORY(mips.memory[base + offset]);
-	// get 16 lsb from memory and shift left by 16 bits & merge 
-	mips.registers[rt] = loaded_word%65536 + get_16msb(rt_signed);
-	mips.npc += 1;
+	// // load rt 
+	// int32_t rt_signed = mips.registers[rt];
+	// // load word from memory
+	// int32_t loaded_word = LOAD_MEMORY(mips.memory[base + offset]);
+	// // get 16 lsb from memory and shift left by 16 bits & merge 
+	// mips.registers[rt] = loaded_word%65536 + get_16msb(rt_signed);
+	// mips.npc += 1;
 }
 void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	 mips.registers[rt] = (int8_t)STORE_MEMORY(mips.memory[base + offset]);
-	 mips.npc += 1;
+	//  mips.registers[rt] = (int8_t)STORE_MEMORY(mips.memory[base + offset]);
+	//  mips.npc += 1;
 }
 void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	mips.registers[rt] = (int16_t)STORE_MEMORY(mips.memory[base + offset]);
-	mips.npc += 1;
+	// mips.registers[rt] = (int16_t)STORE_MEMORY(mips.memory[base + offset]);
+	// mips.npc += 1;
 }
 void sw(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-	mips.registers[rt] = (int32_t)STORE_MEMORY(mips.memory[base + offset]);
-	mips.npc += 1;
+	// mips.registers[rt] = (int32_t)STORE_MEMORY(mips.memory[base + offset]);
+	// mips.npc += 1;
 }
 
