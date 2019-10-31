@@ -1,16 +1,23 @@
 #!/bin/bash
 
-src/main
-
-
-for InputBin in (test_bench/bin)
+for InputTxt in test_bench/bin/*.txt
 do 
-    ./bin/simulator ./test_bench/bin/$InputBin
-    RETCODE = $?
-    ExpectedResult = $(<test_bench/expected/$InputBin.txt)
+    file=$(echo "$InputTxt" | cut -f 1 -d '.')
+    file="${file}.bin"
+    perl -ne 'print pack("B32", $_)' < $InputTxt > $file
+done
 
-    if [[ "$RETCODE" == "$ExpectedResult"]]; then 
-        echo "Successful test $InputBin";
+for InputBin in test_bench/bin/*.bin
+do 
+    ./bin/simulator $InputBin
+    simOut=$?
+    result=$( basename "$InputBin" | cut -f 1 -d '.')
+    expectedResult=$(<test_bench/expected/$result.txt)
+
+    if [ "$simOut" == "$expectedResult" ]
+    then 
+        echo "Successful test $result"
     else 
-        echo "Failed test $InputBin";
-fi;
+        echo "Failed test $result. Expected $expectedResult but got $simOut"
+    fi
+done
