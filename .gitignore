@@ -2,3 +2,5 @@
 *simulator
 *instructions.*
 .DS_STORE
+*.bin
+*results.txt

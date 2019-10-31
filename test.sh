@@ -16,8 +16,8 @@ do
 
     if [ "$simOut" == "$expectedResult" ]
     then 
-        echo "Successful test $result"
+        echo "Successful test $result" >> "./test_bench/results.txt"
     else 
-        echo "Failed test $result. Expected $expectedResult but got $simOut"
+        echo "Failed test $result. Expected $expectedResult but got $simOut" >> "./test_bench/results.txt"
     fi
 done
