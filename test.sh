@@ -1,6 +1,7 @@
 #!/bin/bash
 
 rm test_bench/results.txt
+rm -r ./test_bench/debuggerOutput
 mkdir ./test_bench/debuggerOutput
 
 for InputTxt in test_bench/bin/*.txt
@@ -24,6 +25,7 @@ do
     else 
         echo "Failed test $result. Expected $expectedResult but got $simOut" >> "./test_bench/results.txt"
     fi
-done
 
-rm test_bench/bin/*.bin
+    rm $InputBin
+
+done
