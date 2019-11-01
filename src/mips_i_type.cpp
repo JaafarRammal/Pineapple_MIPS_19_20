@@ -240,6 +240,11 @@ void bne(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
 	}
 }
 
+void lui(MIPS& mips, uint32_t rt, int32_t immediate){
+	mips.registers[rt] = immediate << 16;
+	mips.npc += 1;
+}
+
 void ori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 	mips.registers[rt] = (mips.registers[rs] | immediate);
   mips.npc += 1;
@@ -261,42 +266,34 @@ void xori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
   mips.npc += 1;
 }
 
-// will create memory object & initialisation for them
-// some problems here, will need to change a bit the code
+// Memory load functions
+
 void lbu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (uint8_t)LOAD_MEMORY(mips.memory[base + offset]);
 	//  mips.npc += 1;
 }
+
 void lb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (int8_t)LOAD_MEMORY(mips.memory[base + offset]);
 	//  mips.npc += 1;
 }
+
 void lhu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (uint16_t)LOAD_MEMORY(mips.memory[base + offset]);
 	//  mips.npc += 1;
 }
+
 void lh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (int16_t)LOAD_MEMORY(mips.memory[base + offset]);
 	//  mips.npc += 1;
 }
-void lui(MIPS& mips, uint32_t rt, int32_t immediate){
-	mips.registers[rt] = immediate << 16;
-	mips.npc += 1;
-}
+
 void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (int32_t)LOAD_MEMORY(mips.memory[base + offset]);
 	// mips.npc += 1;
 
 }
 
-void get_16msb(int& input){
-	if (input < 0){
-		input = input+(input%65536);
-	}
-	else {
-		input = input-(input%65536);
-	}
-}
 void lwl(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	// load rt 
 	// int32_t rt_signed = mips.registers[rt];
@@ -318,6 +315,8 @@ void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	// mips.registers[rt] = loaded_word%65536 + get_16msb(rt_signed);
 	// mips.npc += 1;
 }
+
+// Memory store functions
 
 void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	
