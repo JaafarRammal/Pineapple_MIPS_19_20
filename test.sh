@@ -1,6 +1,7 @@
 #!/bin/bash
 
 rm test_bench/results.txt
+mkdir ./test_bench/debuggerOutput
 
 for InputTxt in test_bench/bin/*.txt
 do 
@@ -13,7 +14,7 @@ for InputBin in test_bench/bin/*.bin
 do 
     result=$( basename "$InputBin" | cut -f 1 -d '.')
     echo "Currently testing $result:"
-    ./bin/simulator $InputBin
+    ./bin/simulator $InputBin &> "./test_bench/debuggerOutput/$result.txt"
     simOut=$?
     expectedResult=$(<test_bench/expected/$result.txt)
 
@@ -24,3 +25,5 @@ do
         echo "Failed test $result. Expected $expectedResult but got $simOut" >> "./test_bench/results.txt"
     fi
 done
+
+rm test_bench/bin/*.bin
