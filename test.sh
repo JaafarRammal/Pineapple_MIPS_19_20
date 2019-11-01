@@ -11,9 +11,10 @@ done
 
 for InputBin in test_bench/bin/*.bin
 do 
+    result=$( basename "$InputBin" | cut -f 1 -d '.')
+    echo "Currently testing $result:"
     ./bin/simulator $InputBin
     simOut=$?
-    result=$( basename "$InputBin" | cut -f 1 -d '.')
     expectedResult=$(<test_bench/expected/$result.txt)
 
     if [ "$simOut" == "$expectedResult" ]
