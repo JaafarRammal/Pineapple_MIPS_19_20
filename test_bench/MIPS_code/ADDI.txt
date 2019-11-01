@@ -1,0 +1,1 @@
+ADDI r2, r2, 0xffff
