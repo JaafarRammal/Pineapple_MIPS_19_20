@@ -318,21 +318,62 @@ void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	// mips.registers[rt] = loaded_word%65536 + get_16msb(rt_signed);
 	// mips.npc += 1;
 }
+
 void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	//  mips.registers[rt] = (int8_t)STORE_MEMORY(mips.memory[base + offset]);
-	//  mips.npc += 1;
-}
-void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	// mips.registers[rt] = (int16_t)STORE_MEMORY(mips.memory[base + offset]);
-	// mips.npc += 1;
-}
-void sw(MIPS& mips, uint32_t base, uint32_t rt, int32_t immediate){
 	
-	uint32_t address = static_cast<uint32_t>(base + immediate);
+	uint32_t address = static_cast<uint32_t>(base + offset);
+	uint32_t h_rt = static_cast<uint32_t>(mips.registers[rt] & 0x000000FF);
+	uint32_t current_mem = mips.memory[address / 4  + ADDR_DATA_OFFSET];
+
+	switch(address % 4){
+		case(0):
+			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0x00FFFFFF) + (h_rt << 24);
+			break;
+		case(1):
+			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFF00FFFF) + (h_rt << 16);
+			break;
+		case(2):
+			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFF00FF) + (h_rt << 8);
+			break;
+		case(3):
+			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFFFF00) + h_rt;
+			break;
+	}
+	mips.npc += 1;
+
+}
+
+void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
+	
+	uint32_t address = static_cast<uint32_t>(base + offset);
+	if(address % 2 != 0){
+		std::exit(Exception::MEMORY);
+	}else{
+		// address is divisible by 2. When dividing by 4, rest is either 0 (lower half) or 2 (upper half)
+		// when storing, keep the other half and use half of rt
+		uint32_t h_rt = static_cast<uint32_t>(mips.registers[rt] & 0x0000FFFF);
+		uint32_t current_mem = mips.memory[address / 4  + ADDR_DATA_OFFSET];
+		switch(address % 4){
+			case(0):
+				mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0x0000FFFF) + (h_rt << 16);
+				break;
+			case(2):
+				mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFF0000) + h_rt;
+				break;
+		}
+	}
+	mips.npc += 1;
+
+}
+
+void sw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
+	
+	uint32_t address = static_cast<uint32_t>(base + offset);
 	if(address % 4 != 0){
 		std::exit(Exception::MEMORY);
 	}else{
 		mips.memory[address / 4  + ADDR_DATA_OFFSET] = mips.registers[rt];
 	}
+	mips.npc += 1;
 	
 }
