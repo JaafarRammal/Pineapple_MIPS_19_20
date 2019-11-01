@@ -326,8 +326,13 @@ void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	// mips.registers[rt] = (int16_t)STORE_MEMORY(mips.memory[base + offset]);
 	// mips.npc += 1;
 }
-void sw(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-	// mips.registers[rt] = (int32_t)STORE_MEMORY(mips.memory[base + offset]);
-	// mips.npc += 1;
+void sw(MIPS& mips, uint32_t base, uint32_t rt, int32_t immediate){
+	
+	uint32_t address = static_cast<uint32_t>(base + immediate);
+	if(address % 4 != 0){
+		std::exit(Exception::MEMORY);
+	}else{
+		mips.memory[address / 4  + ADDR_DATA_OFFSET] = mips.registers[rt];
+	}
+	
 }
-
