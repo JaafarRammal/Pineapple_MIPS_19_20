@@ -143,7 +143,7 @@ void add(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
    - A>0 and B>0 and R<0
   */
 
-  if( (rs_signed<0) && (rt_signed<0) && (sum>=0) || (rs_signed>0) && (rt_signed>0) && (sum<=0)){
+  if( ((rs_signed<0) && (rt_signed<0) && (sum>=0)) || ((rs_signed>0) && (rt_signed>0) && (sum<=0)) ){
     // overflow
     // [ARITHMATIC EXCEPTION]
     std::exit(Exception::ARITHMETIC);
@@ -330,20 +330,20 @@ void srlv(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   mips.npc += 1;
 }
 
-void sub(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+void subu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   // load signed operands
-  int32_t rs_unsigned = mips.registers[rs];
-  int32_t rt_unsigned = mips.registers[rt];
-  int32_t difference = rs_unsigned - rt_unsigned;
+  uint32_t rs_unsigned = static_cast<uint32_t>(mips.registers[rs]);
+  uint32_t rt_unsigned = static_cast<uint32_t>(mips.registers[rt]);
+  uint32_t difference = static_cast<uint32_t>(rs_unsigned - rt_unsigned);
   mips.registers[rd] = difference;
   mips.npc += 1;
 }
 
-void subu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
+void sub(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   // load unsigned operands
-  uint32_t rs_signed = static_cast<uint32_t>(mips.registers[rs]);
-  uint32_t rt_signed = static_cast<uint32_t>(mips.registers[rt]);
-  uint32_t difference = static_cast<uint32_t>(rs_signed - rt_signed);
+  int32_t rs_signed = mips.registers[rs];
+  int32_t rt_signed = mips.registers[rt];
+  int32_t difference = rs_signed - rt_signed;
   mips.registers[rd] = difference;
   mips.npc += 1;
   /*
@@ -352,7 +352,7 @@ void subu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
    - A>0 and B>0 and R<0
   */
 
-  if( (rs_signed<0) && (rt_signed>0) && (difference>=0) || (rs_signed>0) && (rt_signed<0) && (difference<=0)){
+  if( ((rs_signed<0) && (rt_signed>0) && (difference>=0)) || ((rs_signed>0) && (rt_signed<0) && (difference<=0))){
     // overflow
     // [ARITHMATIC EXCEPTION]
     std::exit(Exception::ARITHMETIC);
