@@ -132,7 +132,7 @@ void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 	//rt <- rs + immediate
  	// load signed operands
   int32_t rs_signed = mips.registers[rs]; 
-  if( (immediate<0) && (rs_signed<0) && (rs_signed + immediate>=0) || (immediate>0) && (rs_signed>0) && (rs_signed + immediate<=0)){
+  if( ((immediate<0) && (rs_signed<0) && (rs_signed + immediate>=0)) || ((immediate>0) && (rs_signed>0) && (rs_signed + immediate<=0))){
     // overflow
     // [ARITHMETIC EXCEPTION]
 		std::exit(Exception::ARITHMETIC);
@@ -270,27 +270,27 @@ void xori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 
 void lbu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (uint8_t)LOAD_MEMORY(mips.memory[base + offset]);
-	//  mips.npc += 1;
+	 mips.npc += 1;
 }
 
 void lb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (int8_t)LOAD_MEMORY(mips.memory[base + offset]);
-	//  mips.npc += 1;
+	 mips.npc += 1;
 }
 
 void lhu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (uint16_t)LOAD_MEMORY(mips.memory[base + offset]);
-	//  mips.npc += 1;
+	 mips.npc += 1;
 }
 
 void lh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (int16_t)LOAD_MEMORY(mips.memory[base + offset]);
-	//  mips.npc += 1;
+	 mips.npc += 1;
 }
 
 void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (int32_t)LOAD_MEMORY(mips.memory[base + offset]);
-	// mips.npc += 1;
+	mips.npc += 1;
 
 }
 
@@ -303,7 +303,7 @@ void lwl(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	// get_16msb(loaded_word);	
 	// // merge 
 	// mips.registers[rt] = loaded_word*pow(2,-16) + 	get_16msb(rt_signed);
-	// mips.npc += 1;
+	mips.npc += 1;
 }
 
 void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
@@ -313,7 +313,7 @@ void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	// int32_t loaded_word = LOAD_MEMORY(mips.memory[base + offset]);
 	// // get 16 lsb from memory and shift left by 16 bits & merge 
 	// mips.registers[rt] = loaded_word%65536 + get_16msb(rt_signed);
-	// mips.npc += 1;
+	mips.npc += 1;
 }
 
 // Memory store functions
