@@ -33,7 +33,7 @@ int main(int argc, char* argv[]){
 			throw (static_cast<int>(Exception::INSTRUCTION));
 		}	
 		std::cerr<<"Registers after execution: ";
-		for(int i=0; i<mips.registers.size(); i++){
+		for(int i=0; i<32; i++){
 			std::cerr<<mips.registers[i]<<" ";
 		}
 		std::cerr<<std::endl;

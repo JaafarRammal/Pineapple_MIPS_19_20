@@ -68,14 +68,20 @@ they will be able to use and modify (for example, read a register, write to memo
 
 struct MIPS{
 
-  std::vector<int32_t> memory;
-	std::vector<int32_t> registers;
+  int32_t *memory;
+	int32_t *registers;
   
   uint32_t pc;
 	uint32_t npc;
 	
   int32_t hi;
 	int32_t lo;
+
+	// destructor for dynamic memory
+	~MIPS(){
+		delete[] memory;
+		delete[] registers;
+	}
 
 };
 
@@ -107,6 +113,5 @@ void checkAddress(MIPS& mips);
 
 // import bit file into instructions memory of mips
 void importBitFile(MIPS& mips, std::string filename);
-
 
 #endif

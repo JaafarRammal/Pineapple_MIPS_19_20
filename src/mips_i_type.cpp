@@ -132,7 +132,7 @@ void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 	//rt <- rs + immediate
  	// load signed operands
   int32_t rs_signed = mips.registers[rs]; 
-  if( (immediate<0) && (rs_signed<0) && (rs_signed + immediate>=0) || (immediate>0) && (rs_signed>0) && (rs_signed + immediate<=0)){
+  if( ((immediate<0) && (rs_signed<0) && (rs_signed + immediate>=0)) || ((immediate>0) && (rs_signed>0) && (rs_signed + immediate<=0))){
     // overflow
     // [ARITHMETIC EXCEPTION]
 		std::exit(Exception::ARITHMETIC);
@@ -240,6 +240,11 @@ void bne(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
 	}
 }
 
+void lui(MIPS& mips, uint32_t rt, int32_t immediate){
+	mips.registers[rt] = immediate << 16;
+	mips.npc += 1;
+}
+
 void ori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 	mips.registers[rt] = (mips.registers[rs] | immediate);
   mips.npc += 1;
@@ -261,42 +266,34 @@ void xori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
   mips.npc += 1;
 }
 
-// will create memory object & initialisation for them
-// some problems here, will need to change a bit the code
+// Memory load functions
+
 void lbu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (uint8_t)LOAD_MEMORY(mips.memory[base + offset]);
-	//  mips.npc += 1;
+	 mips.npc += 1;
 }
+
 void lb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (int8_t)LOAD_MEMORY(mips.memory[base + offset]);
-	//  mips.npc += 1;
+	 mips.npc += 1;
 }
+
 void lhu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (uint16_t)LOAD_MEMORY(mips.memory[base + offset]);
-	//  mips.npc += 1;
+	 mips.npc += 1;
 }
+
 void lh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (int16_t)LOAD_MEMORY(mips.memory[base + offset]);
-	//  mips.npc += 1;
+	 mips.npc += 1;
 }
-void lui(MIPS& mips, uint32_t rt, int32_t immediate){
-	mips.registers[rt] = immediate << 16;
-	mips.npc += 1;
-}
+
 void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	//  mips.registers[rt] = (int32_t)LOAD_MEMORY(mips.memory[base + offset]);
-	// mips.npc += 1;
+	mips.npc += 1;
 
 }
 
-void get_16msb(int& input){
-	if (input < 0){
-		input = input+(input%65536);
-	}
-	else {
-		input = input-(input%65536);
-	}
-}
 void lwl(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	// load rt 
 	// int32_t rt_signed = mips.registers[rt];
@@ -306,7 +303,7 @@ void lwl(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	// get_16msb(loaded_word);	
 	// // merge 
 	// mips.registers[rt] = loaded_word*pow(2,-16) + 	get_16msb(rt_signed);
-	// mips.npc += 1;
+	mips.npc += 1;
 }
 
 void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
@@ -316,18 +313,66 @@ void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	// int32_t loaded_word = LOAD_MEMORY(mips.memory[base + offset]);
 	// // get 16 lsb from memory and shift left by 16 bits & merge 
 	// mips.registers[rt] = loaded_word%65536 + get_16msb(rt_signed);
-	// mips.npc += 1;
-}
-void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	//  mips.registers[rt] = (int8_t)STORE_MEMORY(mips.memory[base + offset]);
-	//  mips.npc += 1;
-}
-void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	// mips.registers[rt] = (int16_t)STORE_MEMORY(mips.memory[base + offset]);
-	// mips.npc += 1;
-}
-void sw(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
-	// mips.registers[rt] = (int32_t)STORE_MEMORY(mips.memory[base + offset]);
-	// mips.npc += 1;
+	mips.npc += 1;
 }
 
+// Memory store functions
+
+void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
+	
+	uint32_t address = static_cast<uint32_t>(base + offset);
+	uint32_t h_rt = static_cast<uint32_t>(mips.registers[rt] & 0x000000FF);
+	uint32_t current_mem = mips.memory[address / 4  + ADDR_DATA_OFFSET];
+
+	switch(address % 4){
+		case(0):
+			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0x00FFFFFF) + (h_rt << 24);
+			break;
+		case(1):
+			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFF00FFFF) + (h_rt << 16);
+			break;
+		case(2):
+			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFF00FF) + (h_rt << 8);
+			break;
+		case(3):
+			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFFFF00) + h_rt;
+			break;
+	}
+	mips.npc += 1;
+
+}
+
+void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
+	
+	uint32_t address = static_cast<uint32_t>(base + offset);
+	if(address % 2 != 0){
+		std::exit(Exception::MEMORY);
+	}else{
+		// address is divisible by 2. When dividing by 4, rest is either 0 (lower half) or 2 (upper half)
+		// when storing, keep the other half and use half of rt
+		uint32_t h_rt = static_cast<uint32_t>(mips.registers[rt] & 0x0000FFFF);
+		uint32_t current_mem = mips.memory[address / 4  + ADDR_DATA_OFFSET];
+		switch(address % 4){
+			case(0):
+				mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0x0000FFFF) + (h_rt << 16);
+				break;
+			case(2):
+				mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFF0000) + h_rt;
+				break;
+		}
+	}
+	mips.npc += 1;
+
+}
+
+void sw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
+	
+	uint32_t address = static_cast<uint32_t>(base + offset);
+	if(address % 4 != 0){
+		std::exit(Exception::MEMORY);
+	}else{
+		mips.memory[address / 4  + ADDR_DATA_OFFSET] = mips.registers[rt];
+	}
+	mips.npc += 1;
+	
+}
