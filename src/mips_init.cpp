@@ -45,12 +45,12 @@ void importBitFile(MIPS& mips, std::string filename){
 
   // instruction file incoherent
   if(size%4 != 0){
-    throw (static_cast<int>(Exception::MEMORY));
+    std::exit(Exception::MEMORY);
   }
 
   // instruction file too large
   if(size/4 > ADDR_INSTR_SIZE){
-    throw (static_cast<int>(Exception::MEMORY));
+    std::exit(Exception::MEMORY);
   }
 
   char* buffer = new char[size];

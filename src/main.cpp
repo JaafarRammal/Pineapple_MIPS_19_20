@@ -39,7 +39,7 @@ int main(int argc, char* argv[]){
 		i_type(mips, executed);
 		j_type(mips, executed);
 		if(!executed){
-			throw (static_cast<int>(Exception::INSTRUCTION));
+			std::exit(Exception::INSTRUCTION);
 		}	
 		if(mips.debugFlag){
 			std::cerr<<"Registers after execution: ";
