@@ -7,8 +7,10 @@ void j_type(MIPS& mips, bool& executed){
 		int32_t instruction = mips.memory[mips.pc];
 		int32_t address = instruction & 0x03FFFFFF;
 		int32_t opcode = (instruction & 0xFC000000) >> 26;
-		std::cerr<<"Opcode is "<<std::bitset<6>(opcode)<<std::endl;
-		std::cerr<<"Address is "<<std::bitset<26>(address)<<std::endl;
+		if(mips.debugFlag){
+			std::cerr<<"Opcode is "<<std::bitset<6>(opcode)<<std::endl;
+			std::cerr<<"Address is "<<std::bitset<26>(address)<<std::endl;
+		}
 		
 
 	

@@ -18,13 +18,22 @@ int main(int argc, char* argv[]){
 	MIPS mips;
 	init_mips(mips);
 	importBitFile(mips, argv[1]);
+
+	if(argc > 2){
+		std::string flag = argv[2];
+		if(flag == "debug"){
+			mips.debugFlag = true;
+		}
+	}
 	
 	while(true){
 		bool executed = false;
 		checkAddress(mips);
-		std::cerr<<std::bitset<32>(mips.memory[mips.pc])<<std::endl;
-		std::cerr<<"PC: "<<mips.pc<<std::endl;
-		std::cerr<<"Next PC: "<<mips.npc<<std::endl;
+		if(mips.debugFlag){
+			std::cerr<<std::bitset<32>(mips.memory[mips.pc])<<std::endl;
+			std::cerr<<"PC: "<<mips.pc<<std::endl;
+			std::cerr<<"Next PC: "<<mips.npc<<std::endl;
+		}
 		int next_pc = mips.npc;
 		r_type(mips, executed);
 		i_type(mips, executed);
@@ -32,13 +41,15 @@ int main(int argc, char* argv[]){
 		if(!executed){
 			throw (static_cast<int>(Exception::INSTRUCTION));
 		}	
-		std::cerr<<"Registers after execution: ";
-		for(int i=0; i<32; i++){
-			std::cerr<<mips.registers[i]<<" ";
+		if(mips.debugFlag){
+			std::cerr<<"Registers after execution: ";
+			for(int i=0; i<32; i++){
+				std::cerr<<mips.registers[i]<<" ";
+			}
+			std::cerr<<std::endl;
+			std::cerr<<std::endl;
+			std::cerr<<std::endl;
 		}
-		std::cerr<<std::endl;
 		mips.pc = next_pc;
-		std::cerr<<std::endl;
-		std::cerr<<std::endl;
 	}
 }

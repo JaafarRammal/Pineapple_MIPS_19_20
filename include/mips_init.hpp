@@ -77,6 +77,8 @@ struct MIPS{
   int32_t hi;
 	int32_t lo;
 
+	bool debugFlag;
+
 	// destructor for dynamic memory
 	~MIPS(){
 		delete[] memory;

@@ -15,10 +15,12 @@ void i_type(MIPS& mips, bool& executed){
 		uint32_t rs = (instruction & 0x03E00000) >> 21;
 		uint32_t rt= (instruction & 0x001F0000) >> 16;
 		int32_t immediate = instruction & 0x0000FFFF;
-		std::cerr<<"Opcode is "<<std::bitset<6>(opcode)<<std::endl;
-		std::cerr<<"RS is "<<rs<<std::endl;
-		std::cerr<<"RT is "<<rt<<std::endl;
-		std::cerr<<"Immediate is "<<immediate<<std::endl;
+		if(mips.debugFlag){
+			std::cerr<<"Opcode is "<<std::bitset<6>(opcode)<<std::endl;
+			std::cerr<<"RS is "<<rs<<std::endl;
+			std::cerr<<"RT is "<<rt<<std::endl;
+			std::cerr<<"Immediate is "<<immediate<<std::endl;
+		}
 
 		// we need a sign extended immediate in some functions
 
@@ -289,7 +291,12 @@ void lh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 }
 
 void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	//  mips.registers[rt] = (int32_t)LOAD_MEMORY(mips.memory[base + offset]);
+	uint32_t address = static_cast<uint32_t>(base + offset);
+	if(address%4 != 0){
+		std::exit(Exception::MEMORY);
+	}else{
+		mips.registers[rt] = mips.memory[address/4];
+	}
 	mips.npc += 1;
 
 }
