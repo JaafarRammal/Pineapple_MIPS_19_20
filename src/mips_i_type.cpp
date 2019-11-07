@@ -15,10 +15,12 @@ void i_type(MIPS& mips, bool& executed){
 		uint32_t rs = (instruction & 0x03E00000) >> 21;
 		uint32_t rt= (instruction & 0x001F0000) >> 16;
 		int32_t immediate = instruction & 0x0000FFFF;
-		std::cerr<<"Opcode is "<<std::bitset<6>(opcode)<<std::endl;
-		std::cerr<<"RS is "<<rs<<std::endl;
-		std::cerr<<"RT is "<<rt<<std::endl;
-		std::cerr<<"Immediate is "<<immediate<<std::endl;
+		if(mips.debugFlag){
+			std::cerr<<"Opcode is "<<std::bitset<6>(opcode)<<std::endl;
+			std::cerr<<"RS is "<<rs<<std::endl;
+			std::cerr<<"RT is "<<rt<<std::endl;
+			std::cerr<<"Immediate is "<<immediate<<std::endl;
+		}
 
 		// we need a sign extended immediate in some functions
 

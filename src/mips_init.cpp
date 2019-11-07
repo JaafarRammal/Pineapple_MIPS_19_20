@@ -12,17 +12,21 @@ void init_mips(MIPS& mips){
   mips.pc = ADDR_INSTR_OFFSET;
   mips.npc = mips.pc + 1;
 
+  mips.debugFlag = false;
+
 }
 
 void checkAddress(MIPS& mips){
   if(((mips.pc < ADDR_INSTR_OFFSET) || (mips.pc > (ADDR_INSTR_OFFSET + ADDR_INSTR_SIZE - 1))) && (mips.pc != ADDR_NULL_OFFSET)){
 		// pc outside instruction memory range. Memory exception
     std::cerr<<"Instructions out of range\n";
-    throw (static_cast<int>(Exception::MEMORY));
+    std::exit(Exception::MEMORY);
 	}
 	if(mips.pc == ADDR_NULL_OFFSET){
     // reached end of program at address zero
-    std::cerr<<"Successfully completed. Returning 8-LSB $2\n";
+    if(mips.debugFlag){
+      std::cerr<<"Successfully completed. Returning 8-LSB $2\n";
+    }
 		uint32_t output = mips.registers[2] & 0x000000FF;
 		std::exit(output);
 	}
@@ -34,7 +38,7 @@ void importBitFile(MIPS& mips, std::string filename){
 
 	if(!inputFile.is_open()){
 		std::cerr << "E: Could not open file" << std::endl;
-		throw(static_cast<int>(Error::IO));
+		std::exit(Error::IO);
 	}
 
   int size = inputFile.tellg();
