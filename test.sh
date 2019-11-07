@@ -18,7 +18,7 @@ for InputBin in test_bench/bin/*.bin
 do 
     result=$( basename "$InputBin" | cut -f 1 -d '.')
     echo -n "Currently testing $result"
-    ./bin/simulator $InputBin &> "./test_bench/debuggerOutput/$result.txt"
+    ./bin/mips_simulator $InputBin &> "./test_bench/debuggerOutput/$result.txt"
     simOut=$?
     expectedResult=$(<test_bench/expected/$result.txt)
 
