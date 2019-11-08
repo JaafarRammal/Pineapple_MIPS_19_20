@@ -342,7 +342,7 @@ void subu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
 }
 
 void sub(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
-  // load unsigned operands
+  // load signed operands
   int32_t rs_signed = mips.registers[rs];
   int32_t rt_signed = mips.registers[rt];
   int32_t difference = rs_signed - rt_signed;
@@ -356,7 +356,7 @@ void sub(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
 
   if( ((rs_signed<0) && (rt_signed>0) && (difference>=0)) || ((rs_signed>0) && (rt_signed<0) && (difference<=0))){
     // overflow
-    // [ARITHMATIC EXCEPTION]
+    // [ARITHMETIC EXCEPTION]
     std::exit(Exception::ARITHMETIC);
   }else{
     // no overflow
