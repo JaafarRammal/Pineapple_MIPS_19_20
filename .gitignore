@@ -1,7 +1,7 @@
 .vscode
 *simulator
 *instructions.*
-.DS_STORE
+*.DS_Store
 *.bin
 *results.txt
 *debuggerOutput

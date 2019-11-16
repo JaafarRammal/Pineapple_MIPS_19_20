@@ -17,6 +17,10 @@ void init_mips(MIPS& mips){
 }
 
 void checkAddress(MIPS& mips){
+
+  // set R0 to 0 always
+  mips.registers[0] = 0;
+
   if(((mips.pc < ADDR_INSTR_OFFSET) || (mips.pc > (ADDR_INSTR_OFFSET + ADDR_INSTR_SIZE - 1))) && (mips.pc != ADDR_NULL_OFFSET)){
 		// pc outside instruction memory range. Memory exception
     std::cerr<<"Instructions out of range\n";
@@ -45,11 +49,13 @@ void importBitFile(MIPS& mips, std::string filename){
 
   // instruction file incoherent
   if(size%4 != 0){
+    std::cerr<<"Incoherent instruction file size"<<std::endl;
     std::exit(Exception::MEMORY);
   }
 
   // instruction file too large
   if(size/4 > ADDR_INSTR_SIZE){
+    std::cerr<<"Instruction file is too large to fit in memory"<<std::endl;
     std::exit(Exception::MEMORY);
   }
 
