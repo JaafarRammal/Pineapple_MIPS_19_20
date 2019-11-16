@@ -288,9 +288,11 @@ void lbu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 			// EOF?
 			if(input == -1){
 				mips.registers[rt] = 0xFFFFFFFF;
+				mips.npc += 1;
 				return;
 			}else{
 				mips.registers[rt] = input & 0x000000FF;
+				mips.npc += 1;
 				return;
 			}	
 		}
@@ -327,10 +329,12 @@ void lb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 			// EOF?
 			if(input == -1){
 				mips.registers[rt] = 0xFFFFFFFF;
+				mips.npc += 1;
 				return;
 			}
 			else{
 				mips.registers[rt] = input & 0x000000FF;
+				mips.npc += 1;
 				return;
 			}
 		}
@@ -370,10 +374,12 @@ void lhu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 			// EOF?
 			if(input == -1){
 				mips.registers[rt] = 0xFFFFFFFF;
+				mips.npc += 1;
 				return;
 			}
 			else{
 				mips.registers[rt] = input & 0x000000FF;
+				mips.npc += 1;
 				return;
 			}
 		}
@@ -408,10 +414,12 @@ void lh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 			char input = getInput();
 			if(input == -1){
 				mips.registers[rt] = 0xFFFFFFFF; //If we have EOF set rt to -1
+				mips.npc += 1;
 				return;
 			}
 			else{
 				mips.registers[rt] = input & 0x000000FF;
+				mips.npc += 1;
 				return;
 			}
 		}
@@ -449,10 +457,12 @@ void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 			// EOF?
 			if(input == -1){
 				mips.registers[rt] = 0xFFFFFFFF;
+				mips.npc += 1;
 				return;
 			}
 			else{
 				mips.registers[rt] = input & 0x000000FF;
+				mips.npc += 1;
 				return;
 			}
 		}else{
@@ -526,7 +536,7 @@ void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	
 	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
 	uint32_t h_rt = static_cast<uint32_t>(mips.registers[rt] & 0x000000FF);
-	uint32_t current_mem = mips.memory[address/4  + ADDR_DATA_OFFSET];
+	uint32_t current_mem = mips.memory[address/4];
 	canWrite(static_cast<uint32_t>(address/4));
 
 	if((address / 4) == ADDR_PUTC_OFFSET){
@@ -536,22 +546,23 @@ void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 		}
 		else{
 			printOutput(static_cast<char>(0x000000FF & mips.registers[rt]));
+			mips.npc += 1;
 			return;
 		}
 	}
 
 	switch(address % 4){
 		case(0):
-			mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0x00FFFFFF) + (h_rt << 24);
+			mips.memory[address/4] = (current_mem & 0x00FFFFFF) + (h_rt << 24);
 			break;
 		case(1):
-			mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0xFF00FFFF) + (h_rt << 16);
+			mips.memory[address/4] = (current_mem & 0xFF00FFFF) + (h_rt << 16);
 			break;
 		case(2):
-			mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFF00FF) + (h_rt << 8);
+			mips.memory[address/4] = (current_mem & 0xFFFF00FF) + (h_rt << 8);
 			break;
 		case(3):
-			mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFFFF00) + h_rt;
+			mips.memory[address/4] = (current_mem & 0xFFFFFF00) + h_rt;
 			break;
 	}
 	mips.npc += 1;
@@ -562,13 +573,14 @@ void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	
 	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
 	canWrite(static_cast<uint32_t>(address/4));
-	if((address / 4) == ADDR_PUTC_OFFSET){
+	if((address/4) == ADDR_PUTC_OFFSET){
 		if((address % 4) != 2){
 			std::cerr<<"SH could not write memory location at address "<<address<<std::endl;
 			std::exit(Exception::MEMORY);
 		}
 		else{
 			printOutput(static_cast<char>(0x000000FF & mips.registers[rt]));
+			mips.npc += 1;
 			return;
 		}
 	}
@@ -579,13 +591,13 @@ void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 		// address is divisible by 2. When dividing by 4, rest is either 0 (lower half) or 2 (upper half)
 		// when storing, keep the other half and use half of rt
 		uint32_t h_rt = static_cast<uint32_t>(mips.registers[rt] & 0x0000FFFF);
-		uint32_t current_mem = mips.memory[address/4  + ADDR_DATA_OFFSET];
+		uint32_t current_mem = mips.memory[address/4];
 		switch(address % 4){
 			case(0):
-				mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0x0000FFFF) + (h_rt << 16);
+				mips.memory[address/4] = (current_mem & 0x0000FFFF) + (h_rt << 16);
 				break;
 			case(2):
-				mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFF0000) + h_rt;
+				mips.memory[address/4] = (current_mem & 0xFFFF0000) + h_rt;
 				break;
 		}
 	}

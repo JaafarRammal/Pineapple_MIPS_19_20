@@ -290,7 +290,7 @@ void sltu(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
   uint32_t rs_unsigned = static_cast<uint32_t>(mips.registers[rs]);
   uint32_t rt_unsigned = static_cast<uint32_t>(mips.registers[rt]);
   // rd <- (0||rs < 0||rt)
-  mips.registers[rd] = (0 || rs_unsigned) < (0 || rt_unsigned) ? ((0|rs_unsigned) < (0|rt_unsigned)) | 1 : 0;
+  mips.registers[rd] = (0 | rs_unsigned) < (0 | rt_unsigned) ? ((0|rs_unsigned) < (0|rt_unsigned)) | 1 : 0;
   mips.npc += 1;
 }
 
