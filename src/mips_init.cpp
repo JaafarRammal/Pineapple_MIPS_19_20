@@ -83,3 +83,12 @@ void importBitFile(MIPS& mips, std::string filename){
   delete[] buffer;
 
 }
+
+void checkConstantField(int field, int expected){
+
+  if(field != expected){
+    std::cerr<<"Invalid instruction"<<std::endl;
+    std::exit(Exception::INSTRUCTION);
+  }
+
+}

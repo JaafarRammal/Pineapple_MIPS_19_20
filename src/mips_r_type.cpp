@@ -24,102 +24,142 @@ void r_type(MIPS& mips, bool& executed){
       switch(function){
 
         case 0x20:
+          checkConstantField(sa, 0);
           add(mips, rs, rt, rd);
           executed = true;
           return;			
         case 0x21:
+          checkConstantField(sa, 0);
           addu(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x24:
+          checkConstantField(sa, 0);
           And(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x1A:
+          checkConstantField(sa, 0);
+          checkConstantField(rd, 0);
           div(mips, rs, rt);
           executed = true;
           return;
         case 0x1B:
+          checkConstantField(sa, 0);
+          checkConstantField(rd, 0);
           divu(mips, rs, rt);
           executed = true;
           return;
         case 0x9:
+          checkConstantField(sa, 0);
+          checkConstantField(rt, 0);
           jalr(mips, rs, rd);
           executed = true;
           return;	
         case 0x8:
+          checkConstantField(sa, 0);
+          checkConstantField(rt, 0);
+          checkConstantField(rd, 0);
           jr(mips, rs);
           executed = true;
           return;		
         case 0x10:
+          checkConstantField(sa, 0);
+          checkConstantField(rt, 0);
+          checkConstantField(rs, 0);
           mfhi(mips, rd);
           executed = true;
           return;
         case 0x12:
+          checkConstantField(sa, 0);
+          checkConstantField(rt, 0);
+          checkConstantField(rs, 0);
           mflo(mips, rd);
           executed = true;
           return;
         case 0x18:
+          checkConstantField(sa, 0);
+          checkConstantField(rd, 0);
           mult(mips, rt, rs);
           executed = true;
           return;
         case 0x19:
+          checkConstantField(sa, 0);
+          checkConstantField(rd, 0);
           multu(mips, rt, rs);
           executed = true;
           return;
         case 0x11:
+          checkConstantField(sa, 0);
+          checkConstantField(rt, 0);
+          checkConstantField(rd, 0);
           mthi(mips,rs);
           executed = true;
           return;
         case 0x13:
+          checkConstantField(sa, 0);
+          checkConstantField(rt, 0);
+          checkConstantField(rd, 0);
           mtlo(mips,rs);
           executed = true;
           return;
         case 0x25:
+          checkConstantField(sa, 0);
           Or(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x2A:
+          checkConstantField(sa, 0);
           slt(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x2B:
+          checkConstantField(sa, 0);
           sltu(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x0:
+          checkConstantField(rs, 0);
           sll(mips, rt, sa, rd);
           executed = true;
           return;
         case 0x4:
-          sllv(mips,rs,rt,rd);
+          checkConstantField(sa, 0);
+          sllv(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x2:
+          checkConstantField(rs, 0);
           srl(mips, rt, rd, sa);
           executed = true;
           return;
         case 0x3:
+          checkConstantField(rs, 0);
           sra(mips, rt, rd, sa);
           executed = true;
           return;
         case 0x7:
+          checkConstantField(sa, 0);
           srav(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x6:
+          checkConstantField(sa, 0);
           srlv(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x22:
+          checkConstantField(sa, 0);
           sub(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x23:
+          checkConstantField(sa, 0);
           subu(mips, rs, rt, rd);
           executed = true;
           return;
         case 0x26:
+          checkConstantField(sa, 0);
           Xor(mips,rt,rs,rd);
           executed = true;
           return;

@@ -82,11 +82,10 @@ void i_type(MIPS& mips, bool& executed){
 			case 0b100001 : 
 				lh(mips, rs, rt, s_immediate);
 				executed = true; return;
-			case 0b001111 : 
-				if(rs == 0){
-					lui(mips, rt, immediate);
-					executed = true; return;
-				}
+			case 0b001111 :
+				checkConstantField(rs, 0);
+				lui(mips, rt, immediate);
+				executed = true; return;
 			case 0b100011 : 
 				lw(mips, rs, rt, s_immediate);
 				executed = true; return;
