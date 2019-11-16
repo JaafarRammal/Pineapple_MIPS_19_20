@@ -36,11 +36,11 @@ void r_type(MIPS& mips, bool& executed){
           executed = true;
           return;
         case 0x1A:
-          div(mips, rt, rs);
+          div(mips, rs, rt);
           executed = true;
           return;
         case 0x1B:
-          divu(mips, rt, rs);
+          divu(mips, rs, rt);
           executed = true;
           return;
         case 0x9:
@@ -92,7 +92,7 @@ void r_type(MIPS& mips, bool& executed){
           executed = true;
           return;
         case 0x4:
-          sllv(mips,rt,rs,rd);
+          sllv(mips,rs,rt,rd);
           executed = true;
           return;
         case 0x2:
@@ -354,16 +354,13 @@ void sub(MIPS& mips, uint32_t rs, uint32_t rt, uint32_t rd){
    - A>0 and B>0 and R<0
   */
 
-  if( ((rs_signed<0) && (rt_signed>0) && (difference>=0)) || ((rs_signed>0) && (rt_signed<0) && (difference<=0))){
+  if( ((rs_signed<0) && (rt_signed>=0) && (difference>=0)) || ((rs_signed>=0) && (rt_signed<0) && (difference<=0))){
     // overflow
     // [ARITHMETIC EXCEPTION]
     std::cerr<<"Arithmetic overflow when executing "<<rs_signed<<" - "<<rt_signed<<std::endl;
     std::exit(Exception::ARITHMETIC);
-  }else{
-    // no overflow
-    mips.registers[rd] = difference;
-    mips.npc += 1;
   }
+
 }
 
 void Xor(MIPS& mips,  uint32_t rs, uint32_t rt, uint32_t rd){
