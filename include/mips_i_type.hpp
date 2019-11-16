@@ -6,9 +6,6 @@
 // Define all the I-type instructions
 // These take in input by default a MIPS structure by reference that is modifiable to access common register and memory
 
-// Define all the R-type instructions
-// These take in input by default a MIPS structure by reference that is modifiable to access common register and memory
-
 // main executor call
 
 void i_type(MIPS& mips, bool& executed);

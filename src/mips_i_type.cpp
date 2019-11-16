@@ -137,6 +137,7 @@ void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
   if( ((immediate<0) && (rs_signed<0) && (rs_signed + immediate>=0)) || ((immediate>0) && (rs_signed>0) && (rs_signed + immediate<=0))){
     // overflow
     // [ARITHMETIC EXCEPTION]
+		std::cerr<<"Arithmetic overflow when executing "<<rs_signed<<" + "<<immediate<<std::endl;
 		std::exit(Exception::ARITHMETIC);
   }
   else{
@@ -188,6 +189,7 @@ void bgtz(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
 	if(rt != 0x00000000){
 		// rt must be 0
 		// [Instruction Exception]
+		std::cerr<<"Invalid instruction set for bgtz with RT not null"<<std::endl;
 		std::exit(Exception::INSTRUCTION);
 	}
 	else{
@@ -203,6 +205,7 @@ void blez(MIPS& mips, uint32_t rs, uint32_t rt, int32_t offset){
 	if(rt != 0){
 		// rt must be 0
 		// [Instruction Exception]
+		std::cerr<<"Invalid instruction set for blez with RT not null"<<std::endl;
 		std::exit(Exception::INSTRUCTION);
 	}
 
@@ -271,55 +274,235 @@ void xori(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 // Memory load functions
 
 void lbu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	//  mips.registers[rt] = (uint8_t)LOAD_MEMORY(mips.memory[base + offset]);
-	 mips.npc += 1;
+
+	uint32_t address = static_cast<uint32_t>(offset + mips.registers[base]);
+	// check 
+	canRead(static_cast<int>(address/4));
+
+	if((address/4) == ADDR_GETC_OFFSET){
+		if((address % 4) != 3){
+			std::cerr<<"LBU could not read memory location at address "<<address<<std::endl;
+			std::exit(Exception::MEMORY);
+		}else{
+			char input = getInput();
+			// EOF?
+			if(input == -1){
+				mips.registers[rt] = 0xFFFFFFFF;
+				return;
+			}else{
+				mips.registers[rt] = input & 0x000000FF;
+				return;
+			}	
+		}
+	}
+
+
+	switch(address % 4){
+		case 0: mips.registers[rt] = ((mips.memory[address/4] & 0xFF000000) >> 24) & 0x000000FF;
+				break;
+		case 1: mips.registers[rt] = (mips.memory[address/4] & 0x00FF0000) >> 16;
+				break;
+		case 2: mips.registers[rt] = (mips.memory[address/4] & 0x0000FF00) >> 8;
+				break;
+		case 3: mips.registers[rt] = (mips.memory[address/4] & 0x000000FF);
+				break;
+		default: break;
+	}
+
+	mips.npc += 1;
 }
 
 void lb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	//  mips.registers[rt] = (int8_t)LOAD_MEMORY(mips.memory[base + offset]);
-	 mips.npc += 1;
+	
+	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
+	canRead(static_cast<int>(address/4));
+
+	if((address/4) == ADDR_GETC_OFFSET){
+		if((address % 4) != 3){
+			std::cerr<<"LB could not read memory location at address "<<address<<std::endl;
+			std::exit(Exception::MEMORY);
+		}
+		else{
+			char input = getInput();
+			// EOF?
+			if(input == -1){
+				mips.registers[rt] = 0xFFFFFFFF;
+				return;
+			}
+			else{
+				mips.registers[rt] = input & 0x000000FF;
+				return;
+			}
+		}
+	}	
+
+	switch(address % 4){
+		case 0: mips.registers[rt] = ((mips.memory[static_cast<int>(address/4)] & 0xFF000000) >> 24) & 0x000000FF;
+				break;
+		case 1: mips.registers[rt] = (mips.memory[static_cast<int>(address/4)] & 0x00FF0000) >> 16;
+				break;
+		case 2: mips.registers[rt] = (mips.memory[static_cast<int>(address/4)] & 0x0000FF00) >> 8;
+				break;
+		case 3: mips.registers[rt] = (mips.memory[static_cast<int>(address/4)] & 0x000000FF);
+				break;
+		default: break;
+	}
+
+	if(mips.registers[rt] >> 7 == 1){
+		mips.registers[rt] = mips.registers[rt] | 0xFFFFFF00;
+	}	
+
+	mips.npc += 1;
 }
 
 void lhu(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	//  mips.registers[rt] = (uint16_t)LOAD_MEMORY(mips.memory[base + offset]);
-	 mips.npc += 1;
+
+	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
+	canRead(static_cast<int>(address/4));
+
+	if((address/4) == ADDR_GETC_OFFSET){
+		if((address % 4) != 2){
+			std::cerr<<"LHU could not read memory location at address "<<address<<std::endl;
+			std::exit(Exception::MEMORY);
+		}
+		else{
+			char input = getInput();
+			// EOF?
+			if(input == -1){
+				mips.registers[rt] = 0xFFFFFFFF;
+				return;
+			}
+			else{
+				mips.registers[rt] = input & 0x000000FF;
+				return;
+			}
+		}
+	}
+
+	if(address % 2 != 0){
+		std::cerr<<"LHU could not read memory location at address "<<address<<std::endl;
+		 std::exit(Exception::MEMORY);
+	}
+	else{
+		switch(address % 4){
+			case 0: mips.registers[rt] = ((mips.memory[static_cast<int>(address/4)] & 0xFFFF0000) >> 16) & 0x0000FFFF;
+					break;
+			case 2: mips.registers[rt] = (mips.memory[static_cast<int>(address/4)] & 0x0000FFFF);
+					break;
+		}
+	}	
+	mips.npc += 1;
 }
 
 void lh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	//  mips.registers[rt] = (int16_t)LOAD_MEMORY(mips.memory[base + offset]);
-	 mips.npc += 1;
+
+	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
+	canRead(static_cast<int>(address/4));
+
+	if((address/4) == ADDR_GETC_OFFSET){
+		if((address % 4) != 2){
+			std::cerr<<"LH could not read memory location at address "<<address<<std::endl;
+			std::exit(Exception::MEMORY);
+		}
+		else{
+			char input = getInput();
+			if(input == -1){
+				mips.registers[rt] = 0xFFFFFFFF; //If we have EOF set rt to -1
+				return;
+			}
+			else{
+				mips.registers[rt] = input & 0x000000FF;
+				return;
+			}
+		}
+	}
+
+	if(address % 2 != 0){
+		std::cerr<<"LH could not read memory location at address "<<address<<std::endl;
+		std::exit(Exception::MEMORY);
+	}
+	else{
+		switch(address % 4){
+			case 0: mips.registers[rt] = ((mips.memory[static_cast<int>(address/4)] & 0xFFFF0000) >> 16) & 0x0000FFFF;
+					break;
+			case 2: mips.registers[rt] = (mips.memory[static_cast<int>(address/4)] & 0x0000FFFF);
+					break;
+		}
+
+		if((mips.registers[rt] >> 15) == 1){
+			mips.registers[rt] = mips.registers[rt] | 0xFFFF0000;
+		}
+	}
+
+	mips.npc += 1;
 }
 
 void lw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	uint32_t address = static_cast<uint32_t>(base + offset);
+	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
+	canRead(static_cast<int>(address/4));
 	if(address%4 != 0){
+		std::cerr<<"LW could not read memory location at address "<<address<<std::endl;
 		std::exit(Exception::MEMORY);
 	}else{
 		mips.registers[rt] = mips.memory[address/4];
 	}
 	mips.npc += 1;
-
 }
 
 void lwl(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	// load rt 
-	// int32_t rt_signed = mips.registers[rt];
-	// // load word from memory
-	//  int32_t loaded_word = LOAD_MEMORY(mips.memory[base + offset]);
-	// // get 16 msb from memory and shift left by 16 bits
-	// get_16msb(loaded_word);	
-	// // merge 
-	// mips.registers[rt] = loaded_word*pow(2,-16) + 	get_16msb(rt_signed);
+	
+	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
+	canRead(address/4);
+
+	uint32_t load(0);
+
+	switch(address % 4){
+		case 0:
+				load = (((mips.memory[static_cast<int>(address/4)] & 0xFF000000) >> 24) & 0x000000FF);
+				mips.registers[rt] = (mips.registers[rt] & 0xFFFFFF00) | load;
+				break;
+		case 1:
+				load = (((mips.memory[static_cast<int>(address/4)] & 0xFFFF0000) >> 16) & 0x0000FFFF);
+				mips.registers[rt] = (mips.registers[rt] & 0xFFFF0000) | load;
+				break;
+		case 2:
+				load = (((mips.memory[static_cast<int>(address/4)] & 0xFFFFFF00) >> 8) & 0X00FFFFFF);
+				mips.registers[rt] = (mips.registers[rt] & 0xFF000000) | load;
+				break;
+		case 3: mips.registers[rt] = mips.memory[static_cast<int>(address/4)];
+				break;
+		default: break;
+	}
+
 	mips.npc += 1;
+
 }
 
 void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	// // load rt 
-	// int32_t rt_signed = mips.registers[rt];
-	// // load word from memory
-	// int32_t loaded_word = LOAD_MEMORY(mips.memory[base + offset]);
-	// // get 16 lsb from memory and shift left by 16 bits & merge 
-	// mips.registers[rt] = loaded_word%65536 + get_16msb(rt_signed);
+
+	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
+	uint32_t load(0);
+
+	canRead(address/4);
+
+	switch(address % 4){
+		case 0:
+				load = (((mips.memory[static_cast<int>(address/4)] & 0xFF000000) >> 24) & 0x000000FF);
+				mips.registers[rt] = (mips.registers[rt] & 0xFFFFFF00) | load;
+				break;
+		case 1:
+				load = (((mips.memory[static_cast<int>(address/4)] & 0xFFFF0000) >> 16) & 0x0000FFFF);
+				mips.registers[rt] = (mips.registers[rt] & 0xFFFF0000) | load;
+				break;
+		case 2:
+				load = (((mips.memory[static_cast<int>(address/4)] & 0xFFFFFF00) >> 8) & 0X00FFFFFF);
+				mips.registers[rt] = (mips.registers[rt] & 0xFF000000) | load;
+				break;
+		case 3: mips.registers[rt] = mips.memory[static_cast<int>(address/4)];
+				break;
+		default: break;
+	}
+
 	mips.npc += 1;
 }
 
@@ -327,22 +510,23 @@ void lwr(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 
 void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	
-	uint32_t address = static_cast<uint32_t>(base + offset);
+	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
 	uint32_t h_rt = static_cast<uint32_t>(mips.registers[rt] & 0x000000FF);
-	uint32_t current_mem = mips.memory[address / 4  + ADDR_DATA_OFFSET];
+	uint32_t current_mem = mips.memory[address/4  + ADDR_DATA_OFFSET];
+	canWrite(static_cast<uint32_t>(address/4));
 
 	switch(address % 4){
 		case(0):
-			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0x00FFFFFF) + (h_rt << 24);
+			mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0x00FFFFFF) + (h_rt << 24);
 			break;
 		case(1):
-			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFF00FFFF) + (h_rt << 16);
+			mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0xFF00FFFF) + (h_rt << 16);
 			break;
 		case(2):
-			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFF00FF) + (h_rt << 8);
+			mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFF00FF) + (h_rt << 8);
 			break;
 		case(3):
-			mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFFFF00) + h_rt;
+			mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFFFF00) + h_rt;
 			break;
 	}
 	mips.npc += 1;
@@ -351,20 +535,22 @@ void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 
 void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	
-	uint32_t address = static_cast<uint32_t>(base + offset);
+	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
+	canWrite(static_cast<uint32_t>(address/4));
 	if(address % 2 != 0){
+		std::cerr<<"SH could not write memory location at address "<<address<<std::endl;
 		std::exit(Exception::MEMORY);
 	}else{
 		// address is divisible by 2. When dividing by 4, rest is either 0 (lower half) or 2 (upper half)
 		// when storing, keep the other half and use half of rt
 		uint32_t h_rt = static_cast<uint32_t>(mips.registers[rt] & 0x0000FFFF);
-		uint32_t current_mem = mips.memory[address / 4  + ADDR_DATA_OFFSET];
+		uint32_t current_mem = mips.memory[address/4  + ADDR_DATA_OFFSET];
 		switch(address % 4){
 			case(0):
-				mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0x0000FFFF) + (h_rt << 16);
+				mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0x0000FFFF) + (h_rt << 16);
 				break;
 			case(2):
-				mips.memory[address / 4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFF0000) + h_rt;
+				mips.memory[address/4  + ADDR_DATA_OFFSET] = (current_mem & 0xFFFF0000) + h_rt;
 				break;
 		}
 	}
@@ -373,13 +559,66 @@ void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 }
 
 void sw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
-	
-	uint32_t address = static_cast<uint32_t>(base + offset);
+
+	uint32_t address = static_cast<uint32_t>(mips.registers[base] + offset);
+	canWrite(static_cast<uint32_t>(address/4));
 	if(address % 4 != 0){
+		std::cerr<<"SW could not write memory location at address "<<address<<std::endl;
 		std::exit(Exception::MEMORY);
-	}else{
-		mips.memory[address / 4  + ADDR_DATA_OFFSET] = mips.registers[rt];
 	}
+	else{
+		if(address/4 == ADDR_PUTC_OFFSET){
+			printOutput(static_cast<char>(0x000000FF & mips.registers[rt]));
+		}
+		mips.memory[address/4] = mips.registers[rt];
+	}
+
 	mips.npc += 1;
 	
+}
+
+// functions to check if the address is valid to read or write
+void canRead(uint32_t address){
+	if(((address < ADDR_INSTR_OFFSET) || (address > (ADDR_INSTR_OFFSET + ADDR_INSTR_SIZE - 1)))
+		&& ((address < ADDR_DATA_OFFSET) || (address > (ADDR_DATA_OFFSET + ADDR_DATA_SIZE - 1)))
+		&& (address != ADDR_GETC_OFFSET)){
+			std::cerr<<"Could not read memory location at address "<<address<<std::endl;
+			std::exit(Exception::MEMORY);
+		}
+}
+
+void canWrite(uint32_t address){
+	if(((address < ADDR_DATA_OFFSET || (address > (ADDR_DATA_OFFSET + ADDR_DATA_SIZE - 1)))) && (address != ADDR_PUTC_OFFSET)){
+		std::cerr<<"Could not write memory location at address "<<address<<std::endl;
+		std::exit(Exception::MEMORY);
+	}
+}
+
+// functions to read and write a character
+char getInput(){
+	char input;
+	input = std::getchar();
+
+	// EOF case
+	if(std::cin.eof()){
+		return 0xFF;
+	}
+
+	// Could the console read?
+	if(!std::cin.good()){
+		std::cerr<<"IO could not read\n";
+		std::exit(Error::IO);
+	}
+	return input;
+}
+
+void printOutput(char c_out){
+
+	std::putchar(c_out);
+
+	// Could the console write?
+	if(!std::cout.good()){
+		std::cerr<<"IO could not write\n";
+		std::exit(Error::IO);
+	}
 }

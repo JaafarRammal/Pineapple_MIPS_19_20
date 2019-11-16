@@ -39,6 +39,7 @@ int main(int argc, char* argv[]){
 		i_type(mips, executed);
 		j_type(mips, executed);
 		if(!executed){
+			std::cerr<<"Invalid instruction"<<std::endl;
 			std::exit(Exception::INSTRUCTION);
 		}	
 		if(mips.debugFlag){
