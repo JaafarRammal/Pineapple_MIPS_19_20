@@ -116,4 +116,7 @@ void checkAddress(MIPS& mips);
 // import bit file into instructions memory of mips
 void importBitFile(MIPS& mips, std::string filename);
 
+// check for constant fields values
+void checkConstantField(int field, int expected);
+
 #endif
