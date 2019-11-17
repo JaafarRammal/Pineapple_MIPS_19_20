@@ -40,7 +40,7 @@ int main(int argc, char* argv[]){
 		j_type(mips, executed);
 		if(!executed){
 			std::cerr<<"Unknown instruction"<<std::endl;
-			std::exit(Error::IO);
+			std::exit(Error::INTERNAL);
 		}	
 		if(mips.debugFlag){
 			std::cerr<<"Registers after execution: ";

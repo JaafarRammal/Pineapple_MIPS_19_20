@@ -540,8 +540,10 @@ void sb(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 
 	if((address / 4) == ADDR_PUTC_OFFSET){
 		if((address % 4) != 3){
-			std::cerr<<"SB could not write memory location at address "<<address<<std::endl;
-			exit(Exception::MEMORY);
+			// std::cerr<<"SB could not write memory location at address "<<address<<std::endl;
+			// exit(Exception::MEMORY);
+			printOutput(static_cast<char>(0x00000000));
+			mips.npc += 1;
 		}
 		else{
 			printOutput(static_cast<char>(0x000000FF & mips.registers[rt]));
@@ -574,8 +576,10 @@ void sh(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	canWrite(static_cast<uint32_t>(address/4));
 	if((address/4) == ADDR_PUTC_OFFSET){
 		if((address % 4) != 2){
-			std::cerr<<"SH could not write memory location at address "<<address<<std::endl;
-			std::exit(Exception::MEMORY);
+			// std::cerr<<"SH could not write memory location at address "<<address<<std::endl;
+			// std::exit(Exception::MEMORY);
+			printOutput(static_cast<char>(0x00000000));
+			mips.npc += 1;
 		}
 		else{
 			printOutput(static_cast<char>(0x000000FF & mips.registers[rt]));
@@ -615,6 +619,8 @@ void sw(MIPS& mips, uint32_t base, uint32_t rt, int32_t offset){
 	else{
 		if(address/4 == ADDR_PUTC_OFFSET){
 			printOutput(static_cast<char>(0x000000FF & mips.registers[rt]));
+		}else{
+			mips.memory[address/4] = mips.registers[rt];
 		}
 		mips.memory[address/4] = mips.registers[rt];
 	}
