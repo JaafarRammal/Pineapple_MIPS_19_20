@@ -13,6 +13,7 @@ CXX = g++
 CXXFLAGS = -std=c++11 -Wall -MMD -O3 -mavx
 
 simulator: $(SIM_OUT)
+	 rm -rf $(OBJ_DIR)
 
 $(SIM_OUT): $(OBJ_FILES)
 	mkdir -p $(BIN_DIR)
@@ -23,5 +24,4 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) -I $(INCLUDE_DIR) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf $(OBJ_DIR)
 	rm -rf $(BIN_DIR)
