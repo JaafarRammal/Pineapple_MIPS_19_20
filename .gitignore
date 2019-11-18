@@ -5,3 +5,5 @@
 *.bin
 *results.txt
 *debuggerOutput
+*obj
+*bin

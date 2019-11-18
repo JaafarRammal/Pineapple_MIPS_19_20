@@ -1,14 +1,27 @@
+SRC_DIR = ./src
+INCLUDE_DIR = ./include
+OBJ_DIR = ./obj
+BIN_DIR = ./bin
 
-all: simulator
+SIM_NAME = mips_simulator
+SIM_OUT = $(BIN_DIR)/$(SIM_NAME)
 
-simulator:
-	mkdir -p bin
-	g++ -std=c++11 -I ./include/ ./src/main.cpp ./src/mips_init.cpp ./src/mips_i_type.cpp ./src/mips_r_type.cpp ./src/mips_j_type.cpp -o ./bin/mips_simulator
+SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
+CXX = g++
+CXXFLAGS = -std=c++11 -Wall -MMD -O3 -mavx
 
+simulator: $(SIM_OUT)
+	 rm -rf $(OBJ_DIR)
 
-instructions:
-	perl -ne 'print pack("B32", $_)' < instructions.txt > instructions.bin
+$(SIM_OUT): $(OBJ_FILES)
+	mkdir -p $(BIN_DIR)
+	$(CXX) $(LDFLAGS) -o $@ $^
 
-run:
-	./bin/simulator ./bin/instructions.bin
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	mkdir -p $(OBJ_DIR)
+	$(CXX) -I $(INCLUDE_DIR) $(CXXFLAGS) -c -o $@ $<
+
+clean:
+	rm -rf $(BIN_DIR)
