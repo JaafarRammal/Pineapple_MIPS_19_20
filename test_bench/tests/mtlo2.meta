@@ -1,0 +1,11 @@
+#MTLO
+#-8
+#MaelleGuerre
+#basic LO negative number check
+#
+#
+
+addi $3, -8
+mtlo $3
+mflo $2
+jr $0
