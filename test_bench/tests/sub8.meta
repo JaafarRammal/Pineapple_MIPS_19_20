@@ -5,7 +5,7 @@
 #
 #
 
-lui $1, $1, 0x7FFF
-lui $2, $2, 0x8000
+lui $1, 0x7FFF
+lui $2, 0x8000
 sub $2, $2, $1
 jr $0
