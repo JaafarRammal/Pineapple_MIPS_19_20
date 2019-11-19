@@ -1,0 +1,10 @@
+#ADDU
+#-10
+#MaelleGuerre
+#Overflow test (two negatives)
+#
+#
+
+lui $2, 0x8000
+addu $2, $2, $2
+jr $0
