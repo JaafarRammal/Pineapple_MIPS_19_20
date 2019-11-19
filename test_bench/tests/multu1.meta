@@ -1,12 +1,15 @@
 #MULTU
-#7
+#-2
 #MaelleGuerre
-#small number check
+#big number check
 #
 #
 
-addi $1, $1, 7
-addi $3, $3, 2
-or $3, $3, $1
-
+lui $4,0xFFFF
+lui $5,0xFFFF
+multu $5,$4
+mfhi $2
+nop
+nop
+nop
 jr $0
