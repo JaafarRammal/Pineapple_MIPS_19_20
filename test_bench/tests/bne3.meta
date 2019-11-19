@@ -1,0 +1,38 @@
+#BNE
+#0
+#MaelleGuerre
+#bne jump condition
+#
+
+target:
+    addi $1, $1, 9
+	bne $1, $4, target + 30
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+    addi $2, $2, $2
+    nop
+	jr $0
+	nop
