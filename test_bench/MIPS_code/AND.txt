@@ -1,3 +1,0 @@
-addi r1, r1, 0x2
-addi r2, r2, 0x3
-and r2, r2, r1

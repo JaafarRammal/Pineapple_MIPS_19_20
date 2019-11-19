@@ -1,2 +1,0 @@
-BGTZ R2, 0X1
-ADDI R2, 0X5

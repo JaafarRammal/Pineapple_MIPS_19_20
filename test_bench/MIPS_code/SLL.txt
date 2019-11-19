@@ -1,2 +1,0 @@
-ADDI R2, R2, 0X2
-SLL r2, r2, 0x2

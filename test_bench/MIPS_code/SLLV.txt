@@ -1,3 +1,0 @@
-ADDI R2, R2, 0X2
-ADDI R1, R1, 0X3
-SLLV r2, r2, R1
