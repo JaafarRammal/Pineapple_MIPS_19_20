@@ -1,0 +1,11 @@
+#SUB
+#-10
+#JaafarRammal
+#Overflow test(positive - negative)
+#
+#
+
+lui $1, $1, 0x7FFF
+lui $2, $2, 0x8000
+sub $2, $1, $2
+jr $0
