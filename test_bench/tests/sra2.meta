@@ -1,0 +1,11 @@
+#SRA
+#-1
+#MaelleGuerre
+#right arithmetic shift signed
+#
+#
+
+addi $3, $3, -1
+sra $2, $3, 3
+
+jr $0
