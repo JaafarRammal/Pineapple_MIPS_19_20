@@ -1,0 +1,10 @@
+#ADDIU
+#10
+#MaelleGuerre
+#Simple addi functionality test (two positives)
+#
+#
+
+addiu $1, $1, 1
+addiu $2, $1, 9
+jr $0
