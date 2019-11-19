@@ -1,0 +1,11 @@
+#ADD
+#16
+#JaafarRammal
+#Simple add functionality test (two positives)
+#
+#
+
+addi $1, $1, 9
+addi $2, $2, 7
+add $2, $2, $1
+jr $0
