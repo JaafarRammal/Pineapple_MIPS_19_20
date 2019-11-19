@@ -1,0 +1,11 @@
+#XOR
+#15
+#MaelleGuerre
+#Sample check for two numbers 
+#
+#
+
+addi $1, $1, 9
+addi $3, $3, 6
+xor $2, $3, $1
+jr $0
