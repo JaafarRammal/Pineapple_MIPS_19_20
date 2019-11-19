@@ -1,0 +1,12 @@
+#SLL
+#1
+#MaelleGuerre
+#Sample check for two shifts 
+#
+#
+
+lw $3, 0xFFFFFFFF
+sll $2,$3,31
+srl $2,$2,31
+jr $0
+	
