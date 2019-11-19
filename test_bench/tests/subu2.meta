@@ -1,0 +1,11 @@
+#SUBU
+#-2
+#MaelleGuerre
+#Simple subu functionality test (two positives with negative result)
+#
+#
+
+addi $1, $1, 9
+addi $2, $2, 7
+subu $2, $2, $1
+jr $0

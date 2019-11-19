@@ -1,0 +1,11 @@
+#OR
+#-56
+#MaelleGuerre
+#Sample check for 2 numbers 
+#
+#
+
+addi $1, $1, 200
+addi $3, $3, 0
+or $2, $3, $1
+jr $0

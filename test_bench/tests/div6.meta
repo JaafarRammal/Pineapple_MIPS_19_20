@@ -1,0 +1,11 @@
+#DIV
+#0
+#MaelleGuerre
+#Dividing by 0 - does not divide anything, outputs 0
+#
+#
+
+addi $1, $1, 3
+div $4, $1
+mflo $2
+jr $0

@@ -1,0 +1,11 @@
+#OR
+#-1
+#MaelleGuerre
+#Sample check for opposite numbers 
+#
+#
+
+addi $1, $1, -2
+addi $3, $3, 1
+or $2, $3, $1
+jr $0

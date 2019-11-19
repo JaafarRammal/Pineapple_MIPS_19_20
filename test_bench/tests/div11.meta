@@ -1,0 +1,12 @@
+#DIV
+#3
+#MaelleGuerre
+#Check the remainder (one signed one unsigned)
+#
+#
+
+addi $4, $4, 17
+addi $1, $1, -7
+div $4, $1
+mfhi $2
+jr $0

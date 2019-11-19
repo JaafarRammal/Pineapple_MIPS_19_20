@@ -1,0 +1,12 @@
+#DIVU
+#-3
+#MaelleGuerre
+#Dividing two numbers (signed and unsigned)
+#
+#
+
+addi $4, $4, -5
+addi $1, $1, 2
+divu $4, $1
+mflo $2
+jr $0
