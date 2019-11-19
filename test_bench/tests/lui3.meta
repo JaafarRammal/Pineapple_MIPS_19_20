@@ -1,0 +1,10 @@
+#lui
+#3
+#JaafarRammal
+#Shift the value
+#
+#
+
+lui $2, 0x3000
+srl $2, $2, 28
+jr $0
