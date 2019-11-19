@@ -1,0 +1,10 @@
+#ADD
+#-10
+#JaafarRammal
+#Overflow test (two negatives)
+#
+#
+
+lui $2, 0x8000
+add $2, $2, $2
+jr $0

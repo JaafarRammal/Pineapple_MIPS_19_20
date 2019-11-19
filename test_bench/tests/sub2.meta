@@ -1,0 +1,11 @@
+#SUB
+#-2
+#JaafarRammal
+#Simple sub functionality test (two positives with negative result)
+#
+#
+
+addi $1, $1, 9
+addi $2, $2, 7
+sub $2, $2, $1
+jr $0

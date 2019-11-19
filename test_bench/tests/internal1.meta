@@ -1,0 +1,10 @@
+#INTERNAL
+#7
+#JaafarRammal
+#Check if register 0 is grounded
+#
+#
+
+addi $0, $0, 6
+addi $2, $0, 7
+jr $0

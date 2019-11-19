@@ -1,4 +1,0 @@
-ADDI R2, R2, 0Xffff
-SLTI R1, R2, 0x3
-BEQ R1, R3, 0X1
-ADDIU R2, R2, 0X4 

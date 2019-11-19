@@ -1,3 +1,0 @@
-addi r1, r1, 0xffff
-addi r2, r2, 0x256
-add r2, r2, r2
