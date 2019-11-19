@@ -1,0 +1,10 @@
+#ORI
+#7
+#MaelleGuerre
+#Sample check for the same number
+#
+#
+
+addi $1, $1, 7
+ori $2, $1, 7
+jr $0

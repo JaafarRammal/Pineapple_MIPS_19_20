@@ -1,0 +1,14 @@
+#MULTU
+#0
+#MaelleGuerre
+#multiply by 0
+#
+#
+
+lui $5,3
+multu $5,$4
+mflo $2
+nop
+nop
+nop
+jr $0

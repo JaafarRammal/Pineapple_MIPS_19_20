@@ -1,0 +1,15 @@
+#MULT
+#-1
+#MaelleGuerre
+#big number check
+#
+#
+
+li $3,0xFFFFFFFF
+li $4,0x7FFFFFFF
+mult $3,$4
+nop
+nop
+nop
+mfhi $2
+jr $0

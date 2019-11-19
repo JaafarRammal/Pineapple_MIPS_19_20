@@ -1,0 +1,13 @@
+#SLLV
+#-1
+#MaelleGuerre
+#Sample check for two shifts - negative output
+#
+#
+
+lw $3, 0xFFFFFFFF
+addi $4, $4, 16
+sllv $2,$3,$4
+srlv $2,$2,$4
+jr $0
+	

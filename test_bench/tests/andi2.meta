@@ -1,0 +1,10 @@
+#ANDI
+#0
+#MaelleGuerre
+#Simple ANDI functionality test (0)
+#
+#
+
+addi $1, $1, 9
+andi $2, $1, 6
+jr $0

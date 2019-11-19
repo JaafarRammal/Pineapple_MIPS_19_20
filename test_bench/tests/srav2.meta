@@ -1,0 +1,12 @@
+#SRAV
+#-1
+#MaelleGuerre
+#right arithmetic variable shift signed
+#
+#
+
+addi $3, $3, -1
+addi $1, $1, 3
+srav $2, $3, $1
+
+jr $0
