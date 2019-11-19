@@ -1,0 +1,11 @@
+#ADDU
+#-2
+#MaelleGuerre
+#Simple addu functionality test (one positive one negative)
+#
+#
+
+addi $1, $1, -9
+addi $2, $2, 7
+addu $2, $2, $1
+jr $0

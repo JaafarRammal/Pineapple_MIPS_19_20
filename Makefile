@@ -2,8 +2,10 @@ SRC_DIR = ./src
 INCLUDE_DIR = ./include
 OBJ_DIR = ./obj
 BIN_DIR = ./bin
+TEST_DIR = ./test_bench
 
 SIM_NAME = mips_simulator
+TB_NAME = mips_testbench
 SIM_OUT = $(BIN_DIR)/$(SIM_NAME)
 
 SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
@@ -22,6 +24,12 @@ $(SIM_OUT): $(OBJ_FILES)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	mkdir -p $(OBJ_DIR)
 	$(CXX) -I $(INCLUDE_DIR) $(CXXFLAGS) -c -o $@ $<
+
+testbench:
+	mkdir -p $(BIN_DIR)
+	cp $(TEST_DIR)/$(TB_NAME).sh $(BIN_DIR)
+	mv $(BIN_DIR)/$(TB_NAME).sh $(BIN_DIR)/$(TB_NAME)
+
 
 clean:
 	rm -rf $(BIN_DIR)
