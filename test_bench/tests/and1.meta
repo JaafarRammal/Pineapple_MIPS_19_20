@@ -1,0 +1,10 @@
+#AND
+#9
+#MaelleGuerre
+#Simple AND functionality test (Same numbers)
+#
+#
+
+addi $1, $1, 9
+and $2, $1, $1
+jr $0

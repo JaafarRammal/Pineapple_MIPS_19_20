@@ -1,0 +1,12 @@
+#DIV
+#1
+#MaelleGuerre
+#Basic check for remainder of a division 
+#
+#
+
+addi $4, $4, 0
+addi $1, $1, 1
+div $4, $1
+mfhi $2
+jr $0

@@ -1,0 +1,10 @@
+#XOR
+#0
+#MaelleGuerre
+#Or test for same numbers (positive)
+#
+#
+
+addi $1, $1, 9
+xor $2, $1, $1
+jr $0
