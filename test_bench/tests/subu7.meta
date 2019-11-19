@@ -1,0 +1,10 @@
+#SUBU
+#0
+#JaafarRammal
+#Sub a number from itself
+#
+#
+
+addi $1, $1, -9
+subu $2, $1, $1
+jr $0
