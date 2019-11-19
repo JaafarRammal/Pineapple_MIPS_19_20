@@ -1,9 +1,5 @@
 .vscode
-*simulator
-*instructions.*
+bin
 *.DS_Store
-*.bin
-*results.txt
 *debuggerOutput
 *obj
-*bin
