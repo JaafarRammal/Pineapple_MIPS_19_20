@@ -1,0 +1,11 @@
+#AND
+#14
+#MaelleGuerre
+#negative numbers AND 
+#
+#
+
+addi $1, $1, -2
+addi $1, $1, 0xE
+and $2, $1, $1
+jr $0
