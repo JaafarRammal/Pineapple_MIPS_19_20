@@ -1,4 +1,4 @@
-#ADDI
+#ADDIU
 #-10
 #Maëlle Guerre
 #Overflow test (two negatives)
@@ -6,5 +6,5 @@
 #
 
 lui $1, 0x8000
-addi $2, $1, 0x8000
+addiu $2, $1, 0x8000
 jr $0
