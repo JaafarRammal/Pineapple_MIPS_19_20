@@ -1,0 +1,11 @@
+#MTHI
+#8
+#MaelleGuerre
+#basic HI  number check
+#
+#
+
+addi $3, 8
+mtlo $3
+mflo $2
+jr $0

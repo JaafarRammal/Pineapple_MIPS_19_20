@@ -1,0 +1,15 @@
+#MULTU
+#12
+#MaelleGuerre
+#small number check
+#
+#
+
+lui $4,4
+lui $5,3
+multu $5,$4
+mflo $2
+nop
+nop
+nop
+jr $0

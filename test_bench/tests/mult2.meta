@@ -1,0 +1,16 @@
+#MULT
+#1
+#MaelleGuerre
+#msb check
+#
+#
+
+lui $3,0xFFFFFFFF
+lui $4,0x7FFFFFFF
+mult $3,$4
+nop
+nop
+nop 
+mflo $2
+srl $2,$2,31
+jr $0

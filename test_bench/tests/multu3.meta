@@ -1,0 +1,14 @@
+#MULTU
+#16
+#MaelleGuerre
+#same number multiplication check
+#
+#
+
+lui $4,4
+multu $4,$4
+mflo $2
+nop
+nop
+nop
+jr $0
