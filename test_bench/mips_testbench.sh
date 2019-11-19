@@ -59,20 +59,20 @@ do
   # Is there a description?
   if [ ! "$description" = "" ]
   then
-    message="[$description] "
+    message="$description "
   fi
 
   # Is the return incorrect?
   if [ ! "$simReturn" = "$expectedReturn" ]
   then
     status="FAIL"
-    message+=" (return: expected $expectedReturn, received $simReturn)"
+    message+=" (return failure: expected $expectedReturn but received $simReturn)"
   fi
 
   if [ ! "$simOutput" = "$expectedOutput" ]
   then
     status="FAIL"
-    message+=" (output: expected $expectedOutput, received $simOutput)"
+    message+=" (output failure: expected $expectedOutput but received $simOutput)"
   fi
 
   echo "$testID, $instruction, $status, $author, $message"
