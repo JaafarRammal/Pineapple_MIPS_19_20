@@ -1,0 +1,11 @@
+#DIV
+#0
+#MaelleGuerre
+#Dividing 0 by a number 
+#
+#
+
+addi $1, $1, 32
+div $4, $1
+mflo $2
+jr $0
