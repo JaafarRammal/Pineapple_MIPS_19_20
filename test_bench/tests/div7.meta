@@ -5,8 +5,8 @@
 #
 #
 
-addi $4, $4, 0
-addi $1, $1, 1
+addi $4, $4, 1
+addi $1, $1, 2
 div $4, $1
 mfhi $2
 jr $0
