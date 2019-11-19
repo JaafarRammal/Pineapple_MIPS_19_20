@@ -48,10 +48,10 @@ do
   # Convert to signed 8 bits number
   if [ $simReturn -ge 128 ]
   then
-    ((return-=256))
+    ((simReturn-=256))
   fi
 
-  status="PASS"
+  status="Pass"
 
   # Output text form: "TestId , Instruction , Status , Author [, Message]"
   message=""
@@ -65,18 +65,18 @@ do
   # Is the return incorrect?
   if [ ! "$simReturn" = "$expectedReturn" ]
   then
-    status="FAIL"
+    status="Fail"
     message+=" (return failure: expected $expectedReturn but received $simReturn)"
   fi
 
+  # Is the output incorrect?
   if [ ! "$simOutput" = "$expectedOutput" ]
   then
-    status="FAIL"
+    status="Fail"
     message+=" (output failure: expected $expectedOutput but received $simOutput)"
   fi
 
+  # Return the test result following the requirements
   echo "$testID, $instruction, $status, $author, $message"
-
-  
 
 done
