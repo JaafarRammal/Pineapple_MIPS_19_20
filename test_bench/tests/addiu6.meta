@@ -1,0 +1,10 @@
+#ADDIU
+#-12
+#MaelleGuerre
+#Non-zero SA field
+#
+#
+
+addi $2, $2, 7
+addiu $2, $2, -9
+jr $0

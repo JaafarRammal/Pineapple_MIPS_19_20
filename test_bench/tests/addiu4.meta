@@ -1,0 +1,10 @@
+#ADDIU
+#-10
+#MaelleGuerre
+#Overflow test (two positives)
+#
+#
+
+lui $1, 0x7FFF
+addiu $2, $1, 0x7FFF
+jr $0
