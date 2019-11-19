@@ -1,0 +1,10 @@
+#XORI
+#0
+#MaelleGuerre
+#XORI test for same numbers (negative)
+#
+#
+
+addi $1, $1, -8
+xori $2, $1, -8
+jr $0

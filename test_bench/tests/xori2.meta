@@ -1,0 +1,10 @@
+#XORI
+#-1
+#MaelleGuerre
+#Sample check for maximum numbers 
+#
+#
+
+addi $3, $3, 0
+xori $2, $3, -1
+jr $0
