@@ -1,0 +1,12 @@
+#MULTU
+#7
+#MaelleGuerre
+#small number check
+#
+#
+
+addi $1, $1, 7
+addi $3, $3, 2
+or $3, $3, $1
+
+jr $0
