@@ -1,0 +1,36 @@
+#BNE
+#0
+#MaelleGuerre
+#bne no jump
+#
+
+addi $1, $1, 9
+bne $1, $4, target
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+addi $2, $2, 2
+target:
+jr $0

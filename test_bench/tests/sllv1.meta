@@ -1,0 +1,13 @@
+#SLLV
+#-1
+#MaelleGuerre
+#Sample check for two shifts 
+#
+#
+
+addi $3, $3, -1
+addi $4, $4, 32
+sllv $2, $3, $4
+srlv $2, $2, $4
+jr $0
+	

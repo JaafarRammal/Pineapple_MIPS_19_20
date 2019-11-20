@@ -1,0 +1,10 @@
+#ORI
+#-1
+#MaelleGuerre
+#Sample check for two numbers 
+#
+#
+
+addi $3, $3, 43
+ori $2, $3, -1
+jr $0

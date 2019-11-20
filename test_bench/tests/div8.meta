@@ -9,5 +9,8 @@ lui $4, -1
 lui $1, -1
 mthi $1
 div $4, $1
+nop
+nop
+nop
 mfhi $2
 jr $0

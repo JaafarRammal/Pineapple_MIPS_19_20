@@ -1,0 +1,12 @@
+#SLTU
+#0
+#MaelleGuerre
+#set on less then check for false (signed)
+#
+#
+
+addi $3, $3, 8
+addi $4, $4, -4
+sltu $2, $4, $3
+
+jr $0

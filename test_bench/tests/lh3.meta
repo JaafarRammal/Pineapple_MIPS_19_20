@@ -1,0 +1,13 @@
+#LH
+#15
+#MaelleGuerre
+#Store a positive and load halfword
+#
+#
+
+addi $1, $1, 15
+addi $3, $3, 8192
+sll $3, $3, 16
+sh $1, 0($3)
+lh $2, 0($3)
+jr $0

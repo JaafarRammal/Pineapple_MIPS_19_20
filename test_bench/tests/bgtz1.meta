@@ -1,0 +1,12 @@
+#BGTZ
+#4
+#MaelleGuerre
+#basic bgtz
+#
+
+addi $1, $1, 3
+bgtz $1, target
+addi $2, $2, 2
+addi $2, $2, 2
+target: addi $2, $2, 2
+jr $0

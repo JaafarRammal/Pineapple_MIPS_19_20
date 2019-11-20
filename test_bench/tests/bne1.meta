@@ -1,0 +1,13 @@
+#BNE
+#2
+#MaelleGuerre
+#bne jump condition
+#
+
+addi $1, $1, 0
+bne $1, $4, target
+nop
+addi $2, $2, 2
+nop
+target:
+jr $0

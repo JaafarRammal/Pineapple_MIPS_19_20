@@ -1,0 +1,12 @@
+#SRAV
+#5
+#MaelleGuerre
+#right arithmetic variable shift unsigned further test
+#
+#
+
+addi $3, $3, 20
+addi $1, $1, 2
+srav $2, $3, $1
+
+jr $0

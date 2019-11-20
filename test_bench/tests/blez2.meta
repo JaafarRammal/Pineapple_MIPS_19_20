@@ -1,0 +1,13 @@
+#BLEZ
+#6
+#MaelleGuerre
+#basic blez for equal condition
+#
+
+blez $1, target
+addi $2, $2, 2
+addi $2, $2, 2
+target:
+addi $2, $2, 2
+addi $2, $2, 2
+jr $0

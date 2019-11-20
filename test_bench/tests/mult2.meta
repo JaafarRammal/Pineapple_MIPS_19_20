@@ -1,0 +1,15 @@
+#MULT
+#1
+#MaelleGuerre
+#msb check
+#
+#
+
+addi $5, $5, -1
+addi $4, $4, -1
+multu $5, $4
+nop
+nop
+nop
+mflo $2
+jr $0

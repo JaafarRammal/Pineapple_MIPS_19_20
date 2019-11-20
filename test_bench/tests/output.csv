@@ -1,0 +1,185 @@
+add1, ADD, Pass, JaafarRammal, Simple add functionality test (two positives); exit code 16
+add2, ADD, Pass, JaafarRammal, Simple add functionality test (two negatives); exit code -16
+add3, ADD, Pass, JaafarRammal, Simple add functionality test (one positive one negative); exit code -2
+add4, ADD, Pass, JaafarRammal, Overflow test (two positives); exit code -10
+add5, ADD, Pass, JaafarRammal, Overflow test (two negatives); exit code -10
+add6, ADD, Fail, JaafarRammal, Non-zero SA field; exit code -2 (expected -12)
+addi1, ADDI, Pass, MaelleGuerre, Simple addi functionality test (two positives); exit code 10
+addi2, ADDI, Pass, MaelleGuerre, Simple addi functionality test (two negatives); exit code -18
+addi3, ADDI, Pass, MaelleGuerre, Simple add functionality test (one positive one negative); exit code -2
+addi4, ADDI, Pass, MaelleGuerre, Overflow test (two positives); exit code -10
+addi5, ADDI, Pass, MaelleGuerre, Overflow test (two negatives); exit code -10
+addiu1, ADDIU, Pass, MaelleGuerre, Simple addiu functionality test (two positives); exit code 10
+addiu2, ADDIU, Pass, MaelleGuerre, Simple addi functionality test (two negatives); exit code -18
+addiu3, ADDIU, Pass, MaelleGuerre, Simple addiu functionality test (one positive one negative); exit code -2
+addiu4, ADDIU, Pass, MaelleGuerre, Overflow test (two positives); exit code -1
+addiu5, ADDIU, Pass, MaelleGuerre, Overflow test (two negatives); exit code 0
+addu1, ADDU, Pass, MaelleGuerre, Simple addu functionality test (two positives); exit code 16
+addu2, ADDU, Pass, MaelleGuerre, Simple addu functionality test (two negatives); exit code -16
+addu3, ADDU, Pass, MaelleGuerre, Simple addu functionality test (one positive one negative); exit code -2
+addu4, ADDU, Pass, MaelleGuerre, Overflow test (two positives); exit code 0
+addu5, ADDU, Pass, MaelleGuerre, Overflow test (two negatives); exit code 0
+addu6, ADDU, Fail, MaelleGuerre, Non-zero SA field; exit code -2 (expected -12)
+and1, AND, Pass, MaelleGuerre, Simple AND functionality test (Same numbers); exit code 9
+and2, AND, Pass, MaelleGuerre, Simple AND functionality test (0); exit code 0
+and3, AND, Pass, MaelleGuerre, 32 bits AND; exit code -1
+and4, AND, Pass, MaelleGuerre, negative numbers AND; exit code 14
+andi, ANDI, Pass, MaelleGuerre, Simple ANDI functionality test (Same numbers); exit code 9
+andi2, ANDI, Pass, MaelleGuerre, Simple ANDI functionality test (0); exit code 0
+andi3, ANDI, Pass, MaelleGuerre, 32 bits ANDI; exit code -1
+andi4, ANDI, Pass, MaelleGuerre, negative numbers ANDI; exit code 14
+beq1, BEQ, Pass, MaelleGuerre, basic beq; exit code 4
+beq2, BEQ, Pass, MaelleGuerre, basic beq; exit code 6
+beq3, BEQ, Pass, MaelleGuerre, beq false condition; exit code 6
+beq4, BEQ, Pass, MaelleGuerre, beq jump condition; exit code 0
+bgez1, BGEZ, Pass, MaelleGuerre, basic bgez; exit code 4
+bgez2, BGEZ, Pass, MaelleGuerre, basic bgez for equal condition; exit code 6
+bgez3, BGEZ, Pass, MaelleGuerre, bgez false condition; exit code 6
+bgez4, BGEZ, Pass, MaelleGuerre, bgez jump condition; exit code 2
+bgezal1, BGEZAL, Pass, MaelleGuerre, basic bgezal; exit code 4
+bgezal2, BGEZAL, Pass, MaelleGuerre, basic bgezal for equal condition; exit code 6
+bgezal3, BGEZAL, Pass, MaelleGuerre, bgezal false condition; exit code 6
+bgezal4, BGEZAL, Pass, MaelleGuerre, bgezal jump condition; exit code 2
+bgtz1, BGTZ, Pass, MaelleGuerre, basic bgtz; exit code 4
+bgtz2, BGTZ, Pass, MaelleGuerre, basic bgtz for non-equal condition; exit code 8
+bgtz3, BGTZ, Pass, MaelleGuerre, bgtz false condition; exit code 6
+bgtz4, BGTZ, Pass, MaelleGuerre, bgtz jump condition; exit code 2
+blez1, BLEZ, Pass, MaelleGuerre, basic blez; exit code 4
+blez2, BLEZ, Pass, MaelleGuerre, basic blez for equal condition; exit code 6
+blez3, BLEZ, Pass, MaelleGuerre, blez false condition; exit code 6
+blez4, BLEZ, Pass, MaelleGuerre, blez jump condition; exit code 2
+bltz1, BLTZ, Pass, MaelleGuerre, basic bltz; exit code 4
+bltz2, BLTZ, Pass, MaelleGuerre, basic bltz for non-equal condition; exit code 8
+bltz3, BLTZ, Pass, MaelleGuerre, bltz false condition; exit code 6
+bltz4, BLTZ, Pass, MaelleGuerre, bltz jump condition; exit code 2
+bltzal1, BLTZAL, Pass, MaelleGuerre, basic bltzal; exit code 4
+bltzal2, BLTZAL, Pass, MaelleGuerre, basic bltzal for non-equal condition; exit code 8
+bltzal3, BLTZAL, Pass, MaelleGuerre, bltzal false condition; exit code 6
+bltzal4, BLTZAL, Pass, MaelleGuerre, bltzal jump condition; exit code 2
+bne1, BNE, Pass, MaelleGuerre, bne jump condition; exit code 2
+bne2, BNE, Pass, MaelleGuerre, bne no jump condition; exit code 0
+bne3, BNE, Pass, MaelleGuerre, bne no jump; exit code 0
+bne4, BNE, Pass, MaelleGuerre, bne far jump; exit code 2
+div1, DIV, Pass, MaelleGuerre, Dividing 0 by a number; exit code 0
+div10, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned); exit code -3
+div11, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned); exit code 3
+div12, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned); exit code -3
+div2, DIV, Pass, MaelleGuerre, Dividing two numbers; exit code 2
+div3, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one negative); exit code 2
+div4, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one positive); exit code -2
+div5, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one positive); exit code -2
+div6, DIV, Pass, MaelleGuerre, Dividing by 0 - does not divide anything, outputs 0; exit code 0
+div7, DIV, Pass, MaelleGuerre, Basic check for remainder of a division; exit code 1
+div8, DIV, Pass, MaelleGuerre, Complex check for remainder of a division; exit code 0
+div9, DIV, Pass, MaelleGuerre, Check the remainder (unsigned); exit code 3
+divu1, DIVU, Pass, MaelleGuerre, Dividing two numbers (unsigned); exit code 2
+divu2, DIVU, Pass, MaelleGuerre, Dividing two numbers (signed and unsigned); exit code -3
+divu3, DIVU, Pass, MaelleGuerre, Dividing two numbers (signed and unsigned); exit code 0
+divu4, DIVU, Pass, MaelleGuerre, Dividing two signed numbers; exit code 0
+divu5, DIV, Pass, MaelleGuerre, Check the remainder (unsigned); exit code 3
+divu6, DIVU, Pass, MaelleGuerre, Dividing 0 by a number; exit code 0
+internal1, INTERNAL, Pass, JaafarRammal, Check if register 0 is grounded; exit code 7
+internal2, INTERNAL, Pass, JaafarRammal, Check if all registers are initialized to zero (requires functioning ADD); exit code 0
+internal3, INTERNAL, Pass, JaafarRammal, Check if all registers are functional (requires functioning ADD and ADDI); exit code 31
+internal4, INTERNAL, Pass, JaafarRammal, Test empty binary; exit code 0
+internal5, INTERNAL, Fail, JaafarRammal, Test non-ending binary; exit code -21 (expected -11)
+j, J, Pass, MaelleGuerre, basic jump test; exit code 4
+jal, JAL, Pass, MaelleGuerre, basic jump and link test; exit code 2
+jalr, JALR, Fail, MaelleGuerre, basic jump and link to register test; exit code -21 (expected 4)
+lb1, LB, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
+lb2, LB, Pass, MaelleGuerre, Store a positive and load byte; exit code 3
+lb3, LB, Pass, MaelleGuerre, Store a negative and load byte with offset; exit code -1
+lb4, LB, Pass, MaelleGuerre, Store a positive and load byte with offset; exit code 7
+lbu1, LB, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
+lbu2, LBU, Pass, MaelleGuerre, Store a positive and load byte; exit code 7
+lbu3, LBU, Pass, MaelleGuerre, Store a negative and load byte with offset; exit code -1
+lbu4, LBU, Pass, MaelleGuerre, Store a positive and load byte with offset; exit code 7
+lh1, LH, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
+lh2, LH, Pass, MaelleGuerre, Store a negative and load halfword with offset; exit code -1
+lh3, LH, Pass, MaelleGuerre, Store a positive and load halfword; exit code 15
+lh4, LH, Pass, MaelleGuerre, Store a positive and load halfword with offset; exit code 15
+lhu1, LHU, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
+lhu2, LHU, Pass, MaelleGuerre, Store a negative and load halfword with offset; exit code -1
+lhu3, LHU, Pass, MaelleGuerre, Store a positive and load halfword; exit code 15
+lhu4, LHU, Pass, MaelleGuerre, Store a positive and load halfword with offset; exit code 15
+lui1, lui, Pass, JaafarRammal, Checking load is strictly in upper; exit code 0
+lui2, lui, Pass, JaafarRammal, Use as addressing; exit code 100
+lui3, lui, Pass, JaafarRammal, Shift the value; exit code 3
+lwl1, LWL, Pass, MaelleGuerre, load word left positive; exit code 8
+lwl2, LWL, Pass, MaelleGuerre, load word left negative; exit code -8
+lwr1, LWR, Pass, MaelleGuerre, load word right positive; exit code 0
+lwr2, LWR, Pass, MaelleGuerre, load word right negative; exit code -1
+memory, Memory access, Pass, MaelleGuerre, try to access non accessible memory; exit code -11
+mthi1, MTHI, Pass, MaelleGuerre, basic HI negative number check; exit code -8
+mthi2, MTHI, Pass, MaelleGuerre, basic HI  number check; exit code 8
+mtlo1, MTLO, Pass, MaelleGuerre, basic LO number check; exit code 8
+mtlo2, MTLO, Pass, MaelleGuerre, basic LO negative number check; exit code -8
+mult1, MULT, Pass, MaelleGuerre, big number check; exit code -3
+mult2, MULT, Pass, MaelleGuerre, msb check; exit code 1
+mult3, MULT, Pass, MaelleGuerre, big number check; exit code -1
+multu1, MULTU, Pass, MaelleGuerre, big number check; exit code 88
+multu2, MULTU, Pass, MaelleGuerre, small number check; exit code 12
+multu3, MULTU, Pass, MaelleGuerre, same number multiplication check; exit code 16
+multu4, MULTU, Pass, MaelleGuerre, multiply by 0; exit code -3
+or1, OR, Pass, MaelleGuerre, Sample check for the same number; exit code 7
+or2, OR, Pass, MaelleGuerre, Sample check for opposite numbers; exit code -1
+or3, OR, Pass, MaelleGuerre, Sample check for 2 numbers; exit code -56
+or4, OR, Pass, MaelleGuerre, Sample check for two numbers; exit code -1
+ori1, ORI, Pass, MaelleGuerre, Sample check for the same number; exit code 7
+ori2, ORI, Pass, MaelleGuerre, Sample check for opposite numbers; exit code -1
+ori3, ORI, Pass, MaelleGuerre, Sample check for 2 numbers; exit code -56
+ori4, ORI, Pass, MaelleGuerre, Sample check for two numbers; exit code -1
+sb, SB, Pass, MaelleGuerre, Store a positive max; exit code 8
+sh1, SH, Pass, MaelleGuerre, Store a positive value; exit code 8
+sh2, SW, Pass, MaelleGuerre, Store a negative value - expect memory error; exit code -11
+sll1, SLL, Pass, MaelleGuerre, Sample check for two shifts; exit code 1
+sll2, SLL, Pass, MaelleGuerre, Sample check for two shifts - negative output; exit code -1
+sllv1, SLLV, Pass, MaelleGuerre, Sample check for two shifts; exit code -1
+sllv2, SLLV, Pass, MaelleGuerre, Sample check for two shifts - negative output; exit code -1
+slt1, SLT, Pass, MaelleGuerre, set on less then check for true (unsigned); exit code 1
+slt3, SLT, Pass, MaelleGuerre, set on less then check for false (unsigned); exit code 0
+slt4, SLT, Pass, MaelleGuerre, set on less then check for false (signed); exit code 0
+slt5, SLT, Pass, MaelleGuerre, set on less then check for false (both signed); exit code 0
+slt6, SLT, Pass, MaelleGuerre, set on less then check for true (both signed); exit code 1
+sltu1, SLTU, Pass, MaelleGuerre, set on less then check for true (unsigned); exit code 1
+sltu3, SLTU, Pass, MaelleGuerre, set on less then check for false (unsigned); exit code 0
+sltu4, SLTU, Pass, MaelleGuerre, set on less then check for false (signed); exit code 0
+sltu5, SLTU, Pass, MaelleGuerre, set on less then check for true (both signed); exit code 1
+sltu6, SLTU, Pass, MaelleGuerre, set on less then check for false (both signed); exit code 0
+sra1, SRA, Pass, MaelleGuerre, right arithmetic shift unsigned; exit code 3
+sra2, SRA, Pass, MaelleGuerre, right arithmetic shift signed; exit code -1
+sra3, SRA, Pass, MaelleGuerre, right arithmetic shift signed further testing; exit code -1
+sra4, SRA, Pass, MaelleGuerre, right arithmetic shift unsigned further test; exit code 5
+srav1, SRAV, Pass, MaelleGuerre, right arithmetic variable shift unsigned; exit code 3
+srav2, SRAV, Pass, MaelleGuerre, right arithmetic variable shift signed; exit code -1
+srav3, SRAV, Pass, MaelleGuerre, right arithmetic variable shift signed further testing; exit code -1
+srav4, SRAV, Pass, MaelleGuerre, right arithmetic variable shift unsigned further test; exit code 5
+sub1, SUB, Pass, JaafarRammal, Simple sub functionality test (two positives with positive result); exit code 2
+sub10, SUB, Fail, JaafarRammal, Non-zero SA field; exit code 16 (expected -12)
+sub2, SUB, Pass, JaafarRammal, Simple sub functionality test (two positives with negative result); exit code -2
+sub3, SUB, Pass, JaafarRammal, Simple sub functionality test (two negatives with positive result); exit code 2
+sub4, SUB, Pass, JaafarRammal, Simple sub functionality test (two negatives with negative result); exit code -2
+sub5, SUB, Pass, JaafarRammal, Simple sub functionality test (one positive one negative with positive result); exit code 16
+sub6, SUB, Pass, JaafarRammal, Simple sub functionality test (one positive one negative with negative result); exit code -16
+sub7, SUB, Pass, JaafarRammal, Overflow test(positive - negative); exit code -10
+sub8, SUB, Pass, JaafarRammal, Overflow test(negative - positive); exit code -10
+sub9, SUB, Pass, JaafarRammal, Sub a number from itself; exit code 0
+subu1, SUBU, Pass, MaelleGuerre, Simple sub functionality test (two positives with positive result); exit code 2
+subu2, SUBU, Pass, MaelleGuerre, Simple subu functionality test (two positives with negative result); exit code -2
+subu3, SUBU, Pass, MaelleGuerre, Simple subu functionality test (two negatives with positive result); exit code 2
+subu4, SUBU, Pass, MaelleGuerre, Simple subu functionality test (two negatives with negative result); exit code -2
+subu5, SUBU, Pass, MaelleGuerre, Simple subu functionality test (one positive one negative with positive result); exit code 16
+subu6, SUBU, Pass, MaelleGuerre, Simple subu functionality test (one positive one negative with negative result); exit code -16
+subu7, SUBU, Pass, JaafarRammal, Sub a number from itself; exit code 0
+sw1, SW, Pass, MaelleGuerre, Store a positive value; exit code 8
+sw2, SW, Pass, MaelleGuerre, Store a negative value; exit code -8
+sw3, SW, Pass, MaelleGuerre, Store a positive value with offset; exit code 8
+sw4, SW, Pass, MaelleGuerre, Store a negative value with offset; exit code -8
+xor1, XOR, Pass, MaelleGuerre, Sample check for two numbers; exit code 15
+xor2, XOR, Pass, MaelleGuerre, Sample check for maximum numbers; exit code -1
+xor3, XOR, Pass, MaelleGuerre, Or test for same numbers (positive); exit code 0
+xor4, XOR, Pass, MaelleGuerre, XOR test for same numbers (negative); exit code 0
+xori1, XORI, Pass, MaelleGuerre, Sample check for two numbers; exit code 15
+xori2, XORI, Pass, MaelleGuerre, Sample check for maximum numbers; exit code -1
+xori3, XORI, Pass, MaelleGuerre, XORI test for same numbers (positive); exit code 0
+xori4, XORI, Pass, MaelleGuerre, XORI test for same numbers (negative); exit code 0

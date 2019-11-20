@@ -1,0 +1,13 @@
+#BLEZ
+#6
+#MaelleGuerre
+#blez false condition
+#
+
+addi $1, $1, 3
+blez $1, target
+addi $2, $2, 2
+addi $2, $2, 2
+addi $2, $2, 2
+target:
+jr $0

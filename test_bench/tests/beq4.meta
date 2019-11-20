@@ -1,0 +1,37 @@
+#BEQ
+#0
+#MaelleGuerre
+#beq jump condition
+#
+
+addi $1, $1, 0
+beq $1, $4, target
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+addi $2, $2, 2
+addi $2, $2, 0
+target: 
+jr $0

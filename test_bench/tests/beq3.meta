@@ -1,0 +1,13 @@
+#BEQ
+#6
+#MaelleGuerre
+#beq false condition
+#
+
+addi $1, $1, 3
+beq $1, $3, target
+addi $2, $2, 2
+addi $2, $2, 2
+addi $2, $2, 2
+target:
+jr $0

@@ -1,0 +1,13 @@
+#LBU
+#7
+#MaelleGuerre
+#Store a positive and load byte
+#
+#
+
+addi $1, $1, 7
+addi $3, $3, 8192
+sll $3, $3, 16
+sb $1, 0($3)
+lbu $2, 0($3)
+jr $0

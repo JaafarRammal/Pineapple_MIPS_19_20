@@ -1,0 +1,15 @@
+#MULTU
+#-3
+#MaelleGuerre
+#multiply by 0
+#
+#
+
+addi $5, $5, 3
+addi $4, $4, -1
+multu $5, $4
+nop
+nop
+nop
+mflo $2
+jr $0
