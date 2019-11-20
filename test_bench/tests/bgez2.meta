@@ -1,0 +1,13 @@
+#BGEZ
+#6
+#MaelleGuerre
+#basic bgez for equal condition
+#
+
+bgez $1, target
+addi $2, $2, 2
+addi $2, $2, 2
+target:
+addi $2, $2, 2
+addi $2, $2, 2
+jr $0

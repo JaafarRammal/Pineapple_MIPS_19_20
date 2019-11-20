@@ -1,0 +1,13 @@
+#BGTZ
+#8
+#MaelleGuerre
+#basic bgtz for non-equal condition
+#
+
+bgtz $1, target
+addi $2, $2, 2
+addi $2, $2, 2
+target:
+addi $2, $2, 2
+addi $2, $2, 2
+jr $0

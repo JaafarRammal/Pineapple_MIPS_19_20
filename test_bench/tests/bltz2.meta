@@ -1,0 +1,13 @@
+#BLTZ
+#8
+#MaelleGuerre
+#basic bltz for non-equal condition
+#
+
+bltz $1, target
+addi $2, $2, 2
+addi $2, $2, 2
+target:
+addi $2, $2, 2
+addi $2, $2, 2
+jr $0

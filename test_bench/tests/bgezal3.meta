@@ -1,0 +1,13 @@
+#BGEZAL
+#6
+#MaelleGuerre
+#bgezal false condition
+#
+
+addi $1, $1, -3
+bgezal $1, target
+addi $2, $2, 2
+addi $2, $2, 2
+addi $2, $2, 2
+target:
+jr $0

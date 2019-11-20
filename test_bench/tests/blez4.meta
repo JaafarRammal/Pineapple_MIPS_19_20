@@ -1,0 +1,37 @@
+#BLEZ
+#2
+#MaelleGuerre
+#blez jump condition
+#
+
+addi $1, $1, -9
+blez $1, target
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+nop
+addi $2, $2, 0
+target: 
+addi $2, $2, 2
+jr $0

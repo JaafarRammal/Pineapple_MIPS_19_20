@@ -32,6 +32,30 @@ beq1, BEQ, Pass, MaelleGuerre, basic beq; exit code 4
 beq2, BEQ, Pass, MaelleGuerre, basic beq; exit code 6
 beq3, BEQ, Pass, MaelleGuerre, beq false condition; exit code 6
 beq4, BEQ, Pass, MaelleGuerre, beq jump condition; exit code 0
+bgez1, BGEZ, Pass, MaelleGuerre, basic bgez; exit code 4
+bgez2, BGEZ, Pass, MaelleGuerre, basic bgez for equal condition; exit code 6
+bgez3, BGEZ, Pass, MaelleGuerre, bgez false condition; exit code 6
+bgez4, BGEZ, Pass, MaelleGuerre, bgez jump condition; exit code 2
+bgezal1, BGEZAL, Pass, MaelleGuerre, basic bgezal; exit code 4
+bgezal2, BGEZAL, Pass, MaelleGuerre, basic bgezal for equal condition; exit code 6
+bgezal3, BGEZAL, Pass, MaelleGuerre, bgezal false condition; exit code 6
+bgezal4, BGEZAL, Pass, MaelleGuerre, bgezal jump condition; exit code 2
+bgtz1, BGTZ, Pass, MaelleGuerre, basic bgtz; exit code 4
+bgtz2, BGTZ, Pass, MaelleGuerre, basic bgtz for non-equal condition; exit code 8
+bgtz3, BGTZ, Pass, MaelleGuerre, bgtz false condition; exit code 6
+bgtz4, BGTZ, Pass, MaelleGuerre, bgtz jump condition; exit code 2
+blez1, BLEZ, Pass, MaelleGuerre, basic blez; exit code 4
+blez2, BLEZ, Pass, MaelleGuerre, basic blez for equal condition; exit code 6
+blez3, BLEZ, Pass, MaelleGuerre, blez false condition; exit code 6
+blez4, BLEZ, Pass, MaelleGuerre, blez jump condition; exit code 2
+bltz1, BLTZ, Pass, MaelleGuerre, basic bltz; exit code 4
+bltz2, BLTZ, Pass, MaelleGuerre, basic bltz for non-equal condition; exit code 8
+bltz3, BLTZ, Pass, MaelleGuerre, bltz false condition; exit code 6
+bltz4, BLTZ, Pass, MaelleGuerre, bltz jump condition; exit code 2
+bltzal1, BLTZAL, Pass, MaelleGuerre, basic bltzal; exit code 4
+bltzal2, BLTZAL, Pass, MaelleGuerre, basic bltzal for non-equal condition; exit code 8
+bltzal3, BLTZAL, Pass, MaelleGuerre, bltzal false condition; exit code 6
+bltzal4, BLTZAL, Pass, MaelleGuerre, bltzal jump condition; exit code 2
 bne1, BNE, Pass, MaelleGuerre, bne jump condition; exit code 2
 bne2, BNE, Pass, MaelleGuerre, bne no jump condition; exit code 0
 bne3, BNE, Pass, MaelleGuerre, bne no jump; exit code 0
