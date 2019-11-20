@@ -1,14 +1,15 @@
 #MULTU
-#0
+#-3
 #MaelleGuerre
 #multiply by 0
 #
 #
 
-addi $5, $5,3
-multu $5,$4
+addi $5, $5, 3
+addi $4, $4, -1
+multu $5, $4
+nop
+nop
+nop
 mflo $2
-nop
-nop
-nop
 jr $0

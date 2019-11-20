@@ -5,10 +5,10 @@
 #
 #
 
-addi $4, $4,4
-multu $4,$4
+addi $4, $4, 4
+multu $4, $4
+nop
+nop
+nop
 mflo $2
-nop
-nop
-nop
 jr $0
