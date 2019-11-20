@@ -31,7 +31,7 @@ nop
 nop
 nop
 nop
-addi $2, $2, $2
-nop
+addi $2, $2, 2
+addi $2, $2, 0
 target: 
 jr $0

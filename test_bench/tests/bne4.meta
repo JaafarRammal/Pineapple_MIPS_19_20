@@ -32,6 +32,6 @@ nop
 nop
 target:
 nop
-addi $2, $2, $2
+addi $2, $2, 2
 nop
 jr $0
