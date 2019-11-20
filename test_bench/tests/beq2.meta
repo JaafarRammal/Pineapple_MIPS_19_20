@@ -4,10 +4,9 @@
 #basic beq 
 #
 
-addi $2, $2, 0
 beq $1, $1, target
 addi $2, $2, 2
-target :
+target:
 addi $2, $2, 2
 addi $2, $2, 2
 jr $0

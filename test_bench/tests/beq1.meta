@@ -5,9 +5,8 @@
 #
 
 addi $2, $2, 0
-beq $1, $2, target 
+beq $1, $2, target
 addi $2, $2, 2
 addi $2, $2, 2
-target :
-addi $2, $2, 2
+target: addi $2, $2, 2
 jr $0

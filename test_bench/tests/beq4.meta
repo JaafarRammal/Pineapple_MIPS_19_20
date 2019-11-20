@@ -4,9 +4,8 @@
 #beq jump condition
 #
 
-target:
 addi $1, $1, 0
-beq $1, $4, target + 30
+beq $1, $4, target
 nop
 nop
 nop
@@ -34,5 +33,5 @@ nop
 nop
 addi $2, $2, $2
 nop
-jr $0
+target: jr $0
 nop
