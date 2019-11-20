@@ -5,8 +5,8 @@
 #
 #
 
-li $3,0xFFFFFFFF
-li $4,0x7FFFFFFF
+addi $3,  $3, -1
+addi $4, $4, 1
 mult $3,$4
 nop
 nop

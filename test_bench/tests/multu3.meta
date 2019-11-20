@@ -5,7 +5,7 @@
 #
 #
 
-lui $4,4
+addi $4, $4,4
 multu $4,$4
 mflo $2
 nop

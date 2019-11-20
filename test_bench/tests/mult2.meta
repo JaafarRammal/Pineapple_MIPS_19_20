@@ -5,12 +5,11 @@
 #
 #
 
-lui $3,0xFFFFFFFF
-lui $4,0x7FFFFFFF
+addi  $3, $3, -1
+addi  $4, $4, -1
 mult $3,$4
 nop
 nop
 nop 
 mflo $2
-srl $2,$2,31
 jr $0
