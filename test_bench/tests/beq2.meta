@@ -4,6 +4,7 @@
 #basic beq 
 #
 
+addi $2, $2, 0
 beq $1, $1, target
 addi $2, $2, 2
 target :
