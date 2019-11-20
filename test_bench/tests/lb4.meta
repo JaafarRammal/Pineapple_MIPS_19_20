@@ -1,0 +1,13 @@
+#LB
+#7
+#MaelleGuerre
+#Store a positive and load byte with offset
+#
+#
+
+addi $1, $1, 7
+addi $3, $3, 8192
+sll $3, $3, 16
+sb $1, 8($3)
+lb $2, 8($3)
+jr $0

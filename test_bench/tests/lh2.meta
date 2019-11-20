@@ -1,0 +1,13 @@
+#LH
+#-1
+#MaelleGuerre
+#Store a negative and load halfword with offset
+#
+#
+
+addi $1, $1, -1
+addi $3, $3, 8192
+sll $3, $3, 16
+sh $1, 8($3)
+lh $2, 8($3)
+jr $0
