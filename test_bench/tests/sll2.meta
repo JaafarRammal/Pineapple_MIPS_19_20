@@ -5,7 +5,7 @@
 #
 #
 
-lw $3, 0xFFFFFFFF
+lw $3, -1
 sll $2,$3,16
 srl $2,$2,16
 jr $0

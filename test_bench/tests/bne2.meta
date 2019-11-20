@@ -4,10 +4,10 @@
 #bne jump condition
 #
 
-    addi $1, $1, 9
-	bne $1, $4, target
-	nop
-    addi $2, $2, $2
-    target:
-	jr $0
-	nop
+addi $1, $1, 9
+bne $1, $4, target
+nop
+addi $2, $2, $2
+target:
+jr $0
+nop

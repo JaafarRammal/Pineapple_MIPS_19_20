@@ -5,7 +5,7 @@
 #
 #
 
-lw $3, 0xFFFFFFFF
+lw $3, -1
 addi $4, $4, 32
 sllv $2,$3,$4
 srlv $2,$2,$4
