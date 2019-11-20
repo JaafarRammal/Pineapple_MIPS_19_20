@@ -33,5 +33,5 @@ nop
 nop
 addi $2, $2, $2
 nop
-target: jr $0
-nop
+target: 
+jr $0

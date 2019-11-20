@@ -1,5 +1,5 @@
 #ANDI
-#-11
+#-1
 #MaelleGuerre
 #32 bits ANDI
 #
@@ -7,5 +7,5 @@
 
 lui $2, 0x7FFF
 addi $1, $1, 0xFF
-and $2, $1, 0xFF
+andi $2, $1, 0xFF
 jr $0

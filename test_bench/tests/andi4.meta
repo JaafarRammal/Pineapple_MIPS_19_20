@@ -1,10 +1,10 @@
 #ANDI
-#-11
+#14
 #MaelleGuerre
 #negative numbers ANDI
 #
 #
 
 addi $1, $1, -2
-and $2, $1, 0XE
+andi $2, $1, 0XE
 jr $0

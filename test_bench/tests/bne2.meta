@@ -1,7 +1,7 @@
 #BNE
-#0
+#2
 #MaelleGuerre
-#bne jump condition
+#bne no jump condition
 #
 
 addi $1, $1, 9
@@ -10,4 +10,3 @@ nop
 addi $2, $2, $2
 target:
 jr $0
-nop
