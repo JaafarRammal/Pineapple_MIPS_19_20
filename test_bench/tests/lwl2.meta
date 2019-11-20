@@ -1,0 +1,13 @@
+#LWL
+#-8
+#MaelleGuerre
+#load word left negative
+#
+#
+
+addi $1, $1, -8
+addi $3, $3, 8192
+sll $3, $3, 16
+sw $1, 4($3)
+lwl $2, 4($3)
+jr $0

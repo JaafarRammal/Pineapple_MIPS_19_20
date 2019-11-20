@@ -1,0 +1,15 @@
+#JAL
+#2
+#MaelleGuerre
+#basic jump and link test
+#
+#
+
+addi $1, $1, 8
+jal target
+addi $3, $3, 8192
+addi $2, $2, 2
+addi $2, $2, 2
+target:
+addi $2, $2, 2
+jr $0

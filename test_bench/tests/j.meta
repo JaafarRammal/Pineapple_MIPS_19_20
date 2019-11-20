@@ -1,0 +1,15 @@
+#J
+#4
+#MaelleGuerre
+#basic jump test
+#
+#
+
+addi $1, $1, 8
+j target
+addi $3, $3, 8192
+addi $2, $2, 2
+target:
+addi $2, $2, 2
+addi $2, $2, 2
+jr $0
