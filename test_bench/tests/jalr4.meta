@@ -1,11 +1,12 @@
 #JALR
 #-11
 #MaelleGuerre
-#jumping outside instruction space
+#Branch PUTC
 #
 #
 
-addi $1, $1, 0x1C
+lui $1, 0x0C00
+addi $1, $1, 1
 jalr $2, $1
 nop
 addi $2, $2, 1

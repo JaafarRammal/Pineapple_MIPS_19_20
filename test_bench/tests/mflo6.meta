@@ -1,0 +1,14 @@
+#MFLO
+#8
+#MaelleGuerre
+#basic LO number check
+#
+#
+
+addi $3,  $3, 8
+mtlo $3
+nop
+nop
+nop
+mflo $2
+jr $0

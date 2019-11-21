@@ -85,7 +85,11 @@ internal4, INTERNAL, Pass, JaafarRammal, Test empty binary; exit code 0
 internal5, INTERNAL, Fail, JaafarRammal, Test non-ending binary; exit code -21 (expected -11)
 j, J, Pass, MaelleGuerre, basic jump test; exit code 4
 jal, JAL, Pass, MaelleGuerre, basic jump and link test; exit code 2
-jalr, JALR, Fail, MaelleGuerre, basic jump and link to register test; exit code -21 (expected 4)
+jalr, JALR, Pass, MaelleGuerre, basic jump and link to register test; exit code 20
+jalr1, JALR, Pass, MaelleGuerre, Checking branch delay; exit code 20
+jalr2, JALR, Pass, MaelleGuerre, jumping outside instruction space; exit code -11
+jalr3, JALR, Pass, MaelleGuerre, Branch GETC; exit code -11
+jalr4, JALR, Pass, MaelleGuerre, Branch PUTC; exit code -11
 lb1, LB, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
 lb2, LB, Pass, MaelleGuerre, Store a positive and load byte; exit code 3
 lb3, LB, Pass, MaelleGuerre, Store a negative and load byte with offset; exit code -1
@@ -117,11 +121,18 @@ lhu7, LHU, Pass, MaelleGuerre, Store a positive and load byte with off-range off
 lui1, lui, Pass, JaafarRammal, Checking load is strictly in upper; exit code 0
 lui2, lui, Pass, JaafarRammal, Use as addressing; exit code 100
 lui3, lui, Pass, JaafarRammal, Shift the value; exit code 3
+lw1, LW, Fail, MaelleGuerre, Load instruction memory address; exit code -11 (expected -1)
 lwl1, LWL, Pass, MaelleGuerre, load word left positive; exit code 8
 lwl2, LWL, Pass, MaelleGuerre, load word left negative; exit code -8
 lwr1, LWR, Pass, MaelleGuerre, load word right positive; exit code 0
 lwr2, LWR, Pass, MaelleGuerre, load word right negative; exit code -1
 memory, Memory access, Pass, MaelleGuerre, try to access non accessible memory; exit code -11
+mergesort, Function: Merge sort, Pass, MaelleGuerre, testing ability to merge sort; exit code 1
+mfhi4, MFHI, Pass, MaelleGuerre, big number check; exit code -1
+mflo4, MFLO, Pass, MaelleGuerre, basic HI negative number check; exit code -8
+mflo5, MFLO, Pass, MaelleGuerre, basic HI  number check; exit code 8
+mflo6, MFLO, Pass, MaelleGuerre, basic LO number check; exit code 8
+mflo7, MFLO, Pass, MaelleGuerre, basic LO negative number check; exit code -8
 mthi1, MTHI, Pass, MaelleGuerre, basic HI negative number check; exit code -8
 mthi2, MTHI, Pass, MaelleGuerre, basic HI  number check; exit code 8
 mtlo1, MTLO, Pass, MaelleGuerre, basic LO number check; exit code 8
