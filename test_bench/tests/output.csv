@@ -90,18 +90,30 @@ lb1, LB, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
 lb2, LB, Pass, MaelleGuerre, Store a positive and load byte; exit code 3
 lb3, LB, Pass, MaelleGuerre, Store a negative and load byte with offset; exit code -1
 lb4, LB, Pass, MaelleGuerre, Store a positive and load byte with offset; exit code 7
+lb5, LB, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
+lb6, LB, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -1
+lb7, LB, Pass, MaelleGuerre, Store a negative word and load byte with in range offset; exit code -1
 lbu1, LB, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
 lbu2, LBU, Pass, MaelleGuerre, Store a positive and load byte; exit code 7
 lbu3, LBU, Pass, MaelleGuerre, Store a negative and load byte with offset; exit code -1
 lbu4, LBU, Pass, MaelleGuerre, Store a positive and load byte with offset; exit code 7
+lbu5, LBU, Pass, MaelleGuerre, Store a negative word and load byte with in range offset; exit code -1
+lbu6, LBU, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
+lbu7, LBU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -1
 lh1, LH, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
 lh2, LH, Pass, MaelleGuerre, Store a negative and load halfword with offset; exit code -1
 lh3, LH, Pass, MaelleGuerre, Store a positive and load halfword; exit code 15
 lh4, LH, Pass, MaelleGuerre, Store a positive and load halfword with offset; exit code 15
+lh5, LH, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
+lh6, LH, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -24
+lh7, LH, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -108
 lhu1, LHU, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
 lhu2, LHU, Pass, MaelleGuerre, Store a negative and load halfword with offset; exit code -1
 lhu3, LHU, Pass, MaelleGuerre, Store a positive and load halfword; exit code 15
 lhu4, LHU, Pass, MaelleGuerre, Store a positive and load halfword with offset; exit code 15
+lhu5, LHU, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
+lhu6, LHU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -24
+lhu7, LHU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -108
 lui1, lui, Pass, JaafarRammal, Checking load is strictly in upper; exit code 0
 lui2, lui, Pass, JaafarRammal, Use as addressing; exit code 100
 lui3, lui, Pass, JaafarRammal, Shift the value; exit code 3

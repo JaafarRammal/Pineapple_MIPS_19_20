@@ -1,0 +1,13 @@
+#LBU
+#-1
+#MaelleGuerre
+#Store a positive and load byte with off-range offset
+#
+#
+
+addi $1, $1, -24
+addi $3, $3, 8192
+sll $3, $3, 16
+sw $1, 0($3)
+lbu $2, 1($3)
+jr $0
