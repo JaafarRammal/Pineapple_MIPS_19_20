@@ -1,0 +1,31 @@
+#FUNCTION
+#1
+#JaafarRammal
+#Fibonacci Sequence (up to n=30 with r2 -1 for failure and 1 for success)
+#
+#
+
+lui $5, 0x4000
+addi $1, $1, 30
+addi $3, $3, 1
+addi $4, $3, 0
+
+fibo:
+beq $1, $2, check
+nop
+addi $4, $3, 0
+add $3, $3, $4
+addi $2, $2, 1
+j fibo
+nop
+
+check:
+beq $5, $3, correct
+nop
+addi $2, $0, -1
+jr $0
+nop
+
+correct:
+addi $2, $0, 1
+jr $0
