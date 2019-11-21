@@ -3,7 +3,6 @@ add2, ADD, Pass, JaafarRammal, Simple add functionality test (two negatives); ex
 add3, ADD, Pass, JaafarRammal, Simple add functionality test (one positive one negative); exit code -2
 add4, ADD, Pass, JaafarRammal, Overflow test (two positives); exit code -10
 add5, ADD, Pass, JaafarRammal, Overflow test (two negatives); exit code -10
-add6, ADD, Fail, JaafarRammal, Non-zero SA field; exit code -2 (expected -12)
 addi1, ADDI, Pass, MaelleGuerre, Simple addi functionality test (two positives); exit code 10
 addi2, ADDI, Pass, MaelleGuerre, Simple addi functionality test (two negatives); exit code -18
 addi3, ADDI, Pass, MaelleGuerre, Simple add functionality test (one positive one negative); exit code -2
@@ -19,12 +18,10 @@ addu2, ADDU, Pass, MaelleGuerre, Simple addu functionality test (two negatives);
 addu3, ADDU, Pass, MaelleGuerre, Simple addu functionality test (one positive one negative); exit code -2
 addu4, ADDU, Pass, MaelleGuerre, Overflow test (two positives); exit code 0
 addu5, ADDU, Pass, MaelleGuerre, Overflow test (two negatives); exit code 0
-addu6, ADDU, Fail, MaelleGuerre, Non-zero SA field; exit code -2 (expected -12)
 and1, AND, Pass, MaelleGuerre, Simple AND functionality test (Same numbers); exit code 9
 and2, AND, Pass, MaelleGuerre, Simple AND functionality test (0); exit code 0
 and3, AND, Pass, MaelleGuerre, 32 bits AND; exit code -1
 and4, AND, Pass, MaelleGuerre, negative numbers AND; exit code 14
-and5, AND, Fail, JaafarRammal, Non-zero SA field; exit code 14 (expected -12)
 andi, ANDI, Pass, MaelleGuerre, Simple ANDI functionality test (Same numbers); exit code 9
 andi2, ANDI, Pass, MaelleGuerre, Simple ANDI functionality test (0); exit code 0
 andi3, ANDI, Pass, MaelleGuerre, 32 bits ANDI; exit code -1
@@ -65,8 +62,6 @@ div1, DIV, Pass, MaelleGuerre, Dividing 0 by a number; exit code 0
 div10, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned); exit code -3
 div11, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned); exit code 3
 div12, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned); exit code -3
-div13, DIV, Fail, JaafarRammal, Non-zero SA field; exit code -3 (expected -12)
-div14, DIV, Fail, JaafarRammal, Non-zero RD field; exit code -3 (expected -12)
 div2, DIV, Pass, MaelleGuerre, Dividing two numbers; exit code 2
 div3, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one negative); exit code 2
 div4, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one positive); exit code -2
@@ -79,10 +74,10 @@ divu1, DIVU, Pass, MaelleGuerre, Dividing two numbers (unsigned); exit code 2
 divu2, DIVU, Pass, MaelleGuerre, Dividing two numbers (signed and unsigned); exit code -3
 divu3, DIVU, Pass, MaelleGuerre, Dividing two numbers (signed and unsigned); exit code 0
 divu4, DIVU, Pass, MaelleGuerre, Dividing two signed numbers; exit code 0
-divu5, DIV, Pass, MaelleGuerre, Check the remainder (unsigned); exit code 3
+divu5, DIVU, Pass, MaelleGuerre, Check the remainder (unsigned); exit code 3
 divu6, DIVU, Pass, MaelleGuerre, Dividing 0 by a number; exit code 0
-divu7, DIV, Fail, JaafarRammal, Non-zero SA field; exit code 3 (expected -12)
-divu8, DIV, Fail, JaafarRammal, Non-zero RD field; exit code 3 (expected -12)
+divu7, DIVU, Fail, JaafarRammal, Non-zero SA field; exit code 3 (expected -12)
+divu8, DIVU, Fail, JaafarRammal, Non-zero RD field; exit code 3 (expected -12)
 factorial, STACK, Pass, JaafarRammal, Factorial using stack; exit code 120
 fibonacci, FUNCTION, Pass, JaafarRammal, Fibonacci Sequence (up to n=30 with r2 -1 for failure and 1 for success); exit code 1
 getc1, FUNCTION, Pass, JaafarRammal, Read from getc a positive number until EOF; exit code 109
@@ -100,15 +95,12 @@ jalr2, JALR, Pass, MaelleGuerre, jumping outside instruction space; exit code -1
 jalr3, JALR, Pass, MaelleGuerre, Branch GETC; exit code -11
 jalr4, JALR, Pass, MaelleGuerre, Branch PUTC; exit code -11
 jr1, JR, Pass, JaafarRammal, Basic test; exit code 0
-jr10, JR, Fail, JaafarRammal, Non-zero RD field; exit code 2 (expected -12)
 jr2, JR, Pass, JaafarRammal, Jump to data memory; exit code -11
 jr3, JR, Pass, JaafarRammal, Jump to GetC; exit code -11
 jr4, JR, Pass, JaafarRammal, Jump to PutC; exit code -11
 jr5, JR, Pass, JaafarRammal, Jump outside whole memory; exit code -11
 jr6, JR, Pass, JaafarRammal, Jump to non-aligned instruction word; exit code -11
 jr7, JR, Pass, JaafarRammal, Branch delay slot; exit code 2
-jr8, JR, Fail, JaafarRammal, Non-zero SA field; exit code 2 (expected -12)
-jr9, JR, Fail, JaafarRammal, Non-zero RT field; exit code 2 (expected -12)
 lb1, LB, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
 lb2, LB, Pass, MaelleGuerre, Store a positive and load byte; exit code 3
 lb3, LB, Pass, MaelleGuerre, Store a negative and load byte with offset; exit code -1
@@ -147,43 +139,26 @@ lwr1, LWR, Pass, MaelleGuerre, load word right positive; exit code 0
 lwr2, LWR, Pass, MaelleGuerre, load word right negative; exit code -1
 memory, Memory access, Pass, MaelleGuerre, try to access non accessible memory; exit code -11
 mergesort, Function: Merge sort, Pass, MaelleGuerre, testing ability to merge sort; exit code 1
-mfhi1, MFHI, Fail, JaafarRammal, Non-zero SA field; exit code -8 (expected -12)
-mfhi2, MFHI, Fail, JaafarRammal, Non-zero RT field; exit code -8 (expected -12)
-mfhi3, MFHI, Fail, JaafarRammal, Non-zero RS field; exit code -8 (expected -12)
 mfhi4, MFHI, Pass, MaelleGuerre, big number check; exit code -1
-mflo1, MFLO, Fail, JaafarRammal, Non-zero SA field; exit code -8 (expected -12)
-mflo2, MFLO, Fail, JaafarRammal, Non-zero RT field; exit code -8 (expected -12)
-mflo3, MFLO, Fail, JaafarRammal, Non-zero RS field; exit code -8 (expected -12)
 mflo4, MFLO, Pass, MaelleGuerre, basic HI negative number check; exit code -8
 mflo5, MFLO, Pass, MaelleGuerre, basic HI  number check; exit code 8
 mflo6, MFLO, Pass, MaelleGuerre, basic LO number check; exit code 8
 mflo7, MFLO, Pass, MaelleGuerre, basic LO negative number check; exit code -8
 mthi1, MTHI, Pass, MaelleGuerre, basic HI negative number check; exit code -8
 mthi2, MTHI, Pass, MaelleGuerre, basic HI  number check; exit code 8
-mthi3, MTHI, Fail, JaafarRammal, Non-zero RD field; exit code -8 (expected -12)
-mthi4, MTHI, Fail, JaafarRammal, Non-zero SA field; exit code -8 (expected -12)
-mthi5, MTHI, Fail, JaafarRammal, Non-zero RT field; exit code -8 (expected -12)
 mtlo1, MTLO, Pass, MaelleGuerre, basic LO number check; exit code 8
 mtlo2, MTLO, Pass, MaelleGuerre, basic LO negative number check; exit code -8
-mtlo3, MTLO, Fail, JaafarRammal, Non-zero RD field; exit code -8 (expected -12)
-mtlo4, MTLO, Fail, JaafarRammal, Non-zero SA field; exit code -8 (expected -12)
-mtlo5, MTLO, Fail, JaafarRammal, Non-zero RT field; exit code -8 (expected -12)
 mult1, MULT, Pass, MaelleGuerre, big number check; exit code -3
 mult2, MULT, Pass, MaelleGuerre, msb check; exit code 1
 mult3, MULT, Pass, MaelleGuerre, big number check; exit code -1
-mult4, MULT, Fail, JaafarRammal, Non-zero SA field; exit code -1 (expected -12)
-mult5, MULT, Fail, JaafarRammal, Non-zero RD field; exit code -1 (expected -12)
 multu1, MULTU, Pass, MaelleGuerre, big number check; exit code 88
 multu2, MULTU, Pass, MaelleGuerre, small number check; exit code 12
 multu3, MULTU, Pass, MaelleGuerre, same number multiplication check; exit code 16
 multu4, MULTU, Pass, MaelleGuerre, multiply by 0; exit code -3
-multu5, MULTU, Fail, JaafarRammal, Non-zero SA field; exit code 0 (expected -12)
-multu6, MULTU, Fail, JaafarRammal, Non-zero RD field; exit code 0 (expected -12)
 or1, OR, Pass, MaelleGuerre, Sample check for the same number; exit code 7
 or2, OR, Pass, MaelleGuerre, Sample check for opposite numbers; exit code -1
 or3, OR, Pass, MaelleGuerre, Sample check for 2 numbers; exit code -56
 or4, OR, Pass, MaelleGuerre, Sample check for two numbers; exit code -1
-or5, OR, Fail, JaafarRammal, Non-zero SA field; exit code -1 (expected -12)
 ori1, ORI, Pass, MaelleGuerre, Sample check for the same number; exit code 7
 ori2, ORI, Pass, MaelleGuerre, Sample check for opposite numbers; exit code -1
 ori3, ORI, Pass, MaelleGuerre, Sample check for 2 numbers; exit code -56
@@ -194,7 +169,6 @@ sh1, SH, Pass, MaelleGuerre, Store a positive value; exit code 8
 sh2, SW, Pass, MaelleGuerre, Store a negative value - expect memory error; exit code -11
 sll1, SLL, Pass, MaelleGuerre, Sample check for two shifts; exit code 1
 sll2, SLL, Pass, MaelleGuerre, Sample check for two shifts - negative output; exit code -1
-sll3, SLL, Fail, JaafarRammal, Non-zero RS field; exit code -1 (expected -12)
 sllv1, SLLV, Pass, MaelleGuerre, Sample check for two shifts; exit code -1
 sllv2, SLLV, Pass, MaelleGuerre, Sample check for two shifts - negative output; exit code -1
 sllv3, SLLV, Fail, JaafarRammal, Non-zero SA field; exit code -1 (expected -12)
@@ -203,36 +177,28 @@ slt3, SLT, Pass, MaelleGuerre, set on less then check for false (unsigned); exit
 slt4, SLT, Pass, MaelleGuerre, set on less then check for false (signed); exit code 0
 slt5, SLT, Pass, MaelleGuerre, set on less then check for false (both signed); exit code 0
 slt6, SLT, Pass, MaelleGuerre, set on less then check for true (both signed); exit code 1
-slt7, SLT, Fail, JaafarRammal, Non-zero SA field; exit code 1 (expected -12)
 sltu1, SLTU, Pass, MaelleGuerre, set on less then check for true (unsigned); exit code 1
 sltu3, SLTU, Pass, MaelleGuerre, set on less then check for false (unsigned); exit code 0
 sltu4, SLTU, Pass, MaelleGuerre, set on less then check for false (signed); exit code 0
 sltu5, SLTU, Pass, MaelleGuerre, set on less then check for true (both signed); exit code 1
 sltu6, SLTU, Pass, MaelleGuerre, set on less then check for false (both signed); exit code 0
-sltu7, SLTU, Fail, JaafarRammal, Non-zero SA field; exit code 0 (expected -12)
 sra1, SRA, Pass, MaelleGuerre, right arithmetic shift unsigned; exit code 3
 sra2, SRA, Pass, MaelleGuerre, right arithmetic shift signed; exit code -1
 sra3, SRA, Pass, MaelleGuerre, right arithmetic shift signed further testing; exit code -1
 sra4, SRA, Pass, MaelleGuerre, right arithmetic shift unsigned further test; exit code 5
-sra5, SRA, Pass, JaafarRammal, Non-zero RS field; exit code 5
 srav1, SRAV, Pass, MaelleGuerre, right arithmetic variable shift unsigned; exit code 3
 srav2, SRAV, Pass, MaelleGuerre, right arithmetic variable shift signed; exit code -1
 srav3, SRAV, Pass, MaelleGuerre, right arithmetic variable shift signed further testing; exit code -1
 srav4, SRAV, Pass, MaelleGuerre, right arithmetic variable shift unsigned further test; exit code 5
-srav5, SRAV, Fail, JaafarRammal, Non-zero SA test; exit code 0 (expected -12)
 srl1, SRL, Pass, MaelleGuerre, right arithmetic unsigned; exit code 3
-srl10, SRL, Fail, JaafarRammal, Non-zero RS field; exit code 0 (expected -12)
 srl2, SRL, Pass, MaelleGuerre, right  shift signed; exit code -1
 srl3, SRL, Pass, MaelleGuerre, right  shift signed further testing; exit code -1
 srl4, SRL, Pass, MaelleGuerre, right  shift unsigned further test; exit code 5
 srlv1, SRLV, Pass, MaelleGuerre, right variable shift unsigned; exit code 3
-srlv10, SRLV, Fail, JaafarRammal, Non-zero SA field; exit code 0 (expected 5)
 srlv2, SRLV, Pass, MaelleGuerre, right  variable shift signed; exit code -1
 srlv3, SRLV, Pass, MaelleGuerre, right variable shift signed further testing; exit code -1
 srlv4, SRLV, Pass, MaelleGuerre, right  variable shift unsigned further test; exit code 5
-srlv5, SRLV, Fail, JaafarRammal, Non-zero SA test; exit code 0 (expected -12)
 sub1, SUB, Pass, JaafarRammal, Simple sub functionality test (two positives with positive result); exit code 2
-sub10, SUB, Fail, JaafarRammal, Non-zero SA field; exit code 16 (expected -12)
 sub2, SUB, Pass, JaafarRammal, Simple sub functionality test (two positives with negative result); exit code -2
 sub3, SUB, Pass, JaafarRammal, Simple sub functionality test (two negatives with positive result); exit code 2
 sub4, SUB, Pass, JaafarRammal, Simple sub functionality test (two negatives with negative result); exit code -2
@@ -256,7 +222,6 @@ xor1, XOR, Pass, MaelleGuerre, Sample check for two numbers; exit code 15
 xor2, XOR, Pass, MaelleGuerre, Sample check for maximum numbers; exit code -1
 xor3, XOR, Pass, MaelleGuerre, Or test for same numbers (positive); exit code 0
 xor4, XOR, Pass, MaelleGuerre, XOR test for same numbers (negative); exit code 0
-xor5, XOR, Fail, JaafarRammal, Non-zero SA field; exit code 0 (expected -12)
 xori1, XORI, Pass, MaelleGuerre, Sample check for two numbers; exit code 15
 xori2, XORI, Pass, MaelleGuerre, Sample check for maximum numbers; exit code -1
 xori3, XORI, Pass, MaelleGuerre, XORI test for same numbers (positive); exit code 0

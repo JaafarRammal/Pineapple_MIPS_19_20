@@ -1,9 +1,0 @@
-#SRAV
-#-12
-#JaafarRammal
-#Non-zero SA test
-#
-#
-
-srav $2, $3, $1
-jr $0

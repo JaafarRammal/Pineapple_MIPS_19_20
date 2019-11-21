@@ -1,9 +1,0 @@
-#JR
-#-12
-#JaafarRammal
-#Non-zero RD field
-#
-#
-
-jr $0
-addi $2, $2, 2
