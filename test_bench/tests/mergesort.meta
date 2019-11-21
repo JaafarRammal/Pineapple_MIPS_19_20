@@ -1,0 +1,241 @@
+#Function: Merge sort
+#1
+#MaelleGuerre
+#testing ability to merge sort
+#
+#
+
+addi $1, $1, 12 #data
+addi $2, $2, 15
+addi $3, $3, 10
+addi $4, $4, 5
+addi $5, $5, 7
+addi $6, $6, 3
+addi $7, $7, 2
+addi $8, $8, 1
+addi $9, $9, 12              # Set argument 1 to the array.
+addi $20, $20, 7
+addi $10, $0, 0            # Set argument 2 to (low = 0)
+addi $11, $0, 7            # Set argument 3 to (high = 7, last index in array)
+jal mergeSort                 # Call merge sort
+addi $8, $0, 28           # setup array byte size 7 * 4 (0 index)
+j printArrayAndExit
+
+# void mergeSort(int arr[], int l, int r) {
+mergeSort:
+# Setup the stack
+addi $13, $13, 8192
+sll $13, $13, 16
+sw $1, 0($13)
+sw $2, 4($13)
+sw $3, 8($13)
+sw $4, 12($13)
+sw $5, 16($13)
+sw $6, 20($13)
+sw $7, 24($13)
+sw $8, 28($13)
+sw $14, 32($13)
+sw $9, 36($13)
+sw $10, 40($13)
+sw $11, 44($13)
+
+slt $1, $10, $11 #   if (l < r) {
+beq $1, $0, exitMergeSort # if l is not less than r return to caller
+sub $2, $11, $10 # (r - l)
+srl $3, $2, 1 # divide result of r - 1 by 2
+add $4, $10, $3 # int m = l + (r - 1) / 2
+
+# Sort first and second halves
+add $5, $11, $0 # store r in $5 to reload and use for second mergesort
+add $11, $4, $0 # put m into argument 2 for merge sort call
+jal mergeSort # recursively call mergeSort with (arr, l, m);
+
+add $6, $10, $0 # store l for later use in merge
+addi $10, $4, 1 # call mergeSort with m + 1 in argument position 1
+add $11, $5, $0 # restore r from $5 into $11 for mergeSort call
+jal mergeSort # recursively call mergeSort with (arr, m + 1, r);
+
+# Merge the resulting arrays,
+add $10, $6, $0 # restore l from $3 to $10 for merge call
+add $11, $4, $0 # move m into argument position 2 for merge call
+add $12, $5, $0 # move r into argument position 3 for merge call
+jal merge # merge(arr, l, m, r);
+j exitMergeSort # end of if statement exitMergeSort and return to caller
+
+# This is a non-standard merge (has poorer runtime), but is in-place.
+# void merge(int arr[], int l, int m, int r) {
+# l is for left index and r is right index of the
+# sub-array of arr to be sorted
+merge:
+#setup the stack
+addi $3, $3, 8192
+sll $3, $3, 16
+addi $13, $13, 52
+sw $1, 0($13)
+sw $2, 4($13)
+sw $3, 8($13)
+sw $4, 12($13)
+sw $5, 16($13)
+sw $6, 20($13)
+sw $7, 24($13)
+sw $8, 28($13)
+sw $14, 32($13)
+sw $9, 36($13)
+sw $10, 40($13)
+sw $11, 44($13)
+sw $12, 48($13)
+
+#Setup i, j
+add $1, $11, $0 # int i = m;
+addi $2, $11, 1 # int j = m + 1;
+
+# check outer loop condition of j <= r by checking if j is greater than
+outerwhile:
+slt $t0, $12, $2 # r < j 1 true 0 false
+bne $t0, $0, exitMerge # if r < j we get 1 and we exit otherwise r < j is false and we continue with the while loop
+
+# Setup x and y outside of innerwhile so that they are decremented on each loop but not reset
+add $3, $1, $0 # int x = i;
+add $4, $2, $0 # int y = j;
+
+#inner while loop conditional
+innerwhile:
+#Setup arr indexes for check. Do this in innerwhile so that they are calculated on each jump to innerwhile
+# arr[x]
+sll $t1, $3, 2 # setup x offset
+add $t1, $9, $t1 # add x offset to the base array address
+lw $5, 0($t1) # load value from array address for arr[x]
+
+# arr[y]
+sll $t2, $4, 2 # setup y offset
+add $t2, $9, $t2 # add y offset to the base array address
+lw $6, 0($t2) # load value from array address for arr[y]
+
+# Removed using and instruction after reviewing 2.13 swap example inner loop on page 136 and 137. 
+# Check each condition seperately and exit where required.
+slt $t4, $3, $10 # reg $t4 = 1 if x < l
+bne $t4, $0, exitInner # if x < l then 1 which will exit. If x >= l then 0 and continue
+slt $t3, $6, $5 # invert arr[x] > arr[y] to arr[y] < arr[x] for slt check 
+beq $t3, $0 exitInner # if arr[y] is not less than arr[x] exit
+add $7, $10, $0 # store a1
+add $8, $11, $0 # store a2
+add $10, $3, $0 # x in $10
+add $11, $4, $0 # y in $11
+jal swap # swap(arr, x, y);
+add $10, $7, $0 # restore original $10
+add $11, $8, $0 # restore original $11
+addi $3, $3, -1 # x--;
+addi $4, $4, -1 # y--;
+j innerwhile
+
+exitInner:
+add $1, $2, $0 # i = j;
+addi $2, $2, 1 # j++;
+j outerwhile
+
+
+# // A utility function to swap two elements
+# void swap(int* array, int x , int y) {
+swap:
+# setup the stack
+addi $13, $13, 52
+sw $1, 0($13)
+sw $2, 4($13)
+sw $3, 8($13)
+sw $4, 12($13)
+sw $5, 16($13)
+sw $6, 20($13)
+sw $7, 24($13)
+sw $8, 28($13)
+sw $14, 32($13)
+sw $9, 36($13)
+sw $10, 40($13)
+sw $11, 44($13)
+sw $12, 48($13)
+
+# load variables
+sll $1, $10, 2 # temp = x * 4 for word byte offset
+add $1, $9, $1 # array + (x * 4)
+lw $2, 0($1) #int temp = array[x];
+
+sll $3, $11, 2 # array y offset
+add $3, $9, $3 # array y offset
+lw $4, 0($3) # array y value
+
+# swap values in array
+sw $4, 0($1) # store the value of y in position of x from above
+sw $2, 0($3) # store the temp value in y
+j exitSwap
+
+
+# Exit labels for cleaning up the stack and returning to caller for each functions
+exitSwap:
+# restor register values and return to caller
+lw $1, 0($13)
+lw $2, 4($13)
+lw $3, 8($13)
+lw $4, 12($13)
+lw $5, 16($13)
+lw $6, 20($13)
+lw $7, 24($13)
+lw $8, 28($13)
+lw $14, 32($13)
+lw $9, 36($13)
+lw $10, 40($13)
+lw $11, 44($13)
+lw $12, 48($13)
+
+addi $13, $13, -52
+jr $14
+
+exitMerge:
+# restore register values and return to caller
+lw $1, 0($13)
+lw $2, 4($13)
+lw $3, 8($13)
+lw $4, 12($13)
+lw $5, 16($13)
+lw $6, 20($13)
+lw $7, 24($13)
+lw $8, 28($13)
+lw $14, 32($13)
+lw $9, 36($13)
+lw $10, 40($13)
+lw $11, 44($13)
+lw $12, 48($13)
+
+addi $13, $13, -52
+jr $14
+
+exitMergeSort: 
+# restore register values and return to caller
+lw $1, 0($13)
+lw $2, 4($13)
+lw $3, 8($13)
+lw $4, 12($13)
+lw $5, 16($13)
+lw $6, 20($13)
+lw $7, 24($13)
+lw $8, 28($13)
+lw $14, 32($13)
+lw $9, 36($13)
+lw $10, 40($13)
+lw $11, 44($13)
+
+addi $13, $13, -48
+jr $14
+
+printArrayAndExit:
+addi $t0, $0, 4 # value type offset 4 for word
+sub $t1, $0, $t0 #initialize the loop counter
+
+loop:
+add $t1, $t1, $t0 # add the offset to the loop counter
+add $t2, $1, $t1 # store the offset address
+lw $9, 0($t2)
+addi $16, $0, 1
+j loop 
+
+exit:
+ori $16, $0, 10                    # Terminate program run and
+jr $0                       # Exit
