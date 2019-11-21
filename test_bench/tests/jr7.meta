@@ -1,0 +1,9 @@
+#JR
+#2
+#JaafarRammal
+#Branch delay slot
+#
+#
+
+jr $0
+addi $2, $2, 2

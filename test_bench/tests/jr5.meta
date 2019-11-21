@@ -1,0 +1,10 @@
+#JR
+#-11
+#JaafarRammal
+#Jump outside whole memory
+#
+#
+
+lui $2, 0x3000
+addi $2, $2, 12
+jr $2

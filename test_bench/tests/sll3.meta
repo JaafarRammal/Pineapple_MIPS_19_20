@@ -1,0 +1,12 @@
+#SLL
+#-12
+#JaafarRammal
+#Non-zero RS field
+#
+#
+
+addi $3, $3, -1
+sll $2, $3, 16
+srl $2, $2, 16
+jr $0
+	

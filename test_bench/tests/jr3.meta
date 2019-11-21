@@ -1,0 +1,9 @@
+#JR
+#-11
+#JaafarRammal
+#Jump to GetC
+#
+#
+
+lui $2, 0x3000
+jr $2

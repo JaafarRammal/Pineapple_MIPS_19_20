@@ -1,0 +1,15 @@
+#MULT
+#-12
+#JaafarRammal
+#Non-zero RD field
+#
+#
+
+addi $3, $3, -1
+addi $4, $4, 1
+mult $3, $4
+nop
+nop
+nop
+mfhi $2
+jr $0

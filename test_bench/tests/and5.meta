@@ -1,0 +1,11 @@
+#AND
+#-12
+#JaafarRammal
+#Non-zero SA field
+#
+#
+
+addi $1, $1, -2
+addi $3, $3, 0xE
+and $2, $1, $3
+jr $0

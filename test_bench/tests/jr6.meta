@@ -1,0 +1,10 @@
+#JR
+#-11
+#JaafarRammal
+#Jump to non-aligned instruction word
+#
+#
+
+lui $2, 0x1000
+addi $2, $2, 10
+jr $2

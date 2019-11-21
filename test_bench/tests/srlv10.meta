@@ -1,0 +1,10 @@
+#SRLV
+#5
+#JaafarRammal
+#Non-zero SA field
+#
+#
+
+srlv $2, $3, $1
+
+jr $0

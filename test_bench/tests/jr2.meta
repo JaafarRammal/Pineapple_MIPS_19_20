@@ -1,0 +1,10 @@
+#JR
+#-11
+#JaafarRammal
+#Jump to data memory
+#
+#
+
+lui $2, 0x2000
+addi $2, $2, 4
+jr $2

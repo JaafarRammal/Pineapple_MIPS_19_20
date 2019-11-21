@@ -1,0 +1,14 @@
+#MFHI
+#-12
+#JaafarRammal
+#Non-zero SA field
+#
+#
+
+addi $3, $3, -8
+mthi $3
+nop
+nop
+nop
+mfhi $2
+jr $0
