@@ -1,0 +1,17 @@
+#JALR
+#-11
+#MaelleGuerre
+#Branch GETC
+#
+#
+
+lui $1, 0x0C00
+jalr $2, $1
+nop
+addi $2, $2, 1
+jr $0
+nop	
+target:
+addi $2, $2, 1
+addi $2, $2, 3
+jr $0
