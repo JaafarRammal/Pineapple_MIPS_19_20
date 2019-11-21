@@ -1,0 +1,11 @@
+#SRL
+#-1
+#MaelleGuerre
+#right  shift signed
+#
+#
+
+addi $3, $3, -1
+srl $2, $3, 3
+
+jr $0
