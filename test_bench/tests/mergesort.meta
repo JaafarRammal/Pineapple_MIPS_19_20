@@ -5,6 +5,8 @@
 #
 #
 
+#disclaimer : I did not write this function,it comes from 
+#https://github.com/n0mn0m/MergeSort/blob/master/mergeSort.asm#L13
 addi $1, $1, 12 #data
 addi $2, $2, 15
 addi $3, $3, 10
