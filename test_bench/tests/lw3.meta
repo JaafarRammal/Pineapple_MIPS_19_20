@@ -1,0 +1,17 @@
+#LW
+#2
+#JaafarRammal
+#Valid boundaries test
+#
+#
+
+lui $3, 0x2000
+lw $2, 0($3)
+lui $3, 0x2400
+lw $2, -4($3)
+lui $3, 0x1000
+lw $2, 0($3)
+lui $3, 0x1100
+lw $2, -4($3)
+addi $2, $2, 2
+jr $0

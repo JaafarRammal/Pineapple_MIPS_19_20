@@ -1,0 +1,10 @@
+#LW
+#-11
+#JaafarRammal
+#Misaligned word
+#
+#
+
+lui $3, 0x2000
+lw $2, 17($3)
+jr $0

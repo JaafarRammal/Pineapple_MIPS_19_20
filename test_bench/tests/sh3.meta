@@ -1,0 +1,13 @@
+#SH
+#-11
+#JaafarRammal
+#Non-aligned address
+#
+
+addi $5, $0, 0x20
+sll $5, $5, 24
+addi $3, $0, 13
+sh $3, 3($5)
+lw $2, 0($5)
+nop
+jr $0

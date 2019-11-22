@@ -1,0 +1,12 @@
+#SW
+#0
+#JaafarRammal
+#Putc
+#
+#A
+
+lui $30, 0x3000
+addi $30, $30, 4
+addi $15, $0, 65
+sw $15, 0($30)
+jr $0

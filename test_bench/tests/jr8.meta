@@ -1,0 +1,13 @@
+#JR
+#-11
+#JaafarRammal
+#PC verification
+#
+#
+
+lui $1, 0x1000
+addi $1, $1, 27
+jr $1
+addi $2, $2, 4
+addi $2, $2, 7
+jr $0

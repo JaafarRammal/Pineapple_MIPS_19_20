@@ -1,0 +1,14 @@
+#MFHI
+#-8
+#JaafarRammal
+#basic HI negative number check
+#
+#
+
+addi $3, $3, -8
+mthi $3
+nop
+nop
+nop
+mfhi $2
+jr $0

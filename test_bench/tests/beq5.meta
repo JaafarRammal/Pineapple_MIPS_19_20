@@ -1,0 +1,10 @@
+#BEQ
+#-11
+#JaafarRammal
+#PC verification (1)
+#
+#
+
+beq $0, $0, -2000
+nop
+jr $0

@@ -1,0 +1,10 @@
+#LBU
+#65
+#JaafarRammal
+#Getc
+#A
+#
+
+lui $3, 0x3000
+lbu $2, 3($3)
+jr $0

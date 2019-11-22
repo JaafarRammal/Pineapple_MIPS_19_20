@@ -1,0 +1,10 @@
+#SLTIU
+#1
+#JaafarRammal
+#Basic functionality test (negative)
+#
+#
+
+addi $3, $0, 10
+sltiu $2, $3, -1
+jr $0

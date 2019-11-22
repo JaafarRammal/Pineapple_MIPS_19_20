@@ -1,0 +1,14 @@
+#LBU
+#1
+#JaafarRammal
+#Zero-extension verification
+#
+#
+
+lui $3, 0x2000
+addi $4, $0, -1
+sw $4, 0($3)
+lbu $2, 3($3)
+srl $2, $2, 24
+addi $2, $2, 1
+jr $0

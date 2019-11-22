@@ -1,0 +1,11 @@
+#ADDI
+#-1
+#JaafarRammal
+#Sign-extension for immediate
+#
+#
+
+addi $3, $0, -7
+addi $2, $3, 6
+jr $0
+nop

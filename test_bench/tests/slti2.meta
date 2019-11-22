@@ -1,0 +1,11 @@
+#SLTI
+#1
+#JaafarRammal
+#Basic functionality test (negative)
+#
+#
+
+addi $2, $0, 1
+addi $3, $0, -5
+slti $2, $3, -4
+jr $0

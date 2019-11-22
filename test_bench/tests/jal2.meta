@@ -1,0 +1,13 @@
+#JAL
+#6
+#JaafarRammal
+#Delay slot
+#
+#
+
+addi $2, $0, 4
+jal end
+addi $2, $2, 2
+addi $2, $0, -10
+end:
+jr $0

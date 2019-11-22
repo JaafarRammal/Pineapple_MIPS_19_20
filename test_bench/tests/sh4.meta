@@ -1,0 +1,13 @@
+#SH
+#0
+#JaafarRammal
+#Putc
+#
+#A
+
+lui $3, 0x3000
+addi $4, $0, 65
+sh $4, 6($3)
+addi $5, $0, 75
+sh $5, 4($3)
+jr $0
