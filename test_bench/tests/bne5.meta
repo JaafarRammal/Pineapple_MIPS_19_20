@@ -1,0 +1,11 @@
+#BNE
+#-11
+#JaafarRammal
+#PC verification
+#
+#
+
+addi $2, $0, 63
+bne $0, $2, 0xAFFF
+nop
+jr $0

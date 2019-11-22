@@ -1,0 +1,10 @@
+#LW
+#-11
+#JaafarRammal
+#Below data boundary
+#
+#
+
+lui $3, 0x2000
+lw $2, -4($3)
+jr $0

@@ -1,0 +1,12 @@
+#SW
+#0
+#JaafarRammal
+#Valid boundaries (only tested here because I assume you are smart enough to put that for all other functions)
+#
+#
+
+lui $3, 0x2000
+sw $2, 0($3)
+lui $3, 0x2400
+sw $2, -4($3)
+jr $0

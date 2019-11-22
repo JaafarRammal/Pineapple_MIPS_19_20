@@ -1,0 +1,10 @@
+#LW
+#-11
+#JaafarRammal
+#Invalid range
+#
+#
+
+lui $3, 0x4000
+lw $2, 40($3)
+jr $0

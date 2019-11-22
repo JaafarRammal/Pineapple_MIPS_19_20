@@ -1,0 +1,10 @@
+#ANDI
+#0
+#JaafarRammal
+#Immediate extension
+#
+#
+
+lui $2, 0xFFFF
+andi $2, $2, 0xFFFF
+jr $0

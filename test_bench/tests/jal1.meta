@@ -5,9 +5,8 @@
 #
 #
 
-addi $1, $1, 8
 jal target
-addi $3, $3, 8192
+nop
 addi $2, $2, 2
 addi $2, $2, 2
 target:

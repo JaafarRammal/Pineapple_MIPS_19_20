@@ -1,0 +1,25 @@
+#BLTZAL
+#13
+#JaafarRammal
+#Linking test
+#
+#
+
+
+lui $31, 0x2000
+addi $4, $0, 13
+addi $3, $0, -2
+bltzal $4 crash
+nop
+addi $2, $2, 1
+bne $2, $4 jump
+nop
+jr $0
+nop
+crash:
+lui $3, 0x2000
+jr $3
+nop
+jump:
+jr $31
+nop

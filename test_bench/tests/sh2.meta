@@ -1,12 +1,25 @@
-#SW
-#-11
-#MaelleGuerre
-#Store a negative value - expect memory error
+#SH
+#1
+#JaafarRammal
+#Create word
 #
 #
 
-addi $1, $1, -8
+addi $5, $0, 0x20
+sll $5, $5, 24
+addi $3, $0, 1
+sh $3, 0($5)
+sh $3, 2($5)
+lw $2, 0($5)
+or $4, $4, $3
 sll $3, $3, 16
-sh $1, 0($3)
-lw $2, 0($3)
+or $4, $4, $3
+beq $2, $4 pass
+nop
+addi $2, $0, -1
 jr $0
+nop
+pass:
+addi $2, $0, 1
+jr $0
+nop

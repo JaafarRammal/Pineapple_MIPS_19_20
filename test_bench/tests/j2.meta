@@ -1,0 +1,11 @@
+#J
+#-11
+#JaafarRammal
+#PC verification
+#
+#
+
+addi $2, $0, 1
+j 0xFFFF
+nop
+jr $0

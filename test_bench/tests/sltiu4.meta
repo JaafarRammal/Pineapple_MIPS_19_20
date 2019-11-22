@@ -1,0 +1,11 @@
+#SLTIU
+#0
+#JaafarRammal
+#Unsigned test
+#
+#
+
+addi $2, $2, 1
+addi $3, $0, -1
+sltiu $2, $3, 3
+jr $0

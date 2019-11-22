@@ -1,0 +1,27 @@
+#BEQ
+#3
+#JaafarRammal
+#Branch PC backwards
+#
+#
+
+beq $0, $0, set1
+nop
+
+and3:
+andi $2, $2, 3
+jr $0
+nop
+
+add2:
+addi $2, $2, 2
+beq $0, $0, and3
+nop
+
+set1:
+addi $2, $0, 1
+beq $0, $0, add2
+nop
+
+add5:
+addi $2, $2, 5

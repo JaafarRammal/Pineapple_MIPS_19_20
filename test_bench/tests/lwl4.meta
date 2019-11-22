@@ -1,0 +1,15 @@
+#LWL
+#22
+#JaafarRammal
+#2 bytes off
+#
+#
+
+lui $3, 0x2000
+lui $4, 0x3344
+addi $4, $4, 0x1023
+sw $4, 0($3)
+addi $2, $0, 0x1637
+lwl $2, 2($3)
+srl $2, $2, 8
+jr $0

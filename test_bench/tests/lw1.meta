@@ -1,0 +1,12 @@
+#LW
+#20
+#JaafarRammal
+#Basic functionality test
+#
+#
+
+lui $3, 0x2000
+addi $4, $0, 20
+sw $4, 0($3)
+lw $2, 0($3)
+jr $0

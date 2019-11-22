@@ -1,0 +1,11 @@
+#LW
+#13
+#JaafarRammal
+#Load from instruction memory (same I test it here only)
+#
+#
+
+addi $4, $0, 13
+lui $3, 0x1000
+lw $2, 0($3)
+jr $0

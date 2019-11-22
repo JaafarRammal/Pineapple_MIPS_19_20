@@ -1,223 +1,287 @@
-add1, ADD, Pass, JaafarRammal, Simple add functionality test (two positives); exit code 16
-add2, ADD, Pass, JaafarRammal, Simple add functionality test (two negatives); exit code -16
-add3, ADD, Pass, JaafarRammal, Simple add functionality test (one positive one negative); exit code -2
-add4, ADD, Pass, JaafarRammal, Overflow test (two positives); exit code -10
-add5, ADD, Pass, JaafarRammal, Overflow test (two negatives); exit code -10
-addi1, ADDI, Pass, MaelleGuerre, Simple addi functionality test (two positives); exit code 10
-addi2, ADDI, Pass, MaelleGuerre, Simple addi functionality test (two negatives); exit code -18
-addi3, ADDI, Pass, MaelleGuerre, Simple add functionality test (one positive one negative); exit code -2
-addi4, ADDI, Pass, MaelleGuerre, Overflow test (two positives); exit code -10
-addi5, ADDI, Pass, MaelleGuerre, Overflow test (two negatives); exit code -10
-addiu1, ADDIU, Pass, MaelleGuerre, Simple addiu functionality test (two positives); exit code 10
-addiu2, ADDIU, Pass, MaelleGuerre, Simple addi functionality test (two negatives); exit code -18
-addiu3, ADDIU, Pass, MaelleGuerre, Simple addiu functionality test (one positive one negative); exit code -2
-addiu4, ADDIU, Pass, MaelleGuerre, Overflow test (two positives); exit code -1
-addiu5, ADDIU, Pass, MaelleGuerre, Overflow test (two negatives); exit code 0
-addu1, ADDU, Pass, MaelleGuerre, Simple addu functionality test (two positives); exit code 16
-addu2, ADDU, Pass, MaelleGuerre, Simple addu functionality test (two negatives); exit code -16
-addu3, ADDU, Pass, MaelleGuerre, Simple addu functionality test (one positive one negative); exit code -2
-addu4, ADDU, Pass, MaelleGuerre, Overflow test (two positives); exit code 0
-addu5, ADDU, Pass, MaelleGuerre, Overflow test (two negatives); exit code 0
-and1, AND, Pass, MaelleGuerre, Simple AND functionality test (Same numbers); exit code 9
-and2, AND, Pass, MaelleGuerre, Simple AND functionality test (0); exit code 0
-and3, AND, Pass, MaelleGuerre, 32 bits AND; exit code -1
-and4, AND, Pass, MaelleGuerre, negative numbers AND; exit code 14
-andi, ANDI, Pass, MaelleGuerre, Simple ANDI functionality test (Same numbers); exit code 9
-andi2, ANDI, Pass, MaelleGuerre, Simple ANDI functionality test (0); exit code 0
-andi3, ANDI, Pass, MaelleGuerre, 32 bits ANDI; exit code -1
-andi4, ANDI, Pass, MaelleGuerre, negative numbers ANDI; exit code 14
-beq1, BEQ, Pass, MaelleGuerre, basic beq; exit code 4
-beq2, BEQ, Pass, MaelleGuerre, basic beq; exit code 6
-beq3, BEQ, Pass, MaelleGuerre, beq false condition; exit code 6
-beq4, BEQ, Pass, MaelleGuerre, beq jump condition; exit code 0
-bgez1, BGEZ, Pass, MaelleGuerre, basic bgez; exit code 4
-bgez2, BGEZ, Pass, MaelleGuerre, basic bgez for equal condition; exit code 6
-bgez3, BGEZ, Pass, MaelleGuerre, bgez false condition; exit code 6
-bgez4, BGEZ, Pass, MaelleGuerre, bgez jump condition; exit code 2
-bgezal1, BGEZAL, Pass, MaelleGuerre, basic bgezal; exit code 4
-bgezal2, BGEZAL, Pass, MaelleGuerre, basic bgezal for equal condition; exit code 6
-bgezal3, BGEZAL, Pass, MaelleGuerre, bgezal false condition; exit code 6
-bgezal4, BGEZAL, Pass, MaelleGuerre, bgezal jump condition; exit code 2
-bgtz1, BGTZ, Pass, MaelleGuerre, basic bgtz; exit code 4
-bgtz2, BGTZ, Pass, MaelleGuerre, basic bgtz for non-equal condition; exit code 8
-bgtz3, BGTZ, Pass, MaelleGuerre, bgtz false condition; exit code 6
-bgtz4, BGTZ, Pass, MaelleGuerre, bgtz jump condition; exit code 2
-blez1, BLEZ, Pass, MaelleGuerre, basic blez; exit code 4
-blez2, BLEZ, Pass, MaelleGuerre, basic blez for equal condition; exit code 6
-blez3, BLEZ, Pass, MaelleGuerre, blez false condition; exit code 6
-blez4, BLEZ, Pass, MaelleGuerre, blez jump condition; exit code 2
-bltz1, BLTZ, Pass, MaelleGuerre, basic bltz; exit code 4
-bltz2, BLTZ, Pass, MaelleGuerre, basic bltz for non-equal condition; exit code 8
-bltz3, BLTZ, Pass, MaelleGuerre, bltz false condition; exit code 6
-bltz4, BLTZ, Pass, MaelleGuerre, bltz jump condition; exit code 2
-bltzal1, BLTZAL, Pass, MaelleGuerre, basic bltzal; exit code 4
-bltzal2, BLTZAL, Pass, MaelleGuerre, basic bltzal for non-equal condition; exit code 8
-bltzal3, BLTZAL, Pass, MaelleGuerre, bltzal false condition; exit code 6
-bltzal4, BLTZAL, Pass, MaelleGuerre, bltzal jump condition; exit code 2
-bne1, BNE, Pass, MaelleGuerre, bne jump condition; exit code 2
-bne2, BNE, Pass, MaelleGuerre, bne no jump condition; exit code 0
-bne3, BNE, Pass, MaelleGuerre, bne no jump; exit code 0
-bne4, BNE, Pass, MaelleGuerre, bne far jump; exit code 2
-div1, DIV, Pass, MaelleGuerre, Dividing 0 by a number; exit code 0
-div10, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned); exit code -3
-div11, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned); exit code 3
-div12, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned); exit code -3
-div2, DIV, Pass, MaelleGuerre, Dividing two numbers; exit code 2
-div3, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one negative); exit code 2
-div4, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one positive); exit code -2
-div5, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one positive); exit code -2
-div6, DIV, Pass, MaelleGuerre, Dividing by 0 - does not divide anything, outputs 0; exit code 0
-div7, DIV, Pass, MaelleGuerre, Basic check for remainder of a division; exit code 1
-div8, DIV, Pass, MaelleGuerre, Complex check for remainder of a division; exit code 0
-div9, DIV, Pass, MaelleGuerre, Check the remainder (unsigned); exit code 3
-divu1, DIVU, Pass, MaelleGuerre, Dividing two numbers (unsigned); exit code 2
-divu2, DIVU, Pass, MaelleGuerre, Dividing two numbers (signed and unsigned); exit code -3
-divu3, DIVU, Pass, MaelleGuerre, Dividing two numbers (signed and unsigned); exit code 0
-divu4, DIVU, Pass, MaelleGuerre, Dividing two signed numbers; exit code 0
-divu5, DIVU, Pass, MaelleGuerre, Check the remainder (unsigned); exit code 3
-divu6, DIVU, Pass, MaelleGuerre, Dividing 0 by a number; exit code 0
-factorial, STACK, Pass, JaafarRammal, Factorial using stack; exit code 120
-fibonacci, FUNCTION, Pass, JaafarRammal, Fibonacci Sequence (up to n=30 with r2 -1 for failure and 1 for success); exit code 1
-getc1, FUNCTION, Pass, JaafarRammal, Read from getc a positive number until EOF; exit code 109
-getc2, FUNCTION, Pass, JaafarRammal, Read from getc a negative number until EOF; exit code -53
-internal1, INTERNAL, Pass, JaafarRammal, Check if register 0 is grounded; exit code 7
-internal2, INTERNAL, Pass, JaafarRammal, Check if all registers are initialized to zero (requires functioning ADD); exit code 0
-internal3, INTERNAL, Pass, JaafarRammal, Check if all registers are functional (requires functioning ADD and ADDI); exit code 31
-internal4, INTERNAL, Pass, JaafarRammal, Test empty binary; exit code 0
-j, J, Pass, MaelleGuerre, basic jump test; exit code 4
-jal, JAL, Pass, MaelleGuerre, basic jump and link test; exit code 2
-jalr, JALR, Pass, MaelleGuerre, basic jump and link to register test; exit code 20
-jalr1, JALR, Pass, MaelleGuerre, Checking branch delay; exit code 20
-jalr2, JALR, Pass, MaelleGuerre, jumping outside instruction space; exit code -11
-jalr3, JALR, Pass, MaelleGuerre, Branch GETC; exit code -11
-jalr4, JALR, Pass, MaelleGuerre, Branch PUTC; exit code -11
-jr1, JR, Pass, JaafarRammal, Basic test; exit code 0
-jr2, JR, Pass, JaafarRammal, Jump to data memory; exit code -11
-jr3, JR, Pass, JaafarRammal, Jump to GetC; exit code -11
-jr4, JR, Pass, JaafarRammal, Jump to PutC; exit code -11
-jr5, JR, Pass, JaafarRammal, Jump outside whole memory; exit code -11
-jr6, JR, Pass, JaafarRammal, Jump to non-aligned instruction word; exit code -11
-jr7, JR, Pass, JaafarRammal, Branch delay slot; exit code 2
-lb1, LB, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
-lb2, LB, Pass, MaelleGuerre, Store a positive and load byte; exit code 3
-lb3, LB, Pass, MaelleGuerre, Store a negative and load byte with offset; exit code -1
-lb4, LB, Pass, MaelleGuerre, Store a positive and load byte with offset; exit code 7
-lb5, LB, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
-lb6, LB, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -1
-lb7, LB, Pass, MaelleGuerre, Store a negative word and load byte with in range offset; exit code -1
-lbu1, LB, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
-lbu2, LBU, Pass, MaelleGuerre, Store a positive and load byte; exit code 7
-lbu3, LBU, Pass, MaelleGuerre, Store a negative and load byte with offset; exit code -1
-lbu4, LBU, Pass, MaelleGuerre, Store a positive and load byte with offset; exit code 7
-lbu5, LBU, Pass, MaelleGuerre, Store a negative word and load byte with in range offset; exit code -1
-lbu6, LBU, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
-lbu7, LBU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -1
-lh1, LH, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
-lh2, LH, Pass, MaelleGuerre, Store a negative and load halfword with offset; exit code -1
-lh3, LH, Pass, MaelleGuerre, Store a positive and load halfword; exit code 15
-lh4, LH, Pass, MaelleGuerre, Store a positive and load halfword with offset; exit code 15
-lh5, LH, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
-lh6, LH, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -24
-lh7, LH, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -108
-lhu1, LHU, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
-lhu2, LHU, Pass, MaelleGuerre, Store a negative and load halfword with offset; exit code -1
-lhu3, LHU, Pass, MaelleGuerre, Store a positive and load halfword; exit code 15
-lhu4, LHU, Pass, MaelleGuerre, Store a positive and load halfword with offset; exit code 15
-lhu5, LHU, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
-lhu6, LHU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -24
-lhu7, LHU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -108
-lui1, lui, Pass, JaafarRammal, Checking load is strictly in upper; exit code 0
-lui2, lui, Pass, JaafarRammal, Use as addressing; exit code 100
-lui3, lui, Pass, JaafarRammal, Shift the value; exit code 3
-lwl1, LWL, Pass, MaelleGuerre, load word left positive; exit code 8
-lwl2, LWL, Pass, MaelleGuerre, load word left negative; exit code -8
-lwr1, LWR, Pass, MaelleGuerre, load word right positive; exit code 0
-lwr2, LWR, Pass, MaelleGuerre, load word right negative; exit code -1
-memory, Memory access, Pass, MaelleGuerre, try to access non accessible memory; exit code -11
-mergesort, Function: Merge sort, Pass, MaelleGuerre, testing ability to merge sort; exit code 1
-mfhi4, MFHI, Pass, MaelleGuerre, big number check; exit code -1
-mflo4, MFLO, Pass, MaelleGuerre, basic HI negative number check; exit code -8
-mflo5, MFLO, Pass, MaelleGuerre, basic HI  number check; exit code 8
-mflo6, MFLO, Pass, MaelleGuerre, basic LO number check; exit code 8
-mflo7, MFLO, Pass, MaelleGuerre, basic LO negative number check; exit code -8
-mthi1, MTHI, Pass, MaelleGuerre, basic HI negative number check; exit code -8
-mthi2, MTHI, Pass, MaelleGuerre, basic HI  number check; exit code 8
-mtlo1, MTLO, Pass, MaelleGuerre, basic LO number check; exit code 8
-mtlo2, MTLO, Pass, MaelleGuerre, basic LO negative number check; exit code -8
-mult1, MULT, Pass, MaelleGuerre, big number check; exit code -3
-mult2, MULT, Pass, MaelleGuerre, msb check; exit code 1
-mult3, MULT, Pass, MaelleGuerre, big number check; exit code -1
-multu1, MULTU, Pass, MaelleGuerre, big number check; exit code 88
-multu2, MULTU, Pass, MaelleGuerre, small number check; exit code 12
-multu3, MULTU, Pass, MaelleGuerre, same number multiplication check; exit code 16
-multu4, MULTU, Pass, MaelleGuerre, multiply by 0; exit code -3
-or1, OR, Pass, MaelleGuerre, Sample check for the same number; exit code 7
-or2, OR, Pass, MaelleGuerre, Sample check for opposite numbers; exit code -1
-or3, OR, Pass, MaelleGuerre, Sample check for 2 numbers; exit code -56
-or4, OR, Pass, MaelleGuerre, Sample check for two numbers; exit code -1
-ori1, ORI, Pass, MaelleGuerre, Sample check for the same number; exit code 7
-ori2, ORI, Pass, MaelleGuerre, Sample check for opposite numbers; exit code -1
-ori3, ORI, Pass, MaelleGuerre, Sample check for 2 numbers; exit code -56
-ori4, ORI, Pass, MaelleGuerre, Sample check for two numbers; exit code -1
-putc1, FUNCTION, Pass, JaafarRammal, Print a number; exit code 0
-sb, SB, Pass, MaelleGuerre, Store a positive max; exit code 8
-sh1, SH, Pass, MaelleGuerre, Store a positive value; exit code 8
-sh2, SW, Pass, MaelleGuerre, Store a negative value - expect memory error; exit code -11
-sll1, SLL, Pass, MaelleGuerre, Sample check for two shifts; exit code 1
-sll2, SLL, Pass, MaelleGuerre, Sample check for two shifts - negative output; exit code -1
-sllv1, SLLV, Pass, MaelleGuerre, Sample check for two shifts; exit code -1
-sllv2, SLLV, Pass, MaelleGuerre, Sample check for two shifts - negative output; exit code -1
-slt1, SLT, Pass, MaelleGuerre, set on less then check for true (unsigned); exit code 1
-slt3, SLT, Pass, MaelleGuerre, set on less then check for false (unsigned); exit code 0
-slt4, SLT, Pass, MaelleGuerre, set on less then check for false (signed); exit code 0
-slt5, SLT, Pass, MaelleGuerre, set on less then check for false (both signed); exit code 0
-slt6, SLT, Pass, MaelleGuerre, set on less then check for true (both signed); exit code 1
-sltu1, SLTU, Pass, MaelleGuerre, set on less then check for true (unsigned); exit code 1
-sltu3, SLTU, Pass, MaelleGuerre, set on less then check for false (unsigned); exit code 0
-sltu4, SLTU, Pass, MaelleGuerre, set on less then check for false (signed); exit code 0
-sltu5, SLTU, Pass, MaelleGuerre, set on less then check for true (both signed); exit code 1
-sltu6, SLTU, Pass, MaelleGuerre, set on less then check for false (both signed); exit code 0
-sra1, SRA, Pass, MaelleGuerre, right arithmetic shift unsigned; exit code 3
-sra2, SRA, Pass, MaelleGuerre, right arithmetic shift signed; exit code -1
-sra3, SRA, Pass, MaelleGuerre, right arithmetic shift signed further testing; exit code -1
-sra4, SRA, Pass, MaelleGuerre, right arithmetic shift unsigned further test; exit code 5
-srav1, SRAV, Pass, MaelleGuerre, right arithmetic variable shift unsigned; exit code 3
-srav2, SRAV, Pass, MaelleGuerre, right arithmetic variable shift signed; exit code -1
-srav3, SRAV, Pass, MaelleGuerre, right arithmetic variable shift signed further testing; exit code -1
-srav4, SRAV, Pass, MaelleGuerre, right arithmetic variable shift unsigned further test; exit code 5
-srl1, SRL, Pass, MaelleGuerre, right arithmetic unsigned; exit code 3
-srl2, SRL, Pass, MaelleGuerre, right  shift signed; exit code -1
-srl3, SRL, Pass, MaelleGuerre, right  shift signed further testing; exit code -1
-srl4, SRL, Pass, MaelleGuerre, right  shift unsigned further test; exit code 5
-srlv1, SRLV, Pass, MaelleGuerre, right variable shift unsigned; exit code 3
-srlv2, SRLV, Pass, MaelleGuerre, right  variable shift signed; exit code -1
-srlv3, SRLV, Pass, MaelleGuerre, right variable shift signed further testing; exit code -1
-srlv4, SRLV, Pass, MaelleGuerre, right  variable shift unsigned further test; exit code 5
-sub1, SUB, Pass, JaafarRammal, Simple sub functionality test (two positives with positive result); exit code 2
-sub2, SUB, Pass, JaafarRammal, Simple sub functionality test (two positives with negative result); exit code -2
-sub3, SUB, Pass, JaafarRammal, Simple sub functionality test (two negatives with positive result); exit code 2
-sub4, SUB, Pass, JaafarRammal, Simple sub functionality test (two negatives with negative result); exit code -2
-sub5, SUB, Pass, JaafarRammal, Simple sub functionality test (one positive one negative with positive result); exit code 16
-sub6, SUB, Pass, JaafarRammal, Simple sub functionality test (one positive one negative with negative result); exit code -16
-sub7, SUB, Pass, JaafarRammal, Overflow test(positive - negative); exit code -10
-sub8, SUB, Pass, JaafarRammal, Overflow test(negative - positive); exit code -10
-sub9, SUB, Pass, JaafarRammal, Sub a number from itself; exit code 0
-subu1, SUBU, Pass, MaelleGuerre, Simple sub functionality test (two positives with positive result); exit code 2
-subu2, SUBU, Pass, MaelleGuerre, Simple subu functionality test (two positives with negative result); exit code -2
-subu3, SUBU, Pass, MaelleGuerre, Simple subu functionality test (two negatives with positive result); exit code 2
-subu4, SUBU, Pass, MaelleGuerre, Simple subu functionality test (two negatives with negative result); exit code -2
-subu5, SUBU, Pass, MaelleGuerre, Simple subu functionality test (one positive one negative with positive result); exit code 16
-subu6, SUBU, Pass, MaelleGuerre, Simple subu functionality test (one positive one negative with negative result); exit code -16
-subu7, SUBU, Pass, JaafarRammal, Sub a number from itself; exit code 0
-sw1, SW, Pass, MaelleGuerre, Store a positive value; exit code 8
-sw2, SW, Pass, MaelleGuerre, Store a negative value; exit code -8
-sw3, SW, Pass, MaelleGuerre, Store a positive value with offset; exit code 8
-sw4, SW, Pass, MaelleGuerre, Store a negative value with offset; exit code -8
-xor1, XOR, Pass, MaelleGuerre, Sample check for two numbers; exit code 15
-xor2, XOR, Pass, MaelleGuerre, Sample check for maximum numbers; exit code -1
-xor3, XOR, Pass, MaelleGuerre, Or test for same numbers (positive); exit code 0
-xor4, XOR, Pass, MaelleGuerre, XOR test for same numbers (negative); exit code 0
-xori1, XORI, Pass, MaelleGuerre, Sample check for two numbers; exit code 15
-xori2, XORI, Pass, MaelleGuerre, Sample check for maximum numbers; exit code -1
-xori3, XORI, Pass, MaelleGuerre, XORI test for same numbers (positive); exit code 0
-xori4, XORI, Pass, MaelleGuerre, XORI test for same numbers (negative); exit code 0
+add1, ADD, Pass, JaafarRammal, Simple add functionality test (two positives) 
+add2, ADD, Pass, JaafarRammal, Simple add functionality test (two negatives) 
+add3, ADD, Pass, JaafarRammal, Simple add functionality test (one positive one negative) 
+add4, ADD, Pass, JaafarRammal, Overflow test (two positives) 
+add5, ADD, Pass, JaafarRammal, Overflow test (two negatives) 
+addi1, ADDI, Pass, MaelleGuerre, Simple addi functionality test (two positives) 
+addi2, ADDI, Pass, MaelleGuerre, Simple addi functionality test (two negatives) 
+addi3, ADDI, Pass, MaelleGuerre, Simple add functionality test (one positive one negative) 
+addi4, ADDI, Pass, MaelleGuerre, Overflow test (two positives) 
+addi5, ADDI, Pass, MaelleGuerre, Overflow test (two negatives) 
+addi6, ADDI, Pass, JaafarRammal, Sign-extension for immediate 
+addiu1, ADDIU, Pass, MaelleGuerre, Simple addiu functionality test (two positives) 
+addiu2, ADDIU, Pass, MaelleGuerre, Simple addi functionality test (two negatives) 
+addiu3, ADDIU, Pass, MaelleGuerre, Simple addiu functionality test (one positive one negative) 
+addiu4, ADDIU, Pass, MaelleGuerre, Overflow test (two positives) 
+addiu5, ADDIU, Pass, MaelleGuerre, Overflow test (two negatives) 
+addu1, ADDU, Pass, MaelleGuerre, Simple addu functionality test (two positives) 
+addu2, ADDU, Pass, MaelleGuerre, Simple addu functionality test (two negatives) 
+addu3, ADDU, Pass, MaelleGuerre, Simple addu functionality test (one positive one negative) 
+addu4, ADDU, Pass, MaelleGuerre, Overflow test (two positives) 
+addu5, ADDU, Pass, MaelleGuerre, Overflow test (two negatives) 
+addu6, ADDU, Pass, JaafarRammal, Another overflow test (requires SLL and SRL) 
+and1, AND, Pass, MaelleGuerre, Simple AND functionality test (Same numbers) 
+and2, AND, Pass, MaelleGuerre, Simple AND functionality test (0) 
+and3, AND, Pass, MaelleGuerre, 32 bits AND 
+and4, AND, Pass, MaelleGuerre, negative numbers AND 
+andi1, ANDI, Pass, MaelleGuerre, Simple ANDI functionality test (Same numbers) 
+andi2, ANDI, Pass, MaelleGuerre, Simple ANDI functionality test (0) 
+andi3, ANDI, Pass, MaelleGuerre, 32 bits ANDI 
+andi4, ANDI, Pass, MaelleGuerre, negative numbers ANDI 
+andi5, ANDI, Pass, JaafarRammal, Immediate extension 
+beq1, BEQ, Pass, MaelleGuerre, basic beq 
+beq2, BEQ, Pass, MaelleGuerre, basic beq 
+beq3, BEQ, Pass, MaelleGuerre, beq false condition 
+beq4, BEQ, Pass, MaelleGuerre, beq jump condition 
+beq5, BEQ, Pass, JaafarRammal, PC verification (1) 
+beq6, BEQ, Pass, JaafarRammal, PC verification (2) 
+beq7, BEQ, Pass, JaafarRammal, Branch PC backwards 
+bgez1, BGEZ, Pass, MaelleGuerre, basic bgez 
+bgez2, BGEZ, Pass, MaelleGuerre, basic bgez for equal condition 
+bgez3, BGEZ, Pass, MaelleGuerre, bgez false condition 
+bgez4, BGEZ, Pass, MaelleGuerre, bgez jump condition 
+bgezal1, BGEZAL, Pass, MaelleGuerre, basic bgezal 
+bgezal2, BGEZAL, Pass, MaelleGuerre, basic bgezal for equal condition 
+bgezal3, BGEZAL, Pass, MaelleGuerre, bgezal false condition 
+bgezal4, BGEZAL, Pass, MaelleGuerre, bgezal jump condition 
+bgezal5, BGEZAL, Pass, JaafarRammal, Linking test 
+bgtz1, BGTZ, Pass, MaelleGuerre, basic bgtz 
+bgtz2, BGTZ, Pass, MaelleGuerre, basic bgtz for non-equal condition 
+bgtz3, BGTZ, Pass, MaelleGuerre, bgtz false condition 
+bgtz4, BGTZ, Pass, MaelleGuerre, bgtz jump condition 
+blez1, BLEZ, Pass, MaelleGuerre, basic blez 
+blez2, BLEZ, Pass, MaelleGuerre, basic blez for equal condition 
+blez3, BLEZ, Pass, MaelleGuerre, blez false condition 
+blez4, BLEZ, Pass, MaelleGuerre, blez jump condition 
+bltz1, BLTZ, Pass, MaelleGuerre, basic bltz 
+bltz2, BLTZ, Pass, MaelleGuerre, basic bltz for non-equal condition 
+bltz3, BLTZ, Pass, MaelleGuerre, bltz false condition 
+bltz4, BLTZ, Pass, MaelleGuerre, bltz jump condition 
+bltzal1, BLTZAL, Pass, MaelleGuerre, basic bltzal 
+bltzal2, BLTZAL, Pass, MaelleGuerre, basic bltzal for non-equal condition 
+bltzal3, BLTZAL, Pass, MaelleGuerre, bltzal false condition 
+bltzal4, BLTZAL, Pass, MaelleGuerre, bltzal jump condition 
+bltzal5, BLTZAL, Pass, JaafarRammal, Linking test 
+bne1, BNE, Pass, MaelleGuerre, bne jump condition 
+bne2, BNE, Pass, MaelleGuerre, bne no jump condition 
+bne3, BNE, Pass, MaelleGuerre, bne no jump 
+bne4, BNE, Pass, MaelleGuerre, bne far jump 
+bne5, BNE, Pass, JaafarRammal, PC verification 
+div1, DIV, Pass, MaelleGuerre, Dividing 0 by a number 
+div10, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned) 
+div11, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned) 
+div12, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned) 
+div2, DIV, Pass, MaelleGuerre, Dividing two numbers 
+div3, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative one negative) 
+div4, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative one positive) 
+div5, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative one positive) 
+div6, DIV, Pass, MaelleGuerre, Dividing by 0 (outputs 0) 
+div7, DIV, Pass, MaelleGuerre, Basic check for remainder of a division 
+div8, DIV, Pass, MaelleGuerre, Complex check for remainder of a division 
+div9, DIV, Pass, MaelleGuerre, Check the remainder (unsigned) 
+divu1, DIVU, Pass, MaelleGuerre, Dividing two numbers (unsigned) 
+divu2, DIVU, Pass, MaelleGuerre, Dividing two numbers (signed and unsigned) 
+divu3, DIVU, Pass, MaelleGuerre, Dividing two numbers (signed and unsigned) 
+divu4, DIVU, Pass, MaelleGuerre, Dividing two signed numbers 
+divu5, DIVU, Pass, MaelleGuerre, Check the remainder (unsigned) 
+divu6, DIVU, Pass, MaelleGuerre, Dividing 0 by a number 
+factorial, STACK, Pass, JaafarRammal, Factorial using stack 
+fibonacci, FUNCTION, Pass, JaafarRammal, Fibonacci Sequence (up to n=30 with r2 -1 for failure and 1 for success) 
+getc1, FUNCTION, Pass, JaafarRammal, Read from getc a positive number until EOF 
+getc2, FUNCTION, Pass, JaafarRammal, Read from getc a negative number until EOF 
+internal1, INTERNAL, Pass, JaafarRammal, Check if register 0 is grounded 
+internal2, INTERNAL, Pass, JaafarRammal, Check if all registers are initialized to zero (requires functioning ADD) 
+internal3, INTERNAL, Pass, JaafarRammal, Check if all registers are functional (requires functioning ADD and ADDI) 
+internal4, INTERNAL, Pass, JaafarRammal, Test empty binary 
+j1, J, Pass, MaelleGuerre, basic jump test 
+j2, J, Pass, JaafarRammal, PC verification 
+j3, J, Pass, JaafarRammal, Delay slot 
+jal1, JAL, Pass, MaelleGuerre, basic jump and link test 
+jal2, JAL, Pass, JaafarRammal, Delay slot 
+jal3, JAL, Pass, JaafarRammal, Use link register 
+jalr1, JALR, Pass, MaelleGuerre, Checking branch delay 
+jalr2, JALR, Pass, MaelleGuerre, jumping outside instruction space 
+jalr3, JALR, Pass, MaelleGuerre, Branch GETC 
+jalr4, JALR, Pass, MaelleGuerre, Branch PUTC 
+jalr5, JALR, Pass, MaelleGuerre, basic jump and link to register test 
+jr1, JR, Pass, JaafarRammal, Basic test 
+jr2, JR, Pass, JaafarRammal, Jump to data memory 
+jr3, JR, Pass, JaafarRammal, Jump to GetC 
+jr4, JR, Pass, JaafarRammal, Jump to PutC 
+jr5, JR, Pass, JaafarRammal, Jump outside whole memory 
+jr6, JR, Pass, JaafarRammal, Jump to non-aligned instruction word 
+jr7, JR, Pass, JaafarRammal, Branch delay slot 
+jr8, JR, Pass, JaafarRammal, PC verification 
+lb1, LB, Pass, MaelleGuerre, Store a negative and load byte 
+lb10, LB, Pass, JaafarRammal, Sign extension verification 
+lb11, LB, Pass, JaafarRammal, Getc 
+lb2, LB, Pass, MaelleGuerre, Store a positive and load byte 
+lb3, LB, Pass, MaelleGuerre, Store a negative and load byte with offset 
+lb4, LB, Pass, MaelleGuerre, Store a positive and load byte with offset 
+lb5, LB, Pass, MaelleGuerre, try to access non accessible memory (non-valid) 
+lb6, LB, Pass, MaelleGuerre, Store a positive and load byte with off-range offset 
+lb7, LB, Pass, MaelleGuerre, Store a negative word and load byte with in range offset 
+lb8, LB, Pass, JaafarRammal, Getc with offset 
+lb9, LB, Pass, JaafarRammal, EOF and NULL 
+lbu1, LB, Pass, MaelleGuerre, Store a negative and load byte 
+lbu10, LBU, Pass, JaafarRammal, Getc with offset 
+lbu2, LBU, Pass, MaelleGuerre, Store a positive and load byte 
+lbu3, LBU, Pass, MaelleGuerre, Store a negative and load byte with offset 
+lbu4, LBU, Pass, MaelleGuerre, Store a positive and load byte with offset 
+lbu5, LBU, Pass, MaelleGuerre, Store a negative word and load byte with in range offset 
+lbu6, LBU, Pass, MaelleGuerre, try to access non accessible memory (non-valid) 
+lbu7, LBU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset 
+lbu8, LBU, Pass, JaafarRammal, Getc 
+lbu9, LBU, Pass, JaafarRammal, Zero-extension verification 
+lh1, LH, Pass, MaelleGuerre, Store a negative and load byte 
+lh2, LH, Pass, MaelleGuerre, Store a negative and load halfword with offset 
+lh3, LH, Pass, MaelleGuerre, Store a positive and load halfword 
+lh4, LH, Pass, MaelleGuerre, Store a positive and load halfword with offset 
+lh5, LH, Pass, MaelleGuerre, try to access non accessible memory (non-valid) 
+lh6, LH, Pass, MaelleGuerre, Store a positive and load byte with off-range offset 
+lh7, LH, Pass, MaelleGuerre, Store a positive and load byte with off-range offset 
+lhu1, LHU, Pass, MaelleGuerre, Store a negative and load byte 
+lhu2, LHU, Pass, MaelleGuerre, Store a negative and load halfword with offset 
+lhu3, LHU, Pass, MaelleGuerre, Store a positive and load halfword 
+lhu4, LHU, Pass, MaelleGuerre, Store a positive and load halfword with offset 
+lhu5, LHU, Pass, MaelleGuerre, try to access non accessible memory (non-valid) 
+lhu6, LHU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset 
+lhu7, LHU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset 
+lui1, LUI, Pass, JaafarRammal, Checking load is strictly in upper 
+lui2, LUI, Pass, JaafarRammal, Use as addressing 
+lui3, LUI, Pass, JaafarRammal, Shift the value 
+lw1, LW, Pass, JaafarRammal, Basic functionality test 
+lw10, LW, Pass, JaafarRammal, Above data boundary 
+lw11, LW, Pass, JaafarRammal, Below instruction boundary 
+lw12, LW, Pass, JaafarRammal, Above instruction boundary 
+lw2, LW, Pass, JaafarRammal, Misaligned word 
+lw3, LW, Pass, JaafarRammal, Valid boundaries test 
+lw4, LW, Pass, JaafarRammal, Invalid range 
+lw5, LW, Pass, JaafarRammal, Getc 
+lw6, LW, Pass, JaafarRammal, Putc (only tested here because I assume you are smart enough to put that for all other functions) 
+lw7, LW, Pass, JaafarRammal, Load from instruction memory (same I test it here only) 
+lw8, LW, Pass, JaafarRammal, Below data boundary 
+lw9, LW, Pass, JaafarRammal, Null address 
+lwl1, LWL, Pass, MaelleGuerre, load word left positive 
+lwl2, LWL, Pass, MaelleGuerre, load word left negative 
+lwl3, LWL, Pass, JaafarRammal, 1 byte off 
+lwl4, LWL, Pass, JaafarRammal, 2 bytes off 
+lwl5, LWL, Pass, JaafarRammal, 3 bytes off 
+lwr1, LWR, Pass, MaelleGuerre, load word right positive 
+lwr2, LWR, Pass, MaelleGuerre, load word right negative 
+lwr3, LWR, Pass, JaafarRammal, 1 byte off 
+lwr4, LWR, Pass, JaafarRammal, 2 bytes off 
+lwr5, LWR, Pass, JaafarRammal, 3 bytes off 
+memory, INTERNAL, Pass, MaelleGuerre, try to access non accessible memory 
+mergesort, Function: Merge sort, Pass, MaelleGuerre, testing ability to merge sort 
+mfhi1, MFHI, Pass, JaafarRammal, basic HI  number check 
+mfhi2, MFHI, Pass, JaafarRammal, basic HI negative number check 
+mfhi3, MFHI, Pass, MaelleGuerre, big number check 
+mflo1, MFLO, Pass, MaelleGuerre, basic LO negative number check 
+mflo2, MFLO, Pass, MaelleGuerre, basic HI  number check 
+mflo3, MFLO, Pass, MaelleGuerre, basic LO number check 
+mflo4, MFLO, Pass, MaelleGuerre, basic HI negative number check 
+mthi1, MTHI, Pass, MaelleGuerre, basic HI negative number check 
+mthi2, MTHI, Pass, MaelleGuerre, basic HI  number check 
+mtlo1, MTLO, Pass, MaelleGuerre, basic LO number check 
+mtlo2, MTLO, Pass, MaelleGuerre, basic LO negative number check 
+mult1, MULT, Pass, MaelleGuerre, big number check 
+mult2, MULT, Pass, MaelleGuerre, msb check 
+mult3, MULT, Pass, MaelleGuerre, big number check 
+multu1, MULTU, Pass, MaelleGuerre, big number check 
+multu2, MULTU, Pass, MaelleGuerre, small number check 
+multu3, MULTU, Pass, MaelleGuerre, same number multiplication check 
+multu4, MULTU, Pass, MaelleGuerre, multiply by 0 
+multu5, MULTU, Pass, JaafarRammal, Check hi reg 
+or1, OR, Pass, MaelleGuerre, Sample check for the same number 
+or2, OR, Pass, MaelleGuerre, Sample check for opposite numbers 
+or3, OR, Pass, MaelleGuerre, Sample check for 2 numbers 
+or4, OR, Pass, MaelleGuerre, Sample check for two numbers 
+ori1, ORI, Pass, MaelleGuerre, Sample check for the same number 
+ori2, ORI, Pass, MaelleGuerre, Sample check for opposite numbers 
+ori3, ORI, Pass, MaelleGuerre, Sample check for 2 numbers 
+ori4, ORI, Pass, MaelleGuerre, Sample check for two numbers 
+putc1, FUNCTION, Pass, JaafarRammal, Print a number 
+putc2, SW, Pass, JaafarRammal, Let's see if your PUTC can see 
+sb1, SB, Pass, MaelleGuerre, Store a positive max 
+sb2, SB, Pass, JaafarRammal, Create word 
+sb3, SB, Pass, JaafaRammal, Putc 
+sh1, SH, Pass, MaelleGuerre, Store a positive value 
+sh2, SH, Pass, JaafarRammal, Create word 
+sh3, SH, Pass, JaafarRammal, Non-aligned address 
+sh4, SH, Pass, JaafarRammal, Putc 
+sll1, SLL, Pass, MaelleGuerre, Sample check for two shifts 
+sll2, SLL, Pass, MaelleGuerre, Sample check for two shifts - negative output 
+sllv1, SLLV, Pass, MaelleGuerre, Sample check for two shifts 
+sllv2, SLLV, Pass, MaelleGuerre, Sample check for two shifts - negative output 
+slt1, SLT, Pass, MaelleGuerre, set on less then check for true (unsigned) 
+slt2, SLT, Pass, MaelleGuerre, set on less then check for true (both signed) 
+slt3, SLT, Pass, MaelleGuerre, set on less then check for false (unsigned) 
+slt4, SLT, Pass, MaelleGuerre, set on less then check for false (signed) 
+slt5, SLT, Pass, MaelleGuerre, set on less then check for false (both signed) 
+slti1, SLTI, Pass, JaafarRammal, Basic functionality test 
+slti2, SLTI, Pass, JaafarRammal, Basic functionality test (negative) 
+sltiu1, SLTIU, Pass, JaafarRammal, Basic functionality test 
+sltiu2, SLTIU, Pass, JaafarRammal, Basic functionality test (negative) 
+sltiu3, SLTIU, Pass, JaafarRammal, Sign-extended immediate 
+sltiu4, SLTIU, Pass, JaafarRammal, Unsigned test 
+sltu1, SLTU, Pass, MaelleGuerre, set on less then check for true (unsigned) 
+sltu2, SLTU, Pass, MaelleGuerre, set on less then check for false (both signed) 
+sltu3, SLTU, Pass, MaelleGuerre, set on less then check for false (unsigned) 
+sltu4, SLTU, Pass, MaelleGuerre, set on less then check for false (signed) 
+sltu5, SLTU, Pass, MaelleGuerre, set on less then check for true (both signed) 
+sra1, SRA, Pass, MaelleGuerre, right arithmetic shift unsigned 
+sra2, SRA, Pass, MaelleGuerre, right arithmetic shift signed 
+sra3, SRA, Pass, MaelleGuerre, right arithmetic shift signed further testing 
+sra4, SRA, Pass, MaelleGuerre, right arithmetic shift unsigned further test 
+srav1, SRAV, Pass, MaelleGuerre, right arithmetic variable shift unsigned 
+srav2, SRAV, Pass, MaelleGuerre, right arithmetic variable shift signed 
+srav3, SRAV, Pass, MaelleGuerre, right arithmetic variable shift signed further testing 
+srav4, SRAV, Pass, MaelleGuerre, right arithmetic variable shift unsigned further test 
+srl1, SRL, Pass, MaelleGuerre, right arithmetic unsigned 
+srl2, SRL, Pass, MaelleGuerre, right  shift signed 
+srl3, SRL, Pass, MaelleGuerre, right  shift signed further testing 
+srl4, SRL, Pass, MaelleGuerre, right  shift unsigned further test 
+srlv1, SRLV, Pass, MaelleGuerre, right variable shift unsigned 
+srlv2, SRLV, Pass, MaelleGuerre, right  variable shift signed 
+srlv3, SRLV, Pass, MaelleGuerre, right variable shift signed further testing 
+srlv4, SRLV, Pass, MaelleGuerre, right  variable shift unsigned further test 
+sub1, SUB, Pass, JaafarRammal, Simple sub functionality test (two positives with positive result) 
+sub2, SUB, Pass, JaafarRammal, Simple sub functionality test (two positives with negative result) 
+sub3, SUB, Pass, JaafarRammal, Simple sub functionality test (two negatives with positive result) 
+sub4, SUB, Pass, JaafarRammal, Simple sub functionality test (two negatives with negative result) 
+sub5, SUB, Pass, JaafarRammal, Simple sub functionality test (one positive one negative with positive result) 
+sub6, SUB, Pass, JaafarRammal, Simple sub functionality test (one positive one negative with negative result) 
+sub7, SUB, Pass, JaafarRammal, Overflow test(positive - negative) 
+sub8, SUB, Pass, JaafarRammal, Overflow test(negative - positive) 
+sub9, SUB, Pass, JaafarRammal, Sub a number from itself 
+subu1, SUBU, Pass, MaelleGuerre, Simple sub functionality test (two positives with positive result) 
+subu2, SUBU, Pass, MaelleGuerre, Simple subu functionality test (two positives with negative result) 
+subu3, SUBU, Pass, MaelleGuerre, Simple subu functionality test (two negatives with positive result) 
+subu4, SUBU, Pass, MaelleGuerre, Simple subu functionality test (two negatives with negative result) 
+subu5, SUBU, Pass, MaelleGuerre, Simple subu functionality test (one positive one negative with positive result) 
+subu6, SUBU, Pass, MaelleGuerre, Simple subu functionality test (one positive one negative with negative result) 
+subu7, SUBU, Pass, JaafarRammal, Sub a number from itself 
+sw1, SW, Pass, MaelleGuerre, Store a positive value 
+sw10, SW, Pass, JaafarRammal, Upper instruction boundary 
+sw11, SW, Pass, JaafarRammal, Below data boundary 
+sw12, SW, Pass, JaafarRammal, Above instruction boundary 
+sw13, SW, Pass, JaafarRammal, Above data boundary 
+sw14, SW, Pass, JaafarRammal, Bottom instruction boundary 
+sw15, SW, Pass, JaafarRammal, Below instruction boundary 
+sw2, SW, Pass, MaelleGuerre, Store a negative value 
+sw3, SW, Pass, MaelleGuerre, Store a positive value with offset 
+sw4, SW, Pass, MaelleGuerre, Store a negative value with offset 
+sw5, SW, Pass, JaafarRammal, Valid boundaries (only tested here because I assume you are smart enough to put that for all other functions) 
+sw6, SW, Pass, JaafarRammal, Non-aligned address 
+sw7, SW, Pass, JaafarRammal, Putc 
+sw8, SW, Pass, JaafarRammal, Null address 
+sw9, SW, Pass, JaafarRammal, Instruction address 
+xor1, XOR, Pass, MaelleGuerre, Sample check for two numbers 
+xor2, XOR, Pass, MaelleGuerre, Sample check for maximum numbers 
+xor3, XOR, Pass, MaelleGuerre, Or test for same numbers (positive) 
+xor4, XOR, Pass, MaelleGuerre, XOR test for same numbers (negative) 
+xori1, XORI, Pass, MaelleGuerre, Sample check for two numbers 
+xori2, XORI, Pass, MaelleGuerre, Sample check for maximum numbers 
+xori3, XORI, Pass, MaelleGuerre, XORI test for same numbers (positive) 
+xori4, XORI, Pass, MaelleGuerre, XORI test for same numbers (negative) 

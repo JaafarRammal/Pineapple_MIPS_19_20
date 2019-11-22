@@ -1,0 +1,10 @@
+#SLTIU
+#1
+#JaafarRammal
+#Sign-extended immediate
+#
+#
+
+addi $3, $0, 5
+sltiu $2, $3, -1
+jr $0

@@ -1,0 +1,17 @@
+#MULTU
+#127
+#JaafarRammal
+#Check hi reg
+#
+#
+
+addi $3, $0, -1
+lui $4, 0x8000
+multu $4, $3
+nop
+nop
+nop
+mfhi $2
+srl $2, $2, 24
+jr $0
+nop
