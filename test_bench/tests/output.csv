@@ -72,10 +72,10 @@ div10, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned)
 div11, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned) 
 div12, DIV, Pass, MaelleGuerre, Check the remainder (one signed one unsigned) 
 div2, DIV, Pass, MaelleGuerre, Dividing two numbers 
-div3, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one negative) 
-div4, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one positive) 
-div5, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative, one positive) 
-div6, DIV, Pass, MaelleGuerre, Dividing by 0 - does not divide anything, outputs 0 
+div3, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative one negative) 
+div4, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative one positive) 
+div5, DIV, Pass, MaelleGuerre, Dividing two numbers (one negative one positive) 
+div6, DIV, Pass, MaelleGuerre, Dividing by 0 (outputs 0) 
 div7, DIV, Pass, MaelleGuerre, Basic check for remainder of a division 
 div8, DIV, Pass, MaelleGuerre, Complex check for remainder of a division 
 div9, DIV, Pass, MaelleGuerre, Check the remainder (unsigned) 
