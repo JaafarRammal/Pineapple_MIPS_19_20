@@ -133,7 +133,8 @@ void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 	//rt <- rs + immediate
  	// load signed operands
   int32_t rs_signed = static_cast<int32_t>(mips.registers[rs]);
-  if( ((immediate<0) && (rs_signed<0) && (rs_signed + immediate>=0)) || ((immediate>0) && (rs_signed>0) && (rs_signed + immediate<=0))){
+	int32_t sum = static_cast<int32_t>(rs_signed + immediate);
+  if( ((immediate<0) && (rs_signed<0) && (sum>=0)) || ((immediate>0) && (rs_signed>0) && (sum<=0))){
     // overflow
     // [ARITHMETIC EXCEPTION]
 		std::cerr<<"Arithmetic overflow when executing "<<rs_signed<<" + "<<immediate<<std::endl;
