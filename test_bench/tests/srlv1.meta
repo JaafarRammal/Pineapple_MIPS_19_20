@@ -1,0 +1,12 @@
+#SRLV
+#3
+#MaelleGuerre
+#right variable shift unsigned
+#
+#
+
+addi $3, $3, 12
+addi $1, $1, 2
+srlv $2, $3, $1
+
+jr $0

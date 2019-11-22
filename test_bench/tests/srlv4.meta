@@ -1,0 +1,12 @@
+#SRLV
+#5
+#MaelleGuerre
+#right  variable shift unsigned further test
+#
+#
+
+addi $3, $3, 20
+addi $1, $1, 2
+srlv $2, $3, $1
+
+jr $0

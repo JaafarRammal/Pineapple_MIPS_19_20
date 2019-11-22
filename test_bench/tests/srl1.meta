@@ -1,0 +1,11 @@
+#SRL
+#3
+#MaelleGuerre
+#right arithmetic unsigned
+#
+#
+
+addi $3, $3, 12
+srl $2, $3, 2
+
+jr $0

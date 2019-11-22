@@ -1,12 +1,11 @@
 #JALR
-#20
+#-11
 #MaelleGuerre
-#basic jump and link to register test
+#Branch GETC
 #
 #
 
-lui $1, 0x1000
-addi $1, $1, 0x1C
+lui $1, 0x0C00
 jalr $2, $1
 nop
 addi $2, $2, 1

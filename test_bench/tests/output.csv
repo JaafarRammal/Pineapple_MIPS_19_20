@@ -3,7 +3,6 @@ add2, ADD, Pass, JaafarRammal, Simple add functionality test (two negatives); ex
 add3, ADD, Pass, JaafarRammal, Simple add functionality test (one positive one negative); exit code -2
 add4, ADD, Pass, JaafarRammal, Overflow test (two positives); exit code -10
 add5, ADD, Pass, JaafarRammal, Overflow test (two negatives); exit code -10
-add6, ADD, Fail, JaafarRammal, Non-zero SA field; exit code -2 (expected -12)
 addi1, ADDI, Pass, MaelleGuerre, Simple addi functionality test (two positives); exit code 10
 addi2, ADDI, Pass, MaelleGuerre, Simple addi functionality test (two negatives); exit code -18
 addi3, ADDI, Pass, MaelleGuerre, Simple add functionality test (one positive one negative); exit code -2
@@ -19,7 +18,6 @@ addu2, ADDU, Pass, MaelleGuerre, Simple addu functionality test (two negatives);
 addu3, ADDU, Pass, MaelleGuerre, Simple addu functionality test (one positive one negative); exit code -2
 addu4, ADDU, Pass, MaelleGuerre, Overflow test (two positives); exit code 0
 addu5, ADDU, Pass, MaelleGuerre, Overflow test (two negatives); exit code 0
-addu6, ADDU, Fail, MaelleGuerre, Non-zero SA field; exit code -2 (expected -12)
 and1, AND, Pass, MaelleGuerre, Simple AND functionality test (Same numbers); exit code 9
 and2, AND, Pass, MaelleGuerre, Simple AND functionality test (0); exit code 0
 and3, AND, Pass, MaelleGuerre, 32 bits AND; exit code -1
@@ -76,32 +74,58 @@ divu1, DIVU, Pass, MaelleGuerre, Dividing two numbers (unsigned); exit code 2
 divu2, DIVU, Pass, MaelleGuerre, Dividing two numbers (signed and unsigned); exit code -3
 divu3, DIVU, Pass, MaelleGuerre, Dividing two numbers (signed and unsigned); exit code 0
 divu4, DIVU, Pass, MaelleGuerre, Dividing two signed numbers; exit code 0
-divu5, DIV, Pass, MaelleGuerre, Check the remainder (unsigned); exit code 3
+divu5, DIVU, Pass, MaelleGuerre, Check the remainder (unsigned); exit code 3
 divu6, DIVU, Pass, MaelleGuerre, Dividing 0 by a number; exit code 0
+factorial, STACK, Pass, JaafarRammal, Factorial using stack; exit code 120
+fibonacci, FUNCTION, Pass, JaafarRammal, Fibonacci Sequence (up to n=30 with r2 -1 for failure and 1 for success); exit code 1
+getc1, FUNCTION, Pass, JaafarRammal, Read from getc a positive number until EOF; exit code 109
+getc2, FUNCTION, Pass, JaafarRammal, Read from getc a negative number until EOF; exit code -53
 internal1, INTERNAL, Pass, JaafarRammal, Check if register 0 is grounded; exit code 7
 internal2, INTERNAL, Pass, JaafarRammal, Check if all registers are initialized to zero (requires functioning ADD); exit code 0
 internal3, INTERNAL, Pass, JaafarRammal, Check if all registers are functional (requires functioning ADD and ADDI); exit code 31
 internal4, INTERNAL, Pass, JaafarRammal, Test empty binary; exit code 0
-internal5, INTERNAL, Fail, JaafarRammal, Test non-ending binary; exit code -21 (expected -11)
 j, J, Pass, MaelleGuerre, basic jump test; exit code 4
 jal, JAL, Pass, MaelleGuerre, basic jump and link test; exit code 2
-jalr, JALR, Fail, MaelleGuerre, basic jump and link to register test; exit code -21 (expected 4)
+jalr, JALR, Pass, MaelleGuerre, basic jump and link to register test; exit code 20
+jalr1, JALR, Pass, MaelleGuerre, Checking branch delay; exit code 20
+jalr2, JALR, Pass, MaelleGuerre, jumping outside instruction space; exit code -11
+jalr3, JALR, Pass, MaelleGuerre, Branch GETC; exit code -11
+jalr4, JALR, Pass, MaelleGuerre, Branch PUTC; exit code -11
+jr1, JR, Pass, JaafarRammal, Basic test; exit code 0
+jr2, JR, Pass, JaafarRammal, Jump to data memory; exit code -11
+jr3, JR, Pass, JaafarRammal, Jump to GetC; exit code -11
+jr4, JR, Pass, JaafarRammal, Jump to PutC; exit code -11
+jr5, JR, Pass, JaafarRammal, Jump outside whole memory; exit code -11
+jr6, JR, Pass, JaafarRammal, Jump to non-aligned instruction word; exit code -11
+jr7, JR, Pass, JaafarRammal, Branch delay slot; exit code 2
 lb1, LB, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
 lb2, LB, Pass, MaelleGuerre, Store a positive and load byte; exit code 3
 lb3, LB, Pass, MaelleGuerre, Store a negative and load byte with offset; exit code -1
 lb4, LB, Pass, MaelleGuerre, Store a positive and load byte with offset; exit code 7
+lb5, LB, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
+lb6, LB, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -1
+lb7, LB, Pass, MaelleGuerre, Store a negative word and load byte with in range offset; exit code -1
 lbu1, LB, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
 lbu2, LBU, Pass, MaelleGuerre, Store a positive and load byte; exit code 7
 lbu3, LBU, Pass, MaelleGuerre, Store a negative and load byte with offset; exit code -1
 lbu4, LBU, Pass, MaelleGuerre, Store a positive and load byte with offset; exit code 7
+lbu5, LBU, Pass, MaelleGuerre, Store a negative word and load byte with in range offset; exit code -1
+lbu6, LBU, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
+lbu7, LBU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -1
 lh1, LH, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
 lh2, LH, Pass, MaelleGuerre, Store a negative and load halfword with offset; exit code -1
 lh3, LH, Pass, MaelleGuerre, Store a positive and load halfword; exit code 15
 lh4, LH, Pass, MaelleGuerre, Store a positive and load halfword with offset; exit code 15
+lh5, LH, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
+lh6, LH, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -24
+lh7, LH, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -108
 lhu1, LHU, Pass, MaelleGuerre, Store a negative and load byte; exit code -1
 lhu2, LHU, Pass, MaelleGuerre, Store a negative and load halfword with offset; exit code -1
 lhu3, LHU, Pass, MaelleGuerre, Store a positive and load halfword; exit code 15
 lhu4, LHU, Pass, MaelleGuerre, Store a positive and load halfword with offset; exit code 15
+lhu5, LHU, Pass, MaelleGuerre, try to access non accessible memory (non-valid); exit code -11
+lhu6, LHU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -24
+lhu7, LHU, Pass, MaelleGuerre, Store a positive and load byte with off-range offset; exit code -108
 lui1, lui, Pass, JaafarRammal, Checking load is strictly in upper; exit code 0
 lui2, lui, Pass, JaafarRammal, Use as addressing; exit code 100
 lui3, lui, Pass, JaafarRammal, Shift the value; exit code 3
@@ -110,6 +134,12 @@ lwl2, LWL, Pass, MaelleGuerre, load word left negative; exit code -8
 lwr1, LWR, Pass, MaelleGuerre, load word right positive; exit code 0
 lwr2, LWR, Pass, MaelleGuerre, load word right negative; exit code -1
 memory, Memory access, Pass, MaelleGuerre, try to access non accessible memory; exit code -11
+mergesort, Function: Merge sort, Pass, MaelleGuerre, testing ability to merge sort; exit code 1
+mfhi4, MFHI, Pass, MaelleGuerre, big number check; exit code -1
+mflo4, MFLO, Pass, MaelleGuerre, basic HI negative number check; exit code -8
+mflo5, MFLO, Pass, MaelleGuerre, basic HI  number check; exit code 8
+mflo6, MFLO, Pass, MaelleGuerre, basic LO number check; exit code 8
+mflo7, MFLO, Pass, MaelleGuerre, basic LO negative number check; exit code -8
 mthi1, MTHI, Pass, MaelleGuerre, basic HI negative number check; exit code -8
 mthi2, MTHI, Pass, MaelleGuerre, basic HI  number check; exit code 8
 mtlo1, MTLO, Pass, MaelleGuerre, basic LO number check; exit code 8
@@ -129,6 +159,7 @@ ori1, ORI, Pass, MaelleGuerre, Sample check for the same number; exit code 7
 ori2, ORI, Pass, MaelleGuerre, Sample check for opposite numbers; exit code -1
 ori3, ORI, Pass, MaelleGuerre, Sample check for 2 numbers; exit code -56
 ori4, ORI, Pass, MaelleGuerre, Sample check for two numbers; exit code -1
+putc1, FUNCTION, Pass, JaafarRammal, Print a number; exit code 0
 sb, SB, Pass, MaelleGuerre, Store a positive max; exit code 8
 sh1, SH, Pass, MaelleGuerre, Store a positive value; exit code 8
 sh2, SW, Pass, MaelleGuerre, Store a negative value - expect memory error; exit code -11
@@ -154,8 +185,15 @@ srav1, SRAV, Pass, MaelleGuerre, right arithmetic variable shift unsigned; exit 
 srav2, SRAV, Pass, MaelleGuerre, right arithmetic variable shift signed; exit code -1
 srav3, SRAV, Pass, MaelleGuerre, right arithmetic variable shift signed further testing; exit code -1
 srav4, SRAV, Pass, MaelleGuerre, right arithmetic variable shift unsigned further test; exit code 5
+srl1, SRL, Pass, MaelleGuerre, right arithmetic unsigned; exit code 3
+srl2, SRL, Pass, MaelleGuerre, right  shift signed; exit code -1
+srl3, SRL, Pass, MaelleGuerre, right  shift signed further testing; exit code -1
+srl4, SRL, Pass, MaelleGuerre, right  shift unsigned further test; exit code 5
+srlv1, SRLV, Pass, MaelleGuerre, right variable shift unsigned; exit code 3
+srlv2, SRLV, Pass, MaelleGuerre, right  variable shift signed; exit code -1
+srlv3, SRLV, Pass, MaelleGuerre, right variable shift signed further testing; exit code -1
+srlv4, SRLV, Pass, MaelleGuerre, right  variable shift unsigned further test; exit code 5
 sub1, SUB, Pass, JaafarRammal, Simple sub functionality test (two positives with positive result); exit code 2
-sub10, SUB, Fail, JaafarRammal, Non-zero SA field; exit code 16 (expected -12)
 sub2, SUB, Pass, JaafarRammal, Simple sub functionality test (two positives with negative result); exit code -2
 sub3, SUB, Pass, JaafarRammal, Simple sub functionality test (two negatives with positive result); exit code 2
 sub4, SUB, Pass, JaafarRammal, Simple sub functionality test (two negatives with negative result); exit code -2
