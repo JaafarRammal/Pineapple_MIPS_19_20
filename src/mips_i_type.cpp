@@ -132,7 +132,7 @@ void addi(MIPS& mips, uint32_t rs, uint32_t rt, int32_t immediate){
 	
 	//rt <- rs + immediate
  	// load signed operands
-  int32_t rs_signed = mips.registers[rs]; 
+  int32_t rs_signed = static_cast<int32_t>(mips.registers[rs]);
   if( ((immediate<0) && (rs_signed<0) && (rs_signed + immediate>=0)) || ((immediate>0) && (rs_signed>0) && (rs_signed + immediate<=0))){
     // overflow
     // [ARITHMETIC EXCEPTION]
