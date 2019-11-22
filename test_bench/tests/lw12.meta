@@ -1,0 +1,10 @@
+#LW
+#-11
+#JaafarRammal
+#Above instruction boundary
+#
+#
+
+lui $3, 0x1100
+lw $2, 0($3)
+jr $0

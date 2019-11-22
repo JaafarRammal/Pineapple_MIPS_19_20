@@ -1,0 +1,10 @@
+#SW
+#-11
+#JaafarRammal
+#Above data boundary
+#
+#
+
+lui $3, 0x2400
+sw $2, 0($3)
+jr $0
