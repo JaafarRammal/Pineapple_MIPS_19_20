@@ -5,9 +5,7 @@
 #
 #
 
-lui $1, 0x7FFF
-addi $2, $1, 0x7FFF
-addi $2, $2, 0x7FFF
-addi $2, $2, 0x7FFF
-addi $2, $2, 0x7FFF
+addi $3, $0, -1
+srl $3, $3, 1
+addi $2, $3, 1
 jr $0
