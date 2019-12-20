@@ -2,7 +2,7 @@
 
 ## The project
 
-We are required to build a MIPS simulator that follows the ISA specs for the MIPS I. We decided to use C++ to build the simulator and bash to build the testbench
+We are required to build a MIPS simulator that follows the ISA specs for the MIPS I. We decided to use C++ to build the simulator and bash to build the testbench. **This project was built as part of a coursework following the guidlines in the file [guidlines.md](https://github.com/JaafarRammal/Pineapple_MIPS_19_20/blob/master/Guidlines.md)**
 
 ## The simulator
 
